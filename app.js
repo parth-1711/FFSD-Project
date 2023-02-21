@@ -4,6 +4,7 @@ const bodyParser=require("body-parser");
 const app = express();
 
 app.use(bodyParser.urlencoded({extended : true}));
+app.use(express.static("public"));
 
 app.get("/login",function (req,res) {
     res.sendFile(__dirname+"/views/login.html");
@@ -11,10 +12,15 @@ app.get("/login",function (req,res) {
 })
 
 app.post("/login",function (req,res) {
-    let userName=req.body.uname;
+    let userName=req.body.username;
     let password=req.body.password;
     console.log(userName);
     console.log(password);
+    res.redirect("/home")
+})
+
+app.get("/home",function (req,res) {
+    res.sendFile(__dirname+"/views/home.html")
 })
 
 app.listen(3000,function () {
