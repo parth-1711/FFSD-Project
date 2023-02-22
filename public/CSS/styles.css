@@ -36,3 +36,9 @@ h3{
   position: relative;
   right: 0%;
 }
+
+.product-catagories{
+  text-align: center;
+  background-color: blueviolet;
+  margin:5px;
+}

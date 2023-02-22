@@ -23,6 +23,6 @@ app.get("/home",function (req,res) {
     res.sendFile(__dirname+"/views/home.html")
 })
 
-app.listen(3000,function () {
+app.listen(80,function () {
     console.log("server is up and running on port 3000");
 })
