@@ -2,6 +2,8 @@
   background-image: linear-gradient(45deg,rgb(63, 6, 94),rgb(220, 62, 226));
 }
 
+body{}
+
 #login-div{
   width: 40%;
   background-color: rgb(228, 192, 238);
@@ -41,4 +43,23 @@ h3{
   text-align: center;
   background-color: blueviolet;
   margin:5px;
+}
+
+.offer-list{
+  color: aliceblue;
+  background-image:linear-gradient(45deg,rgb(95, 13, 139),rgb(234, 135, 36));
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  
+}
+
+.offer-list:hover{
+  box-shadow: 10px 5px rgb(56, 3, 56);
+  background-image:linear-gradient(45deg,rgb(104, 50, 136),rgb(233, 162, 91));
+}
+
+.accept-button{
+  position: relative;
+  left: 80%;
 }

@@ -23,6 +23,11 @@ app.get("/home",function (req,res) {
     res.sendFile(__dirname+"/views/home.html")
 })
 
+app.get("/sellerBargain",function (req,res) {
+    res.sendFile(__dirname+"/views/sellerBargain.html")
+})
+
+
 app.listen(80,function () {
     console.log("server is up and running on port 3000");
 })
