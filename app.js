@@ -18,9 +18,37 @@ app.post("/login",function (req,res) {
     console.log(password);
     res.redirect("/home")
 })
-
+ 
 app.get("/home",function (req,res) {
     res.sendFile(__dirname+"/views/home.html")
+})
+
+app.get("/sign-in",function (req,res) {
+    res.sendFile(__dirname+"/views/sign-in.html")
+})
+
+app.post("/sign-in",function (req,res) {
+    let userName=req.body.username;
+    let password=req.body.password;
+    console.log(userName);
+    console.log(password);
+    res.redirect("/home")
+})
+
+app.get("/sign-up",function (req,res) {
+    res.sendFile(__dirname+"/views/sign-up.html")
+})
+
+app.post("/sign-up",function (req,res) {
+    let userName=req.body.username;
+    let password=req.body.password;
+    console.log(userName);
+    console.log(password);
+    res.redirect("/home")
+})
+
+app.get("/Product",function (req,res) {
+    res.sendFile(__dirname+"/views/Product.html")
 })
 
 app.get("/sellerBargain",function (req,res) {
