@@ -4,6 +4,8 @@
 
 body{
   background-color: rgb(231, 227, 192);
+  /* height: 200vh; */
+
 }
 
 #login-div{
@@ -15,9 +17,11 @@ body{
   margin-bottom: 18%;
   border-radius: 10px;
 }
+
 h3{
   text-align: center;
 }
+
 #login-form{
   text-align: center;
 }
@@ -277,12 +281,9 @@ h3{
   font-family: Quicksand, sans-serif;
 }
 
-html {
-  font-size: 45%;
-}
 
 .container {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -400,4 +401,16 @@ a:active {
   color: rgb(0, 0, 255);
   background-color: transparent;
   text-decoration: underline;
+}
+
+.card{
+    width: 20%;
+    height: 235px;
+
+}
+.cards{
+  display: flex;
+  flex-direction: row;
+  margin: 5% 5%;
+  padding:3% 3%;
 }
