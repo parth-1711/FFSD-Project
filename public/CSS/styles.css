@@ -192,10 +192,10 @@ h3{
 .box {
   
   margin:2%;
-  height: 150%;
-  width: 18rem;
-  /* background-color: black; */
-  /* display: inline-block; */
+  height: 40%;
+  width: 20%;
+  background-image:linear-gradient(45deg,rgb(95, 13, 139),rgb(234, 135, 36));
+  display: inline-block;
   border-radius: 10px;
 
 }
@@ -277,9 +277,9 @@ h3{
   font-family: Quicksand, sans-serif;
 }
 
-html {
+/* html {
   font-size: 45%;
-}
+} */
 
 .container {
   width: 100%;
