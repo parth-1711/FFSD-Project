@@ -22,7 +22,7 @@ body {
 
 .container {
     margin-left: 8%;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .row {
@@ -33,6 +33,10 @@ body {
     border: 1px solid black;
     border-radius: 5px;
     width: 35vw;
+}
+
+.dropdown-item{
+    color: white;
 }
 
 .container-cod {

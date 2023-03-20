@@ -18,6 +18,8 @@
   "homepage": "https://github.com/parth-1711/FFSD-Project#readme",
   "dependencies": {
     "body-parser": "^1.20.1",
-    "express": "^4.18.2"
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.21"
   }
 }
