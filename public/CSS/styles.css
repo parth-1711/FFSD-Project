@@ -1,10 +1,115 @@
-.login-body{
-  background-image: linear-gradient(45deg,rgb(63, 6, 94),rgb(220, 62, 226));
+.fixed-nav{
+    background-image: linear-gradient(45deg,rgb(181, 18, 164),rgb(223, 167, 62));
+    /* background-color: white; */
+    position: sticky;
+    width: 100vw;
 }
 
-body{
-  background-color: rgb(231, 227, 192);
+.nav-product-search {
+  text-decoration: none; 
+  padding-left: 40px;
+  font-size: 20;
+  color: #400056;
+  margin-right:7% ;
 }
+
+.borderforsearch {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+}
+
+.search {
+  display: flex;
+  width: 55vw;
+  height: 3.5vw;
+  align-items: center;
+  border-radius: 5px;
+  background: white;
+  border-color: black;
+  border-width: 5px;
+  padding: 5px 4px;
+
+}
+
+.search .search-item {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.search .search-item p {
+  color: grey;
+  border-right: 1px solid gray;
+  font-size: 15px;
+  margin-right: 10px;
+  margin: 10px;
+}
+
+.search .search-item input {
+  outline: none;
+  border: none;
+  width: 100%;
+  padding-right: 10px;
+  font-size: 15px;
+}
+
+.search .search-item:first-child {
+  width: 70%;
+  color: rgb(236, 118, 137);
+}
+
+.search .search-item:last-child {
+  width: 30%;
+  color: gray;
+}
+
+.products {
+
+  padding-left: 10px;
+}
+
+.location {
+  padding-left: 10px;
+}
+
+.nav-item:hover {
+  transform: scale(1.04);
+
+}
+
+.nav-item {
+  padding-top: 8px;
+}
+
+.nav-brand {
+  padding-right: 1px;
+}
+
+
+
+.upper-nav {
+  background-image: linear-gradient(45deg, rgb(181, 18, 164), rgb(223, 167, 62));
+}
+
+.nav-search {
+
+
+  text-decoration: none;
+  padding-left: 20px;
+  font-size: 20;
+  color: #400056;
+
+}
+
+.nav-product-search {
+  text-decoration: none;
+  padding-left: 40px;
+  font-size: 20;
+  color: #400056;
+  margin-right: 7%;
+}
+
 
 #login-div{
   width: 40%;
@@ -15,9 +120,11 @@ body{
   margin-bottom: 18%;
   border-radius: 10px;
 }
+
 h3{
   text-align: center;
 }
+
 #login-form{
   text-align: center;
 }
@@ -65,6 +172,7 @@ h3{
   position: relative;
   left: 80%;
 }
+<<<<<<< HEAD
 
 /*  */
 .nav-search:hover {
@@ -402,3 +510,6 @@ a:active {
   background-color: transparent;
   text-decoration: underline;
 }
+=======
+ 
+>>>>>>> origin/master

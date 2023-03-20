@@ -44,7 +44,7 @@ app.get("/Table",function (req,res) {
 })
 
 app.get("/login",function (req,res) {
-    res.sendFile(__dirname+"/views/login.html");
+    res.render("login.ejs");
 
 })
 
@@ -57,11 +57,11 @@ app.post("/login",function (req,res) {
 })
  
 app.get("/home",function (req,res) {
-    res.sendFile(__dirname+"/views/home.html")
+    res.render("home.ejs")
 })
 
 app.get("/sign-in",function (req,res) {
-    res.sendFile(__dirname+"/views/sign-in.html")
+    res.render("sign-in.ejs")
 })
 
 app.post("/sign-in",function (req,res) {
@@ -73,7 +73,7 @@ app.post("/sign-in",function (req,res) {
 })
 
 app.get("/sign-up",function (req,res) {
-    res.sendFile(__dirname+"/views/sign-up.html")
+    res.render("sign-up.ejs")
 })
 
 app.post("/sign-up",function (req,res) {
@@ -91,13 +91,16 @@ app.post("/sign-up",function (req,res) {
     res.redirect("/home")
 })
 
-app.get("/Product/:parameter",function (req,res) {
-    // console.log(req.params.parameter)
-    res.sendFile(__dirname+"/views/Product.html")
+app.get("/product",function (req,res) {
+    res.render("product.ejs")
 })
 
 app.get("/sellerBargain",function (req,res) {
-    res.sendFile(__dirname+"/views/sellerBargain.html")
+    res.render("sellerBargain.ejs")
+})
+
+app.get("/checkout",function (req,res) {
+    res.render("checkout.ejs")
 })
 
 

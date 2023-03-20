@@ -2,78 +2,89 @@
     transform: scale(1.04);
     color: #400056;
 }
+
 .nav-item:hover {
     transform: scale(1.04);
-    
+
 }
-.nav-item{
+
+.nav-item {
     padding-top: 8px;
 }
+
 .nav-brand {
     padding-right: 1px;
-    
+
 }
-.upper-nav{
-    background-image: linear-gradient(45deg,rgb(181, 18, 164),rgb(223, 167, 62));
+
+.upper-nav {
+    background-image: linear-gradient(45deg, rgb(181, 18, 164), rgb(223, 167, 62));
 }
+
 .nav-search {
-    
-    
-    text-decoration: none; 
+
+
+    text-decoration: none;
     padding-left: 20px;
     font-size: 20;
     color: #400056;
-      
+
 }
+
 .nav-product-search {
-    text-decoration: none; 
+    text-decoration: none;
     padding-left: 40px;
     font-size: 20;
     color: #400056;
-    margin-right:7% ;
+    margin-right: 7%;
 }
 
 .bg {
-    
+
     position: absolute;
     z-index: -1;
     width: 100%;
-    
+
 }
+
 .signup {
     position: absolute;
-    right:20px;
+    right: 20px;
     top: 17px;
 
 }
+
 .signup:hover {
     transform: scale(1.04);
 
 }
 
-.search{
+.search {
     display: flex;
     width: 55vw;
     height: 3.5vw;
     align-items: center;
     border-radius: 5px;
-    background:  white;
+    background: white;
     border-color: black;
     border-width: 5px;
     padding: 5px 4px;
-    
+
 }
+
 .borderforsearch {
     border-style: solid;
     border-width: 1px;
     border-radius: 5px;
 }
-.search .search-item{
+
+.search .search-item {
     display: flex;
     align-items: center;
     margin-left: 10px;
 }
-.search .search-item p{
+
+.search .search-item p {
     color: grey;
     border-right: 1px solid gray;
     font-size: 15px;
@@ -81,7 +92,7 @@
     margin: 10px;
 }
 
-.search .search-item input{
+.search .search-item input {
     outline: none;
     border: none;
     width: 200%;
@@ -89,16 +100,17 @@
     font-size: 15px;
 }
 
-.search .search-item:first-child{
+.search .search-item:first-child {
     width: 70%;
     color: rgb(236, 118, 137);
 }
 
-.search .search-item:last-child{
+.search .search-item:last-child {
     width: 30%;
     color: gray;
 }
-.head{
+
+.head {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -111,25 +123,32 @@
     padding-left: 10px;
 }
 
-.fixed-nav{
-    background-image: linear-gradient(45deg,rgb(181, 18, 164),rgb(223, 167, 62));
+.fixed-nav {
+    background-image: linear-gradient(45deg, rgb(181, 18, 164), rgb(223, 167, 62));
     /* background-color: white; */
-    position: fixed;
+    position: sticky;
     width: 100%;
 }
+
 .products {
-    
-        padding-left: 10px;
+
+    padding-left: 10px;
 }
+
 .recom {
     padding-top: 1%;
     padding-left: 4%;
 }
 
 .box {
-    
+
     margin-left: 4%;
+<<<<<<< HEAD
     background-color: rgb(244, 231, 244);
+=======
+    margin-bottom: 4%;
+    background-color: black;
+>>>>>>> origin/master
     display: inline-block;
     margin-bottom: 4%;
     
@@ -139,6 +158,7 @@
     box-shadow: 10px 5px grey;
 }
 
+<<<<<<< HEAD
 
 .product-image{
     /* width: 18rem; */
@@ -150,11 +170,14 @@
 
 
 
+=======
+>>>>>>> origin/master
 .after-float {
     padding-top: 100px;
 }
+
 .title {
-    
+
     margin: 10x;
     margin-left: 5%;
     display: block;
@@ -162,13 +185,14 @@
     width: 500px;
     background-color: black;
 }
+
 .image {
     margin: 19px;
     margin-left: 5%;
     position: inherit;
     display: block;
     height: 500px;
-    width:90%;
+    width: 90%;
     background-color: black;
 
 }
@@ -184,7 +208,7 @@
 
 }
 
-.desc{
+.desc {
     margin: 10px;
     margin-left: 4%;
     margin-right: 5%;
@@ -196,22 +220,15 @@
 
 
 }
-
- 
-
-
 .contact-map {
     margin: 10px;
     margin-left: 4%;
     margin-right: 5%;
     position: inherit;
- 
+
     height: 600px;
     width: 45%;
 }
-
-
-/* help */
 
 .container {
     padding-top: 100px;
