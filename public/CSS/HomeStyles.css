@@ -129,14 +129,21 @@
 .box {
     
     margin-left: 4%;
-    height: 40%;
-    width: 20%;
-    background-color: black;
+    background-color: rgb(244, 231, 244);
     display: inline-block;
+    margin-bottom: 4%;
+    
+}
+
+.box:hover{
+    box-shadow: 10px 5px grey;
 }
 
 
-
+.product-image{
+    /* width: 18rem; */
+    height: 6rem;
+}
 
 
 
