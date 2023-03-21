@@ -121,6 +121,10 @@ app.get("/product/:parameters", function (req, res) {
     res.render("product.ejs")
 })
 
+app.get("/userProfile/:parameter",function (req,res) {
+    res.render("userprofile.ejs",{user:req.params.parameter})
+})
+
 app.get("/sellerBargain", function (req, res) {
     res.render("sellerBargain.ejs")
 })
