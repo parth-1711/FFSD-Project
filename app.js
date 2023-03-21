@@ -125,8 +125,16 @@ app.get("/userProfile/:parameter",function (req,res) {
     res.render("userprofile.ejs",{user:req.params.parameter})
 })
 
-app.get("/sellerBargain", function (req, res) {
-    res.render("sellerBargain.ejs")
+app.get("/sellerBargain/:parameter", function (req, res) {
+    res.render("sellerBargain.ejs",{productName:req.params.parameter})
+})
+
+app.get("/SavedAddress", function (req, res) {
+    res.render("SavedAddress.ejs")
+})
+
+app.get("/Myads",function (req,res) {
+    res.render("Myads.ejs")
 })
 
 app.get("/checkout", function (req, res) {
