@@ -1,0 +1,140 @@
+/* About Us */
+body{
+    background-color:#a6a6a6;
+}
+.homeIcon{
+    margin-left:20px;
+    margin-top: 17px;
+}
+.homeIcon i{
+    font-size: 30px;
+    transition: 900ms;
+}
+
+.homeIcon i:hover{
+    color: rgb(203, 110, 28);
+    transform: scale(1.3);
+    cursor: pointer;
+}
+.aboutUs-twitter i:hover{
+    transform: rotate(-40deg);
+ }
+ .aboutUs-instagram i:hover{
+    transform: scale(1.3);
+ }
+ .aboutUs-gmail i:hover{
+    transform:scale(1.3);
+ }
+.logo-flex{
+    display: flex;
+    position: absolute;
+    right:20px;
+    top: 17px;
+}
+.logo-flex i{
+    margin-left: 25px;
+}
+
+.heading{
+    text-align: center;
+    margin-top: 25px;
+}
+.heading h1{
+    font-size: 50px;
+    color: #400056;
+    margin-bottom: 10px;
+}
+.heading p{
+    font-size: 20px;
+    color: #191818;
+    margin-bottom: 50px;
+}
+.about-us{
+    display: flex;
+    align-items: center;
+    width: 85%;
+    margin: auto;
+}
+.about-us2{
+    display: flex;
+    align-items: center;
+    width: 85%;
+    padding-top: 8rem;
+    padding-bottom: 50px;
+    margin: auto;
+}
+.about-us img{
+    flex: 0 50%;
+    max-width: 50%;
+    height: auto;
+}
+.about-us2 img{
+    flex: 0 50%;
+    max-width: 50%;
+    height: auto;
+}
+.content{
+    padding: 35px;
+}
+.content2{
+    padding: 35px;
+}
+.content h2{
+    color: #400056;
+    font-size: 24px;
+    margin: 15px 0px;
+}
+.content2 h2{
+    color: #400056;
+    font-size: 24px;
+    margin: 15px 0px;
+}
+.content p{
+    color: #171616;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 15px 0px;
+}
+.content2 p{
+    color: #171616;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 15px 0px;
+}
+.read-more-btn{
+    display: inline-block;
+    color: rgb(235, 234, 234);
+    background-color: darkorange;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 200ms ease;
+}
+.read-more-btn:hover{
+    background-color: rgb(107, 29, 3);
+}
+.about-us img{
+    border-radius: 10px;
+
+}
+.about-us2 img{
+    border-radius: 10px;
+
+}
+@media(max-width:786px){
+    .about-us{
+        flex-direction: column;
+    }
+    .about-us img{
+        flex: 0 100%;
+        max-width: 100%;
+        border-radius: 20px;
+    }
+    .content{
+        flex: 0 100%;
+        max-width: 100%;
+        padding: 15px;
+    }
+}

@@ -1,0 +1,11 @@
+.bgImg{
+    display: flex;
+    justify-content: center;
+}
+body{
+    background-color: black;
+}
+.taBtn{
+    display: flex;
+    justify-content: center;
+}
