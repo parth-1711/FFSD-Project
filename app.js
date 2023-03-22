@@ -118,7 +118,7 @@ app.get("/failure",function (req,res) {
 
 app.get("/product/:parameter", function (req, res) {
     console.log(req.params.parameters)
-    res.render("product.ejs",{user:req.params.parameter})
+    res.render("Product (1).ejs",{user:req.params.parameter})
 })
 
 app.get("/userProfile/:parameter",function (req,res) {

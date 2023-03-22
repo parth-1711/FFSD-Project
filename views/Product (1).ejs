@@ -1,0 +1,160 @@
+<html>
+    <head >
+        <title>Product title</title>
+        <link rel="icon" type="image/x-icon" href="logo.png">
+        
+        
+        
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="/CSS/HomeStyles.css">
+        <script>
+            function fun1() {
+    // alert("runing");
+    
+    var product_name="PlayStation 4 - Slim";
+    var locat = "Chennai, Tamilnadu " 
+
+    var image_path="ps4.png";
+    var price = 32000;
+    var desc="Description";
+    
+    //title
+    document.getElementById("titlecard").innerHTML=product_name;
+    document.getElementById("title_loactioncard").innerHTML=locat;
+    // image
+    var img = document.createElement('img');
+    
+    img.src="/images/PS4-Slim.png"
+    img.style.height="100%";
+    img.style.margin="auto";
+    img.id="imagecardchild";
+    
+    document.getElementById("imagecard").appendChild(img);
+    
+    document.getElementById("pricecard").innerHTML+="₹ ";
+    
+    
+    document.getElementById("pricecard").innerHTML+=price;
+    
+
+    // seller info
+    document.getElementById("selleroverviewcard").innerHTML+="SELLER :";
+    
+   
+
+}
+
+let initialpointer=0;
+
+function previmage() {
+    // alert("ok");
+    if (initialpointer<=0) {
+        return;
+    }
+    else {
+        initialpointer--;
+        src="images.jpeg";
+        document.getElementById("imagecard").img.src=src;
+        document.getElementById("imagecard").img.height="";
+    }
+}
+
+function nextimage() {
+    
+    
+    src="images.jpeg";
+    
+    document.getElementById("imagecardchild").src=src;
+    
+}
+        </script>
+    </head>
+    <%- include('partials/navbar'); -%>
+    <body onload="fun1();">
+
+        <div class="after-float">
+            <div id="titlecard" class="title">
+                sss
+            </div>
+            
+            <div style="margin-left: 5%;">
+                <i class="fas fa-map-marker-alt"></i>
+                <p id="title_loactioncard" style="display: inline;">
+
+                </p>
+            </div>
+            <div class="image">
+            
+            
+            <div id="imagecard">
+                
+                    <i class="fa fa-angle-left" id ="left-image-icon" onclick="previmage();"></i>
+                    <i class="fa fa-angle-right" id="right-image-icon" onclick="nextimage();" ></i>
+               
+            </div>
+            </div>
+            
+
+            <div class="float-container">
+
+                <div class="float-child1">
+                  <div id = "pricecard" class="pricecard"></div><hr>
+                  
+                  
+                  <div id = "selleroverviewcard" class="selleroverviewcard"></div>
+                  <div>
+                    <button id="contactsellerbtn" >Conatact seller</button>
+                  </div>
+                </div>
+                
+                <div class="float-child2">
+                  <div id="" class="desc">
+                    <div id="desccard">Description</div><hr>
+
+                  </div>
+                </div>
+                
+            </div>
+ 
+            <br>   
+            <br>   
+            <br>   
+            <br>   
+            <br>   
+            <br>   
+            <br>   
+            <br>   
+             
+              
+            <br>   
+            <br>   <br>   <br> <br>   <br>   <br> <br>   <br>   <br> <br><br>
+           
+            <div class="row-relatedad">
+                <div><h3 class="h3">Related ads</h3></div>
+                <p class="box-relatedad"></p>
+                <p class="box-relatedad"></p>
+                <p class="box-relatedad"></p>
+                <p class="box-relatedad"></p>
+            </div>     
+                ss 
+            
+            
+
+            </div>
+        </div>
+   
+    
+
+    
+
+
+    
+        
+    </body>
+    <%- include('partials/footer'); -%>
+</html>

@@ -159,7 +159,7 @@
     padding-top: 100px;
 }
 
-.title {
+/* .title {
 
     margin: 10x;
     margin-left: 5%;
@@ -167,7 +167,7 @@
     height: 70px;
     width: 500px;
     background-color: black;
-}
+} */
 
 .image {
     margin: 19px;
@@ -199,7 +199,7 @@
     display: inline-block;
     height: 600px;
     width: 45%;
-    background-color: black;
+    /* background-color: black; */
 
 
 }
@@ -222,4 +222,158 @@
     margin: 10px;
     font-size: 28;
 
+}
+
+/* temp */
+
+.after-float {
+    padding-top: 100px;
+}
+.title {
+    
+    margin: 10x;
+    margin-left: 5%;
+    display: block;
+    height: 70px;
+    width: 500px;
+    
+    border-radius: 10px;
+    
+}
+
+#contactsellerbtn {
+    background-color: #400056;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 0px;
+    width:200px;
+}
+#contactsellerbtn:hover {
+    background-color: #856391;
+   
+}
+#desccard {
+    color: #616161;
+    font-size: 30px;
+}
+
+#imagecard {
+    box-shadow: 0 10px 30px rgba(203, 202, 202, 0.8);
+    margin: 19px;
+    margin-left: 5%;
+    position: inherit;
+    background-color: black;
+    display: flex;
+    object-fit: contain;
+    height: 500px;
+    width:90%;
+    border-radius: 10px;
+    
+
+}
+
+.title-location {
+    color: #400056;
+    padding-left: 5%;
+}
+.float-container {
+    padding: 5%;
+}
+
+.float-child1 {
+    box-shadow: 10px 10px 30px rgba(203, 202, 202, 0.8);
+    display: block;
+    border-radius: 10px;
+    width: 27.5%;
+    height: 500px;
+    margin-right: 5%;
+    float: left;
+    padding: 20px;
+    
+} 
+.float-child2 {
+    border-radius: 10px;
+    box-shadow: 10px 10px 30px rgba(203, 202, 202, 0.8);
+    display: block;
+    width: 67.5%;
+    float: left;
+    height: 500px;
+    padding: 20px;
+    
+} 
+
+.image{
+    
+
+}
+
+#left-image-icon {
+    position:relative;
+    font-size: 40px;
+    left: 0;
+    margin-left: 2%;
+    margin-top: 240px;
+    color: white;
+}
+#right-image-icon {
+    position: absolute;font-size: 40px;
+    margin-right: 7%;
+    margin-top: 240px;
+    right: 0;
+
+    color: white;
+}
+
+#left-image-icon:hover{
+    color: rgb(208, 207, 207);
+    cursor: pointer;
+}
+#right-image-icon:hover{
+    color: rgb(208, 207, 207);
+    cursor: pointer;
+}
+.box-relatedad {
+    border-radius: 5px;
+    margin-top: 1%;
+    box-shadow: 10px 10px 30px #d044ff;
+    margin-left: 4%;
+    height: 200px;
+    width: 20%;
+    background-color: white;
+    display: inline-block;
+
+}
+.row-relatedad {
+    margin-top: 2%;
+    background-color: #cd5af39b;
+}
+.h3{
+    padding-top: 20px;
+    margin-left: 5%;
+}
+
+
+.contact-map {
+    margin: 10px;
+    margin-left: 4%;
+    margin-right: 5%;
+    position: inherit;
+ 
+    height: 600px;
+    width: 45%;
+}
+
+#titlecard {
+    font-size: 30px;
+    
+}
+#pricecard {
+    color: #616161;
+    font-weight: bold;
+    font-size: 30px;
+}
+#selleroverviewcard {
+    font-size: 17px;
+    padding: px;
 }
