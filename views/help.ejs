@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>PHOENIX E-mart - Help</title>
+        <link rel="icon" type="image/x-icon" href="logo.png">
+        
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="/CSS/help.css">
+
+    </head>
+    <%- include('partials/navbar'); -%>
+    <body>
+      <!-- <div> 
+        <nav class="navbar navbar-expand-sm  navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-brand"><a href=""><img src="PHOENIX - Copy.png" height="50"></a></li>
+                
+                <li class="nav-item"><a class="nav-search" href="" >Home</a></li>
+                <li class="nav-item"><a class="nav-search" href="" >About Us</a></li>
+                <li class="nav-item"><a class="nav-search" href="" >Contact Us</a></li>  
+            </ul>
+        </nav> 
+        <div class="signup">
+          <a class="nav-search" href="" >Sign Up</a>
+      </div> 
+      </div> -->
+
+      <div class="container help-header">
+        <h2>HI, WE ARE HERE TO HELP YOU !</h2>
+        <!-- <h4 style="padding-top: 10px; padding-bottom: 10px;">Please, select the category</h4> -->
+      </div>
+
+      <div class="container" style="margin-top: 15px;">
+        <div class="row1">
+          <div class="category-block1">
+            <i class="fa fa-user" style="font-size: 100px ;color: #400056;"></i>
+            <div class="category-title">SELLER FAQS</div>
+          </div>
+          <div class="category-block2">
+            <i class="fa fa-user" style="font-size: 100px ; color: #400056;"></i>
+            <div class="category-title">BUYER FAQS</div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="category-block3">
+            <i class="fa fa-question-circle" style="font-size: 100px ;color: #400056;"></i>
+            <div class="category-title">GENERAL QUERIES</div>
+          </div>
+          <div class="category-block4">
+            <i class="fa fa-info-circle" style="font-size: 100px ;color: #400056;"></i>
+            <div class="category-title">LEGAL INFORMATION</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="query-box">
+        <form action="">
+          <label for="query">Enter Your query:-</label><br>
+          <textarea name="query" id="" cols="30" rows="10" class="query"></textarea>
+          <br>
+          <button type="submit" class="btn btn-outline-success">Submit Query</button>
+        </form>
+      </div>
+
+    </body>
+        
+</html>

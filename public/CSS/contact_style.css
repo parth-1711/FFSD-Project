@@ -1,0 +1,271 @@
+body{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+header{
+    /* width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    position: relative;
+    object-fit: cover;
+    margin-bottom: 2rem; */
+}
+
+.header-image{
+   
+    position: absolute;
+   
+    top: -1vh;
+    z-index: -1;
+   
+    
+}
+
+/* .header-image img{
+    position: absolute;
+    width: 45%;
+    height: 30%;
+    float: right;
+} */
+.nav-search:hover {
+    transform: scale(1.04);
+    color: #400056;
+}
+.nav-item:hover {
+    transform: scale(1.04);
+    
+}
+.nav-item{
+    padding-top: 1vw;
+}
+.nav-brand {
+    padding-right: 1px;
+}
+.nav-search {
+    
+    
+    text-decoration: none; 
+    padding-left: 20px;
+    font-size: 20;
+    color: #ecedef;
+    color: #400056;
+      
+}
+
+/* .nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 1rem;
+    margin: 0 30px;
+} */
+
+.nav-bar{
+    list-style: none;
+    font-weight: lighter;
+    display: flex;
+    gap: 1.5rem;
+}
+/* 
+.head{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    align-items: center;
+
+} */
+.logo{
+    width: 20vw;
+}
+
+.left-float h3{
+    font-size: 1.9rem;
+    color:#400056;
+    font-weight: 400;
+    padding-top: 30px;
+    padding-left: 1.5vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif ;
+}
+
+.container-top{
+    display: flex;
+    padding-top: 7.5vw;
+}
+
+.left-float{
+width: 60vw;
+}
+.right-float{
+    padding-top: 2vw;
+  width: 40vw;
+  padding-right: 30vw;
+ 
+}
+
+
+
+/* .contact-search{
+    display: flex;
+    width: 55vw;
+    height: 10vh;
+    align-items: center;
+    border-radius: 10px;
+    background:  white;
+}
+
+.contact-search .search-item{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}  */
+
+/* .search .search-item p{
+    color: grey;
+    border-right: 1px solid gray;
+    font-size: 15px;
+    margin-right: 10px;
+    margin: 10px;
+} */
+/* 
+.contact-search .search-item input{
+    outline: none;
+    border: none;
+    width: 100%;
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+.contact-search .search-item:first-child{
+    width: 80%;
+    color: rgb(236, 118, 137);
+}
+
+.contact-search .search-item:last-child{
+    width: 20%;
+   height: ;
+} */
+/* .submit{
+    color: white;
+    background-color: purple;
+    
+} */
+
+    /* .container-top{
+    padding-top: 30%;
+    height: 50%;
+    
+    } */
+
+    .search-container{
+        padding-left: 1.5vw;
+    }
+
+  .container-top .search-field{
+    padding: 18px;
+    margin-top: 60px;
+    width: 80%;
+    height: 8vh;
+    
+  }
+  .search-submit{
+    height: 8vh;
+    width: 5%;
+    background-color: rgb(228, 32, 228);
+   
+  }
+  /* .container-top.search-container button {
+    float: right;
+    padding: 6px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  } */
+  
+  .container-top .search-container button:hover {
+    background: #ccc;
+  }
+  .input-group{
+   
+    
+  }
+  .search-button{
+    font-size: 10px;
+  }
+
+  
+  .bottom-container{
+    background-color: #400056;
+    width: 100%;
+    height: 4vw;
+    display: flex;
+    position: fixed;
+    bottom: 5px;
+  }
+
+  .bottom-container a{
+    color: aliceblue;
+    text-decoration: none;
+  }
+.btm-words{
+    padding-left: 10vw;
+    padding-top: 1vw;
+}
+
+
+  .right-float a{
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif ;
+  }
+  
+ #twitter{
+    display: flex;
+ }
+ #instagram{
+    display: flex;
+ }
+ #gmail{
+    display: flex;
+ }
+ .text-twitter p{
+    font-size: larger;
+    font-weight: bold;
+    padding-left: 1vw;
+ }
+ .text-instagram p{
+    font-size: larger;
+    font-weight: bold;
+    color: #dc4bb5;
+    padding-left: 1.3vw;
+ }
+ .text-gmail p{
+    font-size: larger;
+    font-weight: bold;
+    color: rgb(52, 45, 45);
+    padding-left: 1vw;
+ }
+
+ .twitter i:hover{
+    transform: rotate(-40deg);
+ }
+ .instagram i:hover{
+    transform: rotate(45deg);
+ }
+ .gmail i:hover{
+    transform:scaleY(1.3);
+ }
+
+/* .gmail{
+    color: rgb(234, 53, 159);
+} */
+
+  /* .child {
+    display: inline-block;
+    vertical-align: middle;
+  } */

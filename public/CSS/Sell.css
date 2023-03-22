@@ -1,0 +1,94 @@
+.colone {
+    margin-right: 40px;
+    margin-left: 10px;
+    display: inline-block;
+
+}
+
+.coltwo {
+    
+    
+    display: inline-block;
+}
+.row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.colm-form {
+    flex: 0 0 50%;
+    text-align: center;
+}
+
+
+
+.colm-form .form-container {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    padding: 20px;
+    width: 700px;
+    height: 500px;
+}
+
+#dropdownMenuLink3 {
+    padding-top: 10px;
+    height: 50px;
+    width: 250px;
+    background-color: #400056;
+    margin: 10px;
+    margin-bottom: 20px;
+    
+}
+#dropdownMenuLink1 {
+    
+    padding-top: 10px;
+    height: 50px;
+    width: 250px;
+    background-color: #400056;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+#dropdownMenuLink2 {
+    padding-top: 10px;
+    height: 50px;
+    width: 250px;
+    background-color: #400056;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+#dropdownMenuLink4 {
+    padding-top: 10px;
+    height: 50px;
+    width: 250px;
+    background-color: #400056;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+#dropdownMenuLink5 {
+    padding-top: 10px;
+    height: 50px;
+    width: 250px;
+    background-color: #400056;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+#dropdownMenuLink6 {
+    padding-top: 10px;
+    height: 50px;
+    width: 250px;
+    background-color: #400056;
+    margin: 10px;
+    margin-bottom: 20px;
+}

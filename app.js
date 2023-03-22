@@ -125,24 +125,40 @@ app.get("/userProfile/:parameter",function (req,res) {
     res.render("userprofile.ejs",{user:req.params.parameter})
 })
 
-app.get("/sellerBargain/:parameter", function (req, res) {
-    res.render("sellerBargain.ejs",{productName:req.params.parameter})
+app.get("/sellerBargain/:parameter1/:parameter2", function (req, res) {
+    res.render("sellerBargain.ejs",{productName:req.params.parameter1,user:req.params.parameter2})
 })
 
 app.get("/SavedAddress", function (req, res) {
     res.render("SavedAddress.ejs")
 })
 
-app.get("/Myads",function (req,res) {
-    res.render("Myads.ejs")
+app.get("/Myads/:parameter",function (req,res) {
+    res.render("Myads.ejs",{user : req.params.parameter})
 })
 
-app.get("/checkout", function (req, res) {
-    res.render("checkout.ejs")
+app.get("/checkout/:parameters", function (req, res) {
+    res.render("checkout.ejs",{user : req.params.parameters})
+})
+
+app.get("/MyOffers/:parameters",function(req,res){
+    res.render("MyOffers.ejs",{user : req.params.parameter})
 })
 
 app.get("/aboutUs",function (req,res) {
     res.sendFile(__dirname+"/views/aboutUs.html")
+})
+
+app.get("/Sell",function (req,res) {
+    res.sendFile(__dirname+"/views/SELLproduct.html")
+})
+
+app.get("/RemoveUser",function (req,res) {
+    res.sendFile(__dirname+"/views/RemoveUser.html")
+})
+
+app.get("/help/:parameter",function (req,res) {
+    res.render("help.ejs",{user:req.params.parameter})
 })
 
 app.listen(80, function () {
