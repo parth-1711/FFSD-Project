@@ -116,9 +116,9 @@ app.get("/failure",function (req,res) {
     res.sendFile(__dirname+"/views/failure.html")
 })
 
-app.get("/product/:parameters", function (req, res) {
+app.get("/product/:parameter", function (req, res) {
     console.log(req.params.parameters)
-    res.render("product.ejs")
+    res.render("product.ejs",{user:req.params.parameter})
 })
 
 app.get("/userProfile/:parameter",function (req,res) {
@@ -129,8 +129,8 @@ app.get("/sellerBargain/:parameter1/:parameter2", function (req, res) {
     res.render("sellerBargain.ejs",{productName:req.params.parameter1,user:req.params.parameter2})
 })
 
-app.get("/SavedAddress", function (req, res) {
-    res.render("SavedAddress.ejs")
+app.get("/SavedAddress/:parameter", function (req, res) {
+    res.render("SavedAddress.ejs",{user:req.params.parameter})
 })
 
 app.get("/Myads/:parameter",function (req,res) {
@@ -142,15 +142,15 @@ app.get("/checkout/:parameters", function (req, res) {
 })
 
 app.get("/MyOffers/:parameters",function(req,res){
-    res.render("MyOffers.ejs",{user : req.params.parameter})
+    res.render("MyOffers.ejs",{user : req.params.parameters})
 })
 
 app.get("/aboutUs",function (req,res) {
     res.sendFile(__dirname+"/views/aboutUs.html")
 })
 
-app.get("/Sell",function (req,res) {
-    res.sendFile(__dirname+"/views/SELLproduct.html")
+app.get("/sell/:parameter",function (req,res) {
+    res.render("Sellproduct.ejs",{user:req.params.parameter})
 })
 
 app.get("/RemoveUser",function (req,res) {
@@ -160,6 +160,134 @@ app.get("/RemoveUser",function (req,res) {
 app.get("/help/:parameter",function (req,res) {
     res.render("help.ejs",{user:req.params.parameter})
 })
+
+app.post("/help",function(req,res){
+    res
+})
+
+app.get("/admin",function (req,res) {
+    res.render("adminpage.ejs")
+})
+
+
+
+app.get("/productdetails/:parameter",function (req,res) {
+    res.render("productdetails.ejs",{user:req.params.parameter})
+})
+
+app.post("/RemoveUser",function (req,res) {
+    let userName=req.body.uname;
+    let reason=req.body.reason;
+    db.run("delete from Users where uname=(?)",[userName],function (err) {
+        if (err) {
+            res.redirect(__dirname+"/views/deletionFailure.html")
+        }
+        else{
+            res.redirect("/RemoveUser")
+        }
+    })
+})
+
+
+const createAdminTable = `create table if not exists Admins (
+    uname varchar(50) primary key,
+    email varchar(100),
+    password varchar(100),
+    mobileNo varchar(12),
+    address varchar(200)
+);`
+
+db.run(createAdminTable, (err) => {
+    if (err) {
+        console.log(err.message);
+    }
+    console.log("Admin table created !");
+})
+
+
+app.get("/adminsignup", function (req, res) {
+    res.sendFile(__dirname + "/views/adminsignup.html")
+})
+
+app.post("/adminsignup", function (req, res) {
+    let userName = req.body.username;
+    let email = req.body.email;
+    let password = req.body.password;
+    let insertCommand = `insert into Admins (uname,email,password) values(?,?,?)`
+    let values = [userName, email, password];
+    db.run(insertCommand, values, (err) => {
+        if (err) console.log(err.message);
+
+    })
+    console.log(userName);
+    console.log(password);
+    res.redirect("/admin");
+})
+
+app.get("/adminsignin", function (req, res) {
+    res.sendFile(__dirname + "/views/adminsignin.html")
+})
+
+app.post("/adminsignin", function (req, res) {
+    let userName = req.body.username
+    let Password = req.body.password;
+    console.log(userName);
+    console.log(Password);
+    db.each("select password from Admins where Admins.uname=(?)",userName, function (err, row) {
+        if (err) {
+            console.log(err.message);
+        }
+        else {
+            if (row.password === Password) {
+                res.redirect("/admin");
+            }
+            else{
+                res.redirect("/failure")
+            }
+        }
+
+
+    })
+
+})
+
+const createQueryTable=`create table if not exists Queries(
+    query varchar(1000),
+    querrier varchar(50)
+);`
+
+db.run(createQueryTable,function (err) {
+    if (err) {
+        console.log(err.message)
+    }
+    console.log("Query Table created !");
+})
+
+app.post("/help/:parameter",function(req,res){
+    let Query=req.body.query;
+    let Querrier=req.params.parameter;
+    const insertCommand=`insert into Queries (query,querrier) values (?,?)`
+    let values=[Query,Querrier];
+    db.run(insertCommand,values,function (err) {
+        if (err) {
+            console.log(err.message);
+        }
+    })
+    res.redirect("/help/"+Querrier)
+
+});
+
+app.get("/queries",function (req,res) {
+    const selectCommand=`select * from Queries`
+    db.all(selectCommand,function (err,rows) {
+        if (err) {
+            console.log(err.message)
+        }
+        res.render("adminqueries.ejs",{Rows:rows})
+    })
+    
+})
+
 
 app.listen(80, function () {
     console.log("server is up and running");

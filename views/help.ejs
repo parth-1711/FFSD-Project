@@ -14,22 +14,8 @@
     </head>
     <%- include('partials/navbar'); -%>
     <body>
-      <!-- <div> 
-        <nav class="navbar navbar-expand-sm  navbar-light">
-            <ul class="navbar-nav">
-                <li class="nav-brand"><a href=""><img src="PHOENIX - Copy.png" height="50"></a></li>
-                
-                <li class="nav-item"><a class="nav-search" href="" >Home</a></li>
-                <li class="nav-item"><a class="nav-search" href="" >About Us</a></li>
-                <li class="nav-item"><a class="nav-search" href="" >Contact Us</a></li>  
-            </ul>
-        </nav> 
-        <div class="signup">
-          <a class="nav-search" href="" >Sign Up</a>
-      </div> 
-      </div> -->
-
-      <div class="container help-header">
+<div class="container">
+      <div class="container help-header" style="width: 70%;">
         <h2>HI, WE ARE HERE TO HELP YOU !</h2>
         <!-- <h4 style="padding-top: 10px; padding-bottom: 10px;">Please, select the category</h4> -->
       </div>
@@ -59,14 +45,14 @@
       </div>
 
       <div class="query-box">
-        <form action="">
+        <form action="/help/<%= user %>" method="post">
           <label for="query">Enter Your query:-</label><br>
-          <textarea name="query" id="" cols="30" rows="10" class="query"></textarea>
+          <textarea name="query" id="query" cols="30" rows="10" class="query"></textarea>
           <br>
           <button type="submit" class="btn btn-outline-success">Submit Query</button>
         </form>
       </div>
-
+    </div>
     </body>
         
 </html>

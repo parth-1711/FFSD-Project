@@ -7,7 +7,7 @@
     border: 1px solid #400056;
 }
 
-.adddesc  {
+.adddesc {
     width: 400px;
     height: 100px;
     border-radius: 5px;
@@ -114,10 +114,10 @@
 
 .nav-product-search {
     text-decoration: none;
-    padding-left: 40px;
+    padding-left: 20px;
     font-size: 20;
     color: #400056;
-    margin-right: 7%;
+    margin-right: 3%;
 }
 
 .bg {
@@ -135,7 +135,7 @@
 
 }
 
-.userLogo{
+.userLogo {
     position: relative;
     left: 60%;
 }

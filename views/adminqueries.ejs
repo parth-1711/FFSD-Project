@@ -19,12 +19,14 @@
         <div class="title">
             <h1>List of Queries...</h1>
         </div>
-
-        <%- include('partials/querycontainer'); %>
-        <%- include('partials/querycontainer'); %>
-        <%- include('partials/querycontainer'); %>
-        <%- include('partials/querycontainer'); %>
-        <%- include('partials/querycontainer'); %>
+        <% Rows.forEach(row =>{ %>
+            <div class="offer-list container-md">
+                <div>
+                    Querier's Name :- <%= row.querrier %> <br>
+                    Query :- <%= row.query %>
+                </div>
+            </div>
+        <% })%>
 
     </div>
 </body>

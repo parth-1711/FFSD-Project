@@ -123,6 +123,12 @@ body{
     border-radius: 10px;
 
 }
+
+body{
+    background-image: url("/images/background.jpeg");
+    background-size: cover;
+  }
+
 @media(max-width:786px){
     .about-us{
         flex-direction: column;
