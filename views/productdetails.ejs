@@ -1,0 +1,64 @@
+<%- include('partials/navbar'); -%>
+    <html lang="en">
+
+    <head>
+        <link rel="stylesheet" href="/CSS/productdetails.css">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>sELL</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    </head>
+
+    <body>
+        <div class="containform">
+            <p style="font-size: 30px; font-weight: bold;">Please fill in the details</p>
+            <hr>
+            <form>
+                <p style="font-size: 20px;">Ad title: </p>
+                <input type="text" class="adtitl"><br>
+                <p style="font-size: 10px; color: grey;">Mention the name of your item with some key feeatures</p>
+                <p style="font-size: 20px;">Description </p>
+                <input type="text" class="adddesc"><br>
+                <p style="font-size: 10px; color: grey;">Include condition, features and reason for selling</p>
+
+                <p style="font-size: 20px;">How old is your item </p>
+                <input type="text" class="addoldness"><br>
+                <p style="font-size: 10px; color: grey;">Mention clearly</p>
+
+                <p style="font-size: 20px;">Set price: </p>
+                <input type="text" class="addprice"><br>
+                <p style="font-size: 10px; color: grey;">In rupees ₹</p>
+                <hr>
+                <p style="font-size: 30px; margin-top: 30px; font-weight: bold;"><i class="fa fa-address-book-o"></i>
+                    Please confirm your address</p><br>
+                <p style="font-size: 20px;">Flat, House no., Building, Company, Apartment</p>
+                <input class="addflat" type="text">
+                <p style="font-size: 10px; color: grey;">Address line 1</p>
+                <p style="font-size: 20px;">Area, Street, Sector, Village</p>
+                <input class="addstreet" type="text">
+                <p style="font-size: 10px; color: grey;">Address line 2</p>
+                <p style="font-size: 20px;">Landmark</p>
+                <input class="addlandmark" type="text">
+                <p style="font-size: 20px;">Town/City</p>
+                <input type="text" class="addcity">
+                <hr>
+                <p style="font-size: 30px; font-weight: bold;"> <i class="fa fa-camera"></i> Add images of your item</p>
+                <br>
+                <input type="file" class="addimages" multiple>
+
+            </form>
+
+
+        </div>
+    </body>
+
+    <%- include('partials/footer'); -%>
+
+    </html>
