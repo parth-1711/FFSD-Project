@@ -4,8 +4,11 @@
   box-sizing: border-box;
   outline: none;
   font-family: Quicksand, sans-serif;
+  
 }
-
+body{
+  background: #dfceff;
+}
 html {
   font-size: 45%;
   background-color:rgb(41, 38, 38);
@@ -27,7 +30,7 @@ html {
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
-  background-image: linear-gradient(45deg,rgb(181, 18, 164),rgb(223, 167, 62));
+  background-image: linear-gradient(45deg, #8a2be2, #a371d2);
 
 }
 
@@ -117,22 +120,22 @@ html {
 }
 
 a:link {
-  color: #400056;
+  color: #fdfdfd;
   background-color: transparent;
   text-decoration: none;
 }
 a:visited {
-  color: rgb(119, 18, 214);
+  color: rgb(255, 255, 255);
   background-color: transparent;
   text-decoration: none;
 }
 a:hover {
-  color: rgb(136, 0, 255);
+  color: rgb(0, 255, 76);
   background-color: transparent;
   text-decoration: underline;
 }
 a:active {
-  color: rgb(0, 0, 255);
+  color: rgb(255, 255, 255);
   background-color: transparent;
   text-decoration: underline;
 }

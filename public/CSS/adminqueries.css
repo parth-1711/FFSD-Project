@@ -10,7 +10,7 @@
     padding: 0;
 }
 body{
-    background-image: url("/images/bgimg.jpg");
+    background-color: #dfceff ;
 }
 h1{
     text-align: center;
@@ -19,7 +19,7 @@ h1{
 }
 .offer-list{
     color: black;
-    background-color:rgb(220, 220, 220);
+    background-color:rgb(135, 72, 252);
     margin-top: 1rem;
     padding: 1rem;
     border-radius: 10px;

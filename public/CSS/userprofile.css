@@ -7,12 +7,12 @@ body{
     background-image: url("/images/bgimg.jpg");
 } */
 
-.fixed-nav {
+/* .fixed-nav {
     background-image: linear-gradient(45deg, rgb(181, 18, 164), rgb(223, 167, 62));
-    /* background-color: white; */
+    /* background-color: white; 
     position: sticky;
     width: 100vw;
-}
+} */
 
 .nav-product-search {
     text-decoration: none;

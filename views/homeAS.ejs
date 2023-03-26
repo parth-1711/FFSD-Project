@@ -30,14 +30,16 @@
                 <img src="/images/userlogo.jpeg" alt="userLogo" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
                     style="border-radius: 100%;width: 30%;">
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
-                    aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                    aria-labelledby="offcanvasRightLabel" style="background-color: rgb(138, 43, 226)
+                    ;">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasRightLabel">Hello <%= user %> !</h5>
+                        <h5 class="offcanvas-title" id="offcanvasRightLabel" style="color:white;">Hello <%= user %> !</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <hr>
-                    <div class="offcanvas-body">
+                    <div class="offcanvas-body"
+                        style="background-image: linear-gradient(180deg, rgb(138, 43, 226),  rgb(189, 119, 255));">
                         <a href="/help/<%=user %>" class="nav-search">Help</a>
                         <hr>
                         <a href="/userProfile/<%= user %>" class="nav-search">User profile</a>
@@ -72,7 +74,7 @@
           </div> 
     </div>
     <div class="head">
-        <div class="Search">
+        <div class="Search" style="border: 2px solid black;">
             <div class="search-item">
                 <i class="fas fa-search"></i>
                 <input class="products" type="text" placeholder="Search for products">
@@ -91,84 +93,84 @@
 
     <div class="cards">
         <div class="card box" style="width: 18rem;">
-            <img src="/images/productImage.jpeg" class="card-img-top" alt="productImage">
+            <img src="/images/ProductImage.jpeg" class="card-img-top" alt="productImage">
             <div class="card-body">
                 <h5 class="card-title">product1</h5>
-                <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
+                    up the bulk of the
+                    card's content.</p>
+                <a href="/Product/product11" class="btn btn-primary">More Info</a>
+            </div>
+        </div>
+
+        <div class="card box" style="width: 18rem;">
+            <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
+                    up the bulk of the
+                    card's content.</p>
+                <a href="/Product/product11" class="btn btn-primary">More Info</a>
+            </div>
+        </div>
+        <div class="card box" style="width: 18rem;">
+            <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
                 <a href="/Product/product1" class="btn btn-primary">More Info</a>
             </div>
         </div>
-
         <div class="card box" style="width: 18rem;">
-            <img src="/images/productImage.jpeg" class="card-img-top" alt="...">
+            <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product" class="btn btn-primary">More Info</a>
+                <a href="/Product/product1" class="btn btn-primary">More Info</a>
             </div>
         </div>
         <div class="card box" style="width: 18rem;">
-            <img src="/images/productImage.jpeg" class="card-img-top" alt="...">
+            <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product" class="btn btn-primary">More Info</a>
+                <a href="/Product/product1" class="btn btn-primary">More Info</a>
             </div>
         </div>
         <div class="card box" style="width: 18rem;">
-            <img src="/images/productImage.jpeg" class="card-img-top" alt="...">
+            <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product" class="btn btn-primary">More Info</a>
+                <a href="/Product/product1" class="btn btn-primary">More Info</a>
             </div>
         </div>
         <div class="card box" style="width: 18rem;">
-            <img src="/images/productImage.jpeg" class="card-img-top" alt="...">
+            <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product" class="btn btn-primary">More Info</a>
+                <a href="/Product/product1" class="btn btn-primary">More Info</a>
             </div>
         </div>
         <div class="card box" style="width: 18rem;">
-            <img src="/images/productImage.jpeg" class="card-img-top" alt="...">
+            <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product" class="btn btn-primary">More Info</a>
-            </div>
-        </div>
-        <div class="card box" style="width: 18rem;">
-            <img src="/images/productImage.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
-                    up the bulk of the
-                    card's content.</p>
-                <a href="/Product" class="btn btn-primary">More Info</a>
-            </div>
-        </div>
-        <div class="card box" style="width: 18rem;">
-            <img src="/images/productImage.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
-                    up the bulk of the
-                    card's content.</p>
-                <a href="/Product" class="btn btn-primary">More Info</a>
+                <a href="/Product/product1" class="btn btn-primary">More Info</a>
             </div>
         </div>
     </div>
