@@ -33,28 +33,19 @@ db.run(createTable, (err) => {
     console.log("table created !");
 })
 
-app.get("/Table", function (req, res) {
-    const command = `select * from Users`
-    db.all(sql, (err, rows) => {
-        if (err) {
-            console.log(err.message);
-        }
-        res.render("fdata", { model: rows });
-    });
-})
 
-app.get("/login", function (req, res) {
-    res.render("login.ejs");
+// app.get("/login", function (req, res) {
+//     res.render("login.ejs");
 
-})
+// })
 
-app.post("/login", function (req, res) {
-    let userName = req.body.username;
-    let password = req.body.password;
-    console.log(userName);
-    console.log(password);
-    res.redirect("/home")
-})
+// app.post("/login", function (req, res) {
+//     let userName = req.body.username;
+//     let password = req.body.password;
+//     console.log(userName);
+//     console.log(password);
+//     res.redirect("/home")
+// })
 
 app.get("/", function (req, res) {
     res.render("home.ejs")
@@ -63,7 +54,7 @@ app.get("/", function (req, res) {
 app.get("/homeAS/:parameter", function (req, res) {
 
     res.render("homeAS.ejs", { user: req.params.parameter })
-    console.log(req.params.parameter)
+    // console.log(req.params.parameter)
 })
 
 app.get("/sign-in", function (req, res) {
@@ -73,8 +64,8 @@ app.get("/sign-in", function (req, res) {
 app.post("/sign-in", function (req, res) {
     let userName = req.body.username
     let Password = req.body.password;
-    console.log(userName);
-    console.log(Password);
+    // console.log(userName);
+    // console.log(Password);
     db.each("select password from Users where Users.uname=(?)",userName, function (err, row) {
         if (err) {
             console.log(err.message);
@@ -107,8 +98,8 @@ app.post("/sign-up", function (req, res) {
         if (err) console.log(err.message);
 
     })
-    console.log(userName);
-    console.log(password);
+    // console.log(userName);
+    // console.log(password);
     res.redirect("/homeAS/" + userName);
 })
 
@@ -117,7 +108,7 @@ app.get("/failure",function (req,res) {
 })
 
 app.get("/product/:parameter", function (req, res) {
-    console.log(req.params.parameters)
+    // console.log(req.params.parameters)
     res.render("Product (1).ejs",{user:req.params.parameter})
 })
 
@@ -159,10 +150,6 @@ app.get("/RemoveUser",function (req,res) {
 
 app.get("/help/:parameter",function (req,res) {
     res.render("help.ejs",{user:req.params.parameter})
-})
-
-app.post("/help",function(req,res){
-    res
 })
 
 app.get("/admin",function (req,res) {

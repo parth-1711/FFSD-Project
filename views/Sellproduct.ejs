@@ -1,122 +1,134 @@
 <%- include('partials/navbar'); -%>
-<html lang="en">
-<head>
-    
+  <html lang="en">
+
+  <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/CSS/Sell.css">
-</head>
-<body>
+  </head>
 
-      <div>
-        <img style="position: absolute; left: 50px; bottom:70px" src="/images/dollar.png" height="200px">
-        <img style="position: absolute; top:70px; right: 0;" src="/images/dollar.png" height="200px">
-        <img style="position: absolute; left: 300px;" src="/images/dollar.png" height="200px">
-        <img style="position: absolute; right: 320px; bottom: 70px;" src="/images/dollar.png" height="200px">
-      </div>
-    
-        <div class="row">
-            
-            <div class="colm-form">
-                <div class="form-container">
+  <body>
 
-                    <div>
-                        <p style="font-size: 30px;"> Choose your category</p><hr>
-                    </div>
-                    <div class="colone">
-                    <div class="dropdown show">
+    <div>
+      <img style="position: absolute; left: 50px; bottom:70px" src="/images/dollar.png" height="200px">
+      <img style="position: absolute; top:70px; right: 0;" src="/images/dollar.png" height="200px">
+      <img style="position: absolute; left: 300px;" src="/images/dollar.png" height="200px">
+      <img style="position: absolute; right: 320px; bottom: 70px;" src="/images/dollar.png" height="200px">
+    </div>
 
-                        
-                        <a class="btn btn-secondary dropdown-toggle" href="/productdetails" role="button" id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Electronics
-                        </a>
-                      
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item" href="/productdetails">TVs, Video - Audio</a>
-                          <a class="dropdown-item"href="/productdetails">Kitchen & Other Appliances</a>
-                          <a class="dropdown-item"href="/productdetails">Computers & Laptops</a>
-        <a class="dropdown-item" href="/productdetails">Cameras & Lenses</a>
-        <a class="dropdown-item" href="/productdetails">Games & Entertainment</a>
-        <a class="dropdown-item" href="/productdetails">Fridges</a>
-        <a class="dropdown-item" href="/productdetails">Computer Accessories</a>
-        <a class="dropdown-item" href="/productdetails">Hard Disks, Printers & Monitors</a>
-        <a class="dropdown-item" href="/productdetails">ACs</a>
-        <a class="dropdown-item" href="/productdetails">Washing Machines</a>
-                        </div>
-                      </div>
-                      <div class="dropdown show">
-                        <a class="btn btn-secondary dropdown-toggle" href="/productdetails" role="button" id="dropdownMenuLink2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Mobiles
-                        </a>
-                      
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item" href="/productdetails">Mobile Phones</a>
-      <a class="dropdown-item" href="/productdetails">Accessories</a>
-      <a class="dropdown-item" href="/productdetails">Tablets</a>
-                        </div>
-                      </div>
-                      <div class="dropdown show">
-                        <a class="btn btn-secondary dropdown-toggle" href="/productdetails" role="button" id="dropdownMenuLink3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Furniture
-                        </a>
-                      
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item" href="/productdetails">Sofa & Dining</a>
-                          <a class="dropdown-item" href="/productdetails">Beds & Wardrobes</a>
-                          <a class="dropdown-item" href="/productdetails">Home Decor & Garden</a>
-                          <a class="dropdown-item" href="/productdetails">Kids Furniture</a>
-                          <a class="dropdown-item" href="/productdetails">Other Household Items</a>
-                        </div>
-                      </div>
-                      </div>
+    <div class="row">
+
+      <div class="colm-form">
+        <div class="form-container">
+
+          <div>
+            <p style="font-size: 30px;"> Choose your category</p>
+            <hr>
+          </div>
+          <div class="colone">
+            <div class="dropdown show">
 
 
-                      <div class="coltwo">
-                        <div class="dropdown show">
-                            <a class="btn btn-secondary dropdown-toggle" href="/productdetails" role="button" id="dropdownMenuLink4" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Fashion
-                            </a>
-                          
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                              <a class="dropdown-item" href="/productdetails">Men </a>
-        <a class="dropdown-item" href="/productdetails">Women</a>
-        <a class="dropdown-item" href="/productdetails">Kids</a>
-                            </div>
-                          </div>
-                          <div class="dropdown show">
-                            <a class="btn btn-secondary dropdown-toggle" href="/productdetails" role="button" id="dropdownMenuLink5" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Commercial vehicles & Cars
-                            </a>
-                          
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                              <a class="dropdown-item" href="/productdetails">Commercial Vehicles</a>
-       <a class="dropdown-item" href="/productdetails">Cars</a>
-                            </div>
-                          </div>
-                          <div class="dropdown show">
-                            <a class="btn btn-secondary dropdown-toggle" href="/productdetails" role="button" id="dropdownMenuLink6" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Bikes & Two wheelers
-                            </a>
-                          
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                              <a href="/productdetails">Bikes</a>
-                            </div>
-                          </div>
+              <a class="btn btn-secondary dropdown-toggle" href="/productdetails/<%= user %>" role="button"
+                id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Electronics
+              </a>
 
-                          
-                          </div>
-
-                </div>
-                
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/productdetails/<%= user %>">TVs, Video - Audio</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Kitchen & Other Appliances</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Computers & Laptops</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Cameras & Lenses</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Games & Entertainment</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Fridges</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Computer Accessories</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Hard Disks, Printers & Monitors</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">ACs</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Washing Machines</a>
+              </div>
             </div>
-</div>
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="/productdetails/<%= user %>" role="button"
+                id="dropdownMenuLink2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Mobiles
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Mobile Phones</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Accessories</a>
+                <a class="dropdown-item" href="/productdetails">Tablets</a>
+              </div>
+            </div>
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="/productdetails/<%= user %>" role="button"
+                id="dropdownMenuLink3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Furniture
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Sofa & Dining</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Beds & Wardrobes</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Home Decor & Garden</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Kids Furniture</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Other Household Items</a>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="coltwo">
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="/productdetails/<%= user %>" role="button"
+                id="dropdownMenuLink4" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Fashion
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Men </a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Women</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Kids</a>
+              </div>
+            </div>
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="/productdetails/<%= user %>" role="button"
+                id="dropdownMenuLink5" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Commercial vehicles & Cars
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink/<%= user %>">
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Commercial Vehicles</a>
+                <a class="dropdown-item" href="/productdetails/<%= user %>">Cars</a>
+              </div>
+            </div>
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="/productdetails/<%= user %>" role="button"
+                id="dropdownMenuLink6" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Bikes & Two wheelers
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a href="/productdetails/<%= user %>">Bikes</a>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
     <script src="javas.js"></script>
-    
-</body>
-</html>
+
+  </body>
+
+  </html>

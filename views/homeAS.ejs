@@ -12,6 +12,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/CSS/HomeStyles.css">
+    <link rel="stylesheet" href="/CSS/navbar.css">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
         <nav class="navbar navbar-expand-sm  navbar-light">
             <ul class="navbar-nav">
                 <li class="nav-brand"><a href="#"><img src="/images/PHOENIX - Copy.png" height="50"></a></li>
-                <li class="nav-item"><a class="nav-search" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-search" href="/homeAS/<%=user %>">Home</a></li>
                 <li class="nav-item"><a class="nav-search" href="/aboutUs">About Us</a></li>
                 <li class="nav-item"><a class="nav-search" href="/help/<%=user %>">Contact Us</a></li>
                 <li class="nav-item"></li>
@@ -55,10 +56,21 @@
 
 
     <div class="bg">
-        <img src="/images/bg.jpeg" alt="baground image" width="100%">
+        <!-- <img src="/images/temp1.jpg" alt="baground image" width="100%"> -->
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/images/ele_app.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/images/vehicle.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/images/fashion.png" class="d-block w-100" alt="...">
+              </div>
+            </div>
+          </div> 
     </div>
-
-
     <div class="head">
         <div class="Search">
             <div class="search-item">
@@ -72,6 +84,7 @@
 
         </div>
     </div>
+
     <div class="recom">
         <h3>Recommended Products :- </h3>
     </div>
@@ -84,7 +97,7 @@
                 <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product/product1" class="btn btn-primary">Go somewhere</a>
+                <a href="/Product/product1" class="btn btn-primary">More Info</a>
             </div>
         </div>
 
@@ -95,7 +108,7 @@
                 <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product" class="btn btn-primary">Go somewhere</a>
+                <a href="/Product" class="btn btn-primary">More Info</a>
             </div>
         </div>
         <div class="card box" style="width: 18rem;">
@@ -105,7 +118,7 @@
                 <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product" class="btn btn-primary">Go somewhere</a>
+                <a href="/Product" class="btn btn-primary">More Info</a>
             </div>
         </div>
         <div class="card box" style="width: 18rem;">
@@ -115,7 +128,7 @@
                 <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product" class="btn btn-primary">Go somewhere</a>
+                <a href="/Product" class="btn btn-primary">More Info</a>
             </div>
         </div>
         <div class="card box" style="width: 18rem;">
@@ -125,7 +138,7 @@
                 <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product" class="btn btn-primary">Go somewhere</a>
+                <a href="/Product" class="btn btn-primary">More Info</a>
             </div>
         </div>
         <div class="card box" style="width: 18rem;">
@@ -135,7 +148,7 @@
                 <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product" class="btn btn-primary">Go somewhere</a>
+                <a href="/Product" class="btn btn-primary">More Info</a>
             </div>
         </div>
         <div class="card box" style="width: 18rem;">
@@ -145,7 +158,7 @@
                 <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product" class="btn btn-primary">Go somewhere</a>
+                <a href="/Product" class="btn btn-primary">More Info</a>
             </div>
         </div>
         <div class="card box" style="width: 18rem;">
@@ -155,7 +168,7 @@
                 <p class="card-text" style="color: white;">Some quick example text to build on the card title and make
                     up the bulk of the
                     card's content.</p>
-                <a href="/Product" class="btn btn-primary">Go somewhere</a>
+                <a href="/Product" class="btn btn-primary">More Info</a>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 body{
-    background-image: url("/images/bgimg.jpg");
+    /* background-image: url("/images/bgimg.jpg"); */
+    background: #363636;
 }
 .Remove-block{
     height: 70vh;
