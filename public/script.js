@@ -4,10 +4,15 @@ function validation() {
     if (uname==="" || password==="") {
         document.getElementById("submit-btn").disabled=true;
     }
-    if (uname!=="" && password!=="" && password.length>=5) {
+    const passwordExpr = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,16}$/;
+    if (passwordExpr.test(password) ) {
         document.getElementById("submit-btn").disabled=false;
         document.getElementById("submit-btn").classList.remove("hidden");
+        document.getElementById("warning").classList.add("hidden");
     }
-    console.log(uname);
-    console.log(password);
+    else{
+        document.getElementById("warning").classList.remove("hidden");
+    }
+    // console.log(uname);
+    // console.log(password);
 }

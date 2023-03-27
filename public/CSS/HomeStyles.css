@@ -135,6 +135,21 @@
     width: 100%;
 } */
 
+#logout-prompt{
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.lbtn{
+    position: relative;
+    left: 80%;
+}
+
+.hidden{
+    display: none;
+}
+
 .products {
 
     padding-left: 10px;

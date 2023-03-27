@@ -13,6 +13,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/CSS/HomeStyles.css">
     <link rel="stylesheet" href="/CSS/navbar.css">
+    <!-- <script src="script.js"></script> -->
+    <script>
+        function logoutConf() {
+            var promp = document.getElementById("logout-prompt");
+            promp.classList.remove("hidden")
+        }
+
+        function hide() {
+            var promp = document.getElementById("logout-prompt")
+            promp.classList.add("hidden")
+        }
+    </script>
 </head>
 
 <body>
@@ -20,7 +32,7 @@
     <div class="upper-nav">
         <nav class="navbar navbar-expand-sm  navbar-light">
             <ul class="navbar-nav">
-                <li class="nav-brand"><a href="#"><img src="/images/PHOENIX - Copy.png" height="50"></a></li>
+                <li class="nav-brand"><a href="/homeAS/<%=user %>"><img src="/images/PHOENIX - Copy.png" height="50"></a></li>
                 <li class="nav-item"><a class="nav-search" href="/homeAS/<%=user %>">Home</a></li>
                 <li class="nav-item"><a class="nav-search" href="/aboutUs">About Us</a></li>
                 <li class="nav-item"><a class="nav-search" href="/help/<%=user %>">Contact Us</a></li>
@@ -30,11 +42,12 @@
                 <img src="/images/userlogo.jpeg" alt="userLogo" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
                     style="border-radius: 100%;width: 30%;">
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
                     aria-labelledby="offcanvasRightLabel" style="background-color: rgb(138, 43, 226)
                     ;">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasRightLabel" style="color:white;">Hello <%= user %> !</h5>
+                        <h5 class="offcanvas-title" id="offcanvasRightLabel" style="color:white;">Hello <%= user %> !
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <hr>
@@ -48,8 +61,18 @@
                         <hr>
                         <a href="/Myads/<%= user %>" class="nav-search">My Ads</a>
                         <hr>
-                        <a href="/sign-in" class="nav-search">Logout</a>
+                        <!-- <input type="button" class="nav-search" onclick="logoutConf()" value="logout"> -->
+                        <p class="nav-search" onclick="logoutConf()">Logout</p>
+                        <!-- <a href="" class="nav-search" onclick="logoutConf()">Logout</a> -->
                         <hr>
+                        <div id="logout-prompt" class="hidden">
+                            <div style="background-color: red; margin-bottom: 2%; border-radius: 15px;">
+                                <button class="btn-close lbtn" onclick="hide()"></button>
+                            </div>
+
+                            <p style="margin-left: 5%;">Are you sure you want to go out ?</p>
+                            <a href="/sign-in"><button class="lbtn btn btn-success">Yes</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -61,17 +84,17 @@
         <!-- <img src="/images/temp1.jpg" alt="baground image" width="100%"> -->
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="/images/ele_app.jpg" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="/images/vehicle.jpg" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="/images/fashion.png" class="d-block w-100" alt="...">
-              </div>
+                <div class="carousel-item active">
+                    <img src="/images/ele_app.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/vehicle.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/fashion.png" class="d-block w-100" alt="...">
+                </div>
             </div>
-          </div> 
+        </div>
     </div>
     <div class="head">
         <div class="Search" style="border: 2px solid black;">
@@ -96,7 +119,8 @@
             <img src="/images/ProductImage.jpeg" class="card-img-top" alt="productImage">
             <div class="card-body">
                 <h5 class="card-title">product1</h5>
-                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title
+                    and make
                     up the bulk of the
                     card's content.</p>
                 <a href="/Product/product11" class="btn btn-primary">More Info</a>
@@ -107,7 +131,8 @@
             <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title
+                    and make
                     up the bulk of the
                     card's content.</p>
                 <a href="/Product/product11" class="btn btn-primary">More Info</a>
@@ -117,7 +142,8 @@
             <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title
+                    and make
                     up the bulk of the
                     card's content.</p>
                 <a href="/Product/product1" class="btn btn-primary">More Info</a>
@@ -127,7 +153,8 @@
             <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title
+                    and make
                     up the bulk of the
                     card's content.</p>
                 <a href="/Product/product1" class="btn btn-primary">More Info</a>
@@ -137,7 +164,8 @@
             <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title
+                    and make
                     up the bulk of the
                     card's content.</p>
                 <a href="/Product/product1" class="btn btn-primary">More Info</a>
@@ -147,7 +175,8 @@
             <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title
+                    and make
                     up the bulk of the
                     card's content.</p>
                 <a href="/Product/product1" class="btn btn-primary">More Info</a>
@@ -157,7 +186,8 @@
             <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title
+                    and make
                     up the bulk of the
                     card's content.</p>
                 <a href="/Product/product1" class="btn btn-primary">More Info</a>
@@ -167,7 +197,8 @@
             <img src="/images/ProductImage.jpeg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title and make
+                <p class="card-text" style="color: rgb(13, 0, 255);">Some quick example text to build on the card title
+                    and make
                     up the bulk of the
                     card's content.</p>
                 <a href="/Product/product1" class="btn btn-primary">More Info</a>
