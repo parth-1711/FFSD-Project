@@ -139,3 +139,12 @@ a:active {
   background-color: transparent;
   text-decoration: underline;
 }
+
+#warning{
+  background-color: red;
+  font-size: 155%;
+  margin: 0% 5%;
+  line-height: 3rem;
+  border-radius: 15px;
+  padding: 4%;
+}
