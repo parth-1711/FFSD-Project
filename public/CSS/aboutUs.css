@@ -1,6 +1,6 @@
 /* About Us */
 body{
-    background-color:#a6a6a6;
+    background-color:#b794ff;
 }
 .homeIcon{
     margin-left:20px;
@@ -123,11 +123,6 @@ body{
     border-radius: 10px;
 
 }
-
-body{
-    background-image: url("/images/background.jpeg");
-    background-size: cover;
-  }
 
 @media(max-width:786px){
     .about-us{

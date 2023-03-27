@@ -4,11 +4,10 @@
 }
 
 body {
-    background-color: rgb(231, 227, 192);
+    background-color: #dfceff;
 }
 
 .box {
-    background-color: rgb(255, 177, 230);
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -17,12 +16,13 @@ body {
     margin: auto;
     margin-top: 50px;
     box-shadow: 10px;
-    background-image: linear-gradient(45deg, rgb(181, 18, 164), rgb(223, 167, 62));
+    background-image: linear-gradient(45deg, #8a2be2, #a371d2);
 }
 
 .container {
     margin-left: 8%;
-    margin-top: 5%;
+    margin-top: 3%;
+    margin-bottom: 2%
 }
 
 .row {
