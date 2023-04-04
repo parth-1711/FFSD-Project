@@ -4,7 +4,7 @@
     padding-left: 10px;
     font-size: 20;
     color: rgb(111, 20, 197);
-    margin-right: 4%;
+    margin-right: 10px;
 }
 
 .bg {
@@ -19,6 +19,15 @@
 
 .nav-search {
     color: aliceblue;
+}
+
+.nav-search1 {
+    margin-bottom: 100px;
+    padding-left: 20px;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+    color: rgb(111, 20, 197);;
 }
 .signup {
     position: absolute;
@@ -36,7 +45,15 @@
     transform: scale(1.04);
 
 }
-
+.nav-searchdrop {
+    font-size:18px;
+    text-decoration: none;
+    color: rgb(111, 20, 197);
+    padding-left: 20px;
+}
+.nav-searchdrop:hover {
+    color: black;
+}
 .search {
     display: flex;
     width: 55vw;

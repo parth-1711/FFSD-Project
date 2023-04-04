@@ -9,9 +9,7 @@
 .nav-item{
     padding-top: 8px;
 }
-.nav-brand {
-    padding-right: 1px;
-}
+
 .nav-search {
     
     
@@ -135,91 +133,6 @@
     position: fixed;
     width: 100%;
 } */
-
-.products {
-    
-        padding-left: 10px;
-}
-.recom {
-    padding-top: 1%;
-    padding-left: 4%;
-}
-
-/* .box {
-    margin-bottom: 4%;
-    margin-left: 4%;
-    height: 40%;
-    width: 20%;
-    background-color: black;
-    display: inline-block;
-} */
-.pro-img{
-    height: 70%;
-    background-color: #839a9c;
-}
-.pro-price{
-    height: 30%;
-    background-color: aliceblue;
-}
-.after-float {
-    padding-top: 100px;
-}
-.title {
-    
-    margin: 10x;
-    margin-left: 5%;
-    display: block;
-    height: 70px;
-    width: 500px;
-    background-color: black;
-}
-.image {
-    margin: 19px;
-    margin-left: 5%;
-    position: inherit;
-    display: block;
-    height: 500px;
-    width:90%;
-    background-color: black;
-
-}
-
-.price-overview {
-    margin: 1px;
-    margin-left: 5%;
-    position: inherit;
-    display: inline-block;
-    height: 100px;
-    width: 40%;
-    background-color: cadetblue;
-
-}
-
-.desc{
-    margin: 10px;
-    margin-left: 4%;
-    margin-right: 5%;
-    position: inherit;
-    display: inline-block;
-    height: 600px;
-    width: 45%;
-    background-color: black;
-
-
-}
-
- 
-
-
-.contact-map {
-    margin: 10px;
-    margin-left: 4%;
-    margin-right: 5%;
-    position: inherit;
- 
-    height: 600px;
-    width: 45%;
-}
 
 
 /* help */
@@ -554,39 +467,13 @@ h2 {
     padding-left: 10px;
   }
   
-  .nav-item:hover {
-    transform: scale(1.04);
-  
-  }
-  
-  .nav-item {
-    padding-top: 8px;
-  }
-  
+
+
+
   .nav-brand {
     padding-right: 1px;
   }
-  
-  
 
-  .nav-search {
-  
-  
-    text-decoration: none;
-    padding-left: 20px;
-    font-size: 20;
-    color: #400056;
-  
-  }
-  
-  .nav-product-search {
-    text-decoration: none;
-    padding-left: 40px;
-    font-size: 20;
-    color: #400056;
-    margin-right: 5%;
-  }
-  
   .container{
     background-color: white;
   }
