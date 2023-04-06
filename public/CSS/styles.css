@@ -1,14 +1,9 @@
-/* body{
+/* /* body{
   background-image: url("/images/background.jpeg");
   background-size: cover;
 } */
  
-.fixed-nav{
-    background-image: linear-gradient(45deg,rgb(181, 18, 164),rgb(223, 167, 62));
-    /* background-color: white; */
-    position: sticky;
-    width: 100%;
-}
+
 
 .nav-product-search {
   text-decoration: none; 
@@ -148,10 +143,6 @@ h3{
   display: none;
 }
 
-.container-fluid{
-   background-image: linear-gradient(90deg,rgb(242, 113, 22),rgb(168, 50, 101));
-}
-
 .d-flex{
   position: relative;
   right: 0%;
@@ -177,16 +168,13 @@ h3{
 
 .addresses-list{
   color: aliceblue;
-  background-image:linear-gradient(45deg,rgb(95, 13, 139),rgb(234, 135, 36));
+  background-color: bisque;
   margin-top: 1rem;
+  display: block;
+  height: 200px;
   padding: 1rem;
   border-radius: 10px;
   
-}
-
-.addresses-list:hover{
-  box-shadow: 10px 5px rgb(56, 3, 56);
-  background-image:linear-gradient(45deg,rgb(104, 50, 136),rgb(233, 162, 91));
 }
 
 .addresses-inp{
@@ -212,4 +200,4 @@ h3{
   padding-left: 72%;
   /* left: 80%; */
 }
- 
+  */
