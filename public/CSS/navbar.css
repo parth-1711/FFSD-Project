@@ -12,14 +12,15 @@
     text-decoration: none;
     font-size: 20;
     color: rgb(111, 20, 197);
-    padding: 11px;
+    padding: 9px;
     border-radius: 5px;
+
     background-color: antiquewhite;
 }
 
 .nav-log:hover {
    
-    color: #959595;
+    color: rgb(111, 20, 197);
 }
 .bg {
 
