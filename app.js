@@ -1,8 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const path = require("path")
-const sqlite = require("sqlite3")
+const path = require("path");
+const sqlite = require("sqlite3");
+const mongoose = require("mongoose");
 
 const app = express();
 
@@ -10,6 +11,36 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 const dbna = path.join(__dirname, "data", "ofsd.db");
+
+mongoose.connect("mongodb://127.0.0.1:27017/FFSD_ProjectDB", { useNewUrlParser: true })
+
+const userSchema = {
+    uname: String,
+    email: String,
+    password: String,
+    adress: [String]
+};
+
+const adminSchema = {
+    aname: String,
+    email: String,
+    password: String,
+}
+
+const offerSchema = {
+    offerer: userSchema,
+    amount: Number
+}
+
+const productSchema = {
+    productName: String,
+    offersreceived: [offerSchema]
+}
+
+const User=mongoose.model("User",userSchema);
+const Admin=mongoose.model("Admin",adminSchema);
+const Offer=mongoose.model("Offer",offerSchema);
+const Product=mongoose.model("Product",productSchema);
 
 const db = new sqlite.Database(dbna, (err) => {
     if (err) {
@@ -34,19 +65,6 @@ db.run(createTable, (err) => {
 })
 
 
-// app.get("/login", function (req, res) {
-//     res.render("login.ejs");
-
-// })
-
-// app.post("/login", function (req, res) {
-//     let userName = req.body.username;
-//     let password = req.body.password;
-//     console.log(userName);
-//     console.log(password);
-//     res.redirect("/home")
-// })
-
 app.get("/", function (req, res) {
     res.render("home.ejs")
 })
@@ -66,7 +84,7 @@ app.post("/sign-in", function (req, res) {
     let Password = req.body.password;
     // console.log(userName);
     // console.log(Password);
-    db.each("select password from Users where Users.uname=(?)",userName, function (err, row) {
+    db.each("select password from Users where Users.uname=(?)", userName, function (err, row) {
         if (err) {
             console.log(err.message);
         }
@@ -74,7 +92,7 @@ app.post("/sign-in", function (req, res) {
             if (row.password === Password) {
                 res.redirect("/homeAS/" + userName);
             }
-            else{
+            else {
                 res.redirect("/failure")
             }
         }
@@ -82,6 +100,19 @@ app.post("/sign-in", function (req, res) {
 
     })
 
+    User.findOne({uname:userName},function (err,foundUser) {
+        if (err) {
+            console.log(err);
+        }
+        else{
+            if (foundUser.password===Password) {
+                res.redirect("homeAS/"+userName);
+            }
+            else{
+                res.redirect("/failure");
+            }
+        }
+    })
 })
 
 app.get("/sign-up", function (req, res) {
@@ -90,86 +121,104 @@ app.get("/sign-up", function (req, res) {
 
 app.post("/sign-up", function (req, res) {
     let userName = req.body.username;
-    let email = req.body.email;
-    let password = req.body.password;
+    let Email = req.body.email;
+    let Password = req.body.password;
     let insertCommand = `insert into Users (uname,email,password) values(?,?,?)`
-    let values = [userName, email, password];
+    let values = [userName, Email, Password];
     db.run(insertCommand, values, (err) => {
         if (err) console.log(err.message);
 
     })
+    const user=new User({
+        uname:userName,
+        email:Email,
+        password:Password
+    });
+    user.save(); 
     // console.log(userName);
     // console.log(password);
     res.redirect("/homeAS/" + userName);
 })
 
-app.get("/failure",function (req,res) {
-    res.sendFile(__dirname+"/views/failure.html")
+app.get("/failure", function (req, res) {
+    res.sendFile(__dirname + "/views/failure.html")
 })
 
 app.get("/product/:parameter", function (req, res) {
     // console.log(req.params.parameters)
-    res.render("Product (1).ejs",{user:req.params.parameter})
+    res.render("Product (1).ejs", { user: req.params.parameter })
 })
 
-app.get("/userProfile/:parameter",function (req,res) {
-    res.render("userprofile.ejs",{user:req.params.parameter})
+app.get("/userProfile/:parameter", function (req, res) {
+    res.render("userprofile.ejs", { user: req.params.parameter })
 })
 
 app.get("/sellerBargain/:parameter1/:parameter2", function (req, res) {
-    res.render("sellerBargain.ejs",{productName:req.params.parameter1,user:req.params.parameter2})
+    res.render("sellerBargain.ejs", { productName: req.params.parameter1, user: req.params.parameter2 })
 })
 
 app.get("/SavedAddress/:parameter", function (req, res) {
-    res.render("SavedAddress.ejs",{user:req.params.parameter})
+    res.render("SavedAddress.ejs", { user: req.params.parameter })
 })
 
-app.get("/Myads/:parameter",function (req,res) {
-    res.render("Myads.ejs",{user : req.params.parameter})
+app.post("/SavedAddress/:parameter",function (req,res) {
+    let address=req.body.new_address
+    User.findOne({uname:req.params.parameter},function (err,foundUser) {
+        if (err) {
+            console.log(err)
+        }
+        else{
+            foundUser.address.push(address);
+        }
+    })
+})
+
+app.get("/Myads/:parameter", function (req, res) {
+    res.render("Myads.ejs", { user: req.params.parameter })
 })
 
 app.get("/checkout/:parameters", function (req, res) {
-    res.render("checkout.ejs",{user : req.params.parameters})
+    res.render("checkout.ejs", { user: req.params.parameters })
 })
 
-app.get("/MyOffers/:parameters",function(req,res){
-    res.render("MyOffers.ejs",{user : req.params.parameters})
+app.get("/MyOffers/:parameters", function (req, res) {
+    res.render("MyOffers.ejs", { user: req.params.parameters })
 })
 
-app.get("/aboutUs",function (req,res) {
-    res.sendFile(__dirname+"/views/aboutUs.html")
+app.get("/aboutUs", function (req, res) {
+    res.sendFile(__dirname + "/views/aboutUs.html")
 })
 
-app.get("/sell/:parameter",function (req,res) {
-    res.render("Sellproduct.ejs",{user:req.params.parameter})
+app.get("/sell/:parameter", function (req, res) {
+    res.render("Sellproduct.ejs", { user: req.params.parameter })
 })
 
-app.get("/RemoveUser",function (req,res) {
-    res.sendFile(__dirname+"/views/RemoveUser.html")
+app.get("/RemoveUser", function (req, res) {
+    res.sendFile(__dirname + "/views/RemoveUser.html")
 })
 
-app.get("/help/:parameter",function (req,res) {
-    res.render("help.ejs",{user:req.params.parameter})
+app.get("/help/:parameter", function (req, res) {
+    res.render("help.ejs", { user: req.params.parameter })
 })
 
-app.get("/admin",function (req,res) {
+app.get("/admin", function (req, res) {
     res.render("adminpage.ejs")
 })
 
 
 
-app.get("/productdetails/:parameter",function (req,res) {
-    res.render("productdetails.ejs",{user:req.params.parameter})
+app.get("/productdetails/:parameter", function (req, res) {
+    res.render("productdetails.ejs", { user: req.params.parameter })
 })
 
-app.post("/RemoveUser",function (req,res) {
-    let userName=req.body.uname;
-    let reason=req.body.reason;
-    db.run("delete from Users where uname=(?)",[userName],function (err) {
+app.post("/RemoveUser", function (req, res) {
+    let userName = req.body.uname;
+    let reason = req.body.reason;
+    db.run("delete from Users where uname=(?)", [userName], function (err) {
         if (err) {
-            res.redirect(__dirname+"/views/deletionFailure.html")
+            res.redirect(__dirname + "/views/deletionFailure.html")
         }
-        else{
+        else {
             res.redirect("/RemoveUser")
         }
     })
@@ -220,7 +269,7 @@ app.post("/adminsignin", function (req, res) {
     let Password = req.body.password;
     console.log(userName);
     console.log(Password);
-    db.each("select password from Admins where Admins.uname=(?)",userName, function (err, row) {
+    db.each("select password from Admins where Admins.uname=(?)", userName, function (err, row) {
         if (err) {
             console.log(err.message);
         }
@@ -228,7 +277,7 @@ app.post("/adminsignin", function (req, res) {
             if (row.password === Password) {
                 res.redirect("/admin");
             }
-            else{
+            else {
                 res.redirect("/failure")
             }
         }
@@ -238,41 +287,41 @@ app.post("/adminsignin", function (req, res) {
 
 })
 
-const createQueryTable=`create table if not exists Queries(
+const createQueryTable = `create table if not exists Queries(
     query varchar(1000),
     querrier varchar(50)
 );`
 
-db.run(createQueryTable,function (err) {
+db.run(createQueryTable, function (err) {
     if (err) {
         console.log(err.message)
     }
     console.log("Query Table created !");
 })
 
-app.post("/help/:parameter",function(req,res){
-    let Query=req.body.query;
-    let Querrier=req.params.parameter;
-    const insertCommand=`insert into Queries (query,querrier) values (?,?)`
-    let values=[Query,Querrier];
-    db.run(insertCommand,values,function (err) {
+app.post("/help/:parameter", function (req, res) {
+    let Query = req.body.query;
+    let Querrier = req.params.parameter;
+    const insertCommand = `insert into Queries (query,querrier) values (?,?)`
+    let values = [Query, Querrier];
+    db.run(insertCommand, values, function (err) {
         if (err) {
             console.log(err.message);
         }
     })
-    res.redirect("/help/"+Querrier)
+    res.redirect("/help/" + Querrier)
 
 });
 
-app.get("/queries",function (req,res) {
-    const selectCommand=`select * from Queries`
-    db.all(selectCommand,function (err,rows) {
+app.get("/queries", function (req, res) {
+    const selectCommand = `select * from Queries`
+    db.all(selectCommand, function (err, rows) {
         if (err) {
             console.log(err.message)
         }
-        res.render("adminqueries.ejs",{Rows:rows})
+        res.render("adminqueries.ejs", { Rows: rows })
     })
-    
+
 })
 
 

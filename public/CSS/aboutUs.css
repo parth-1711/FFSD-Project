@@ -26,8 +26,8 @@ body{
     transform:scale(1.3);
  }
 .logo-flex{
-    display: flex;
-    position: absolute;
+    /* display: flex; */
+    /* position: absolute; */
     right:20px;
     top: 17px;
 }
