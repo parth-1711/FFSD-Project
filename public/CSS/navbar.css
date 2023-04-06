@@ -14,10 +14,16 @@
     color: rgb(111, 20, 197);
     padding: 9px;
     border-radius: 5px;
+    
 
     background-color: antiquewhite;
 }
-
+.containbox {
+    padding: 20px;
+    margin-bottom: 38px;
+    border-radius: 8px;
+    border: 1px solid rgb(169, 169, 169);
+}
 .nav-log:hover {
    
     color: rgb(111, 20, 197);
