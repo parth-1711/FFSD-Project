@@ -7,6 +7,20 @@
     margin-right: 10px;
 }
 
+
+.nav-log {
+    text-decoration: none;
+    font-size: 20;
+    color: rgb(111, 20, 197);
+    padding: 11px;
+    border-radius: 5px;
+    background-color: antiquewhite;
+}
+
+.nav-log:hover {
+   
+    color: #959595;
+}
 .bg {
 
     position: absolute;
@@ -41,10 +55,6 @@
     left: 60%;
 }
 
-.signup:hover {
-    transform: scale(1.04);
-
-}
 .nav-searchdrop {
     font-size:18px;
     text-decoration: none;

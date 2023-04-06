@@ -1,10 +1,10 @@
 .nav-search:hover {
-    transform: scale(1.04);
+    /* transform: scale(1.04); */
     color: #561500;
 }
 
 .nav-item:hover {
-    transform: scale(1.04);
+    /* transform: scale(1.04); */
 
 }
 
@@ -15,6 +15,20 @@
 .nav-brand {
     padding-right: 1px;
 
+}
+
+.nav-log {
+    text-decoration: none;
+    font-size: 20;
+    color: rgb(111, 20, 197);
+    padding: 10px;
+    border-radius: 5px;
+    background-color: antiquewhite;
+}
+
+.nav-log:hover {
+   
+    color: #959595;
 }
 
 .upper-nav {
@@ -50,21 +64,11 @@
 }
 
 
-.signup {
-    position: absolute;
-    right: 20px;
-    top: 17px;
 
-}
 
 .userLogo {
     position: relative;
     left: 60%;
-}
-
-.signup:hover {
-    transform: scale(1.04);
-
 }
 
 .search {
