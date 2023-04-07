@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
-const dbna = path.join(__dirname, "data", "ofsd.db");
+// const dbna = path.join(__dirname, "data", "ofsd.db");
 
 mongoose.connect("mongodb://127.0.0.1:27017/FFSD_ProjectDB", { useNewUrlParser: true })
 
@@ -37,17 +37,17 @@ const productSchema = {
     offersreceived: [offerSchema]
 }
 
-const User=mongoose.model("User",userSchema);
-const Admin=mongoose.model("Admin",adminSchema);
-const Offer=mongoose.model("Offer",offerSchema);
-const Product=mongoose.model("Product",productSchema);
+const User = mongoose.model("User", userSchema);
+const Admin = mongoose.model("Admin", adminSchema);
+const Offer = mongoose.model("Offer", offerSchema);
+const Product = mongoose.model("Product", productSchema);
 
-const db = new sqlite.Database(dbna, (err) => {
-    if (err) {
-        console.log(err.message);
-    }
-    console.log("Connected");
-})
+// const db = new sqlite.Database(dbna, (err) => {
+//     if (err) {
+//         console.log(err.message);
+//     }
+//     console.log("Connected");
+// })
 
 const createTable = `create table if not exists Users (
     uname varchar(50) primary key,
@@ -57,12 +57,12 @@ const createTable = `create table if not exists Users (
     address varchar(200)
 );`
 
-db.run(createTable, (err) => {
-    if (err) {
-        console.log(err.message);
-    }
-    console.log("table created !");
-})
+// db.run(createTable, (err) => {
+//     if (err) {
+//         console.log(err.message);
+//     }
+//     console.log("table created !");
+// })
 
 
 app.get("/", function (req, res) {
@@ -84,34 +84,31 @@ app.post("/sign-in", function (req, res) {
     let Password = req.body.password;
     // console.log(userName);
     // console.log(Password);
-    db.each("select password from Users where Users.uname=(?)", userName, function (err, row) {
-        if (err) {
-            console.log(err.message);
+    // db.each("select password from Users where Users.uname=(?)", userName, function (err, row) {
+    //     if (err) {
+    //         console.log(err.message);
+    //     }
+    //     else {
+    //         if (row.password === Password) {
+    //             res.redirect("/homeAS/" + userName);
+    //         }
+    //         else {
+    //             res.redirect("/failure")
+    //         }
+    //     }
+
+
+    // })
+
+    User.findOne({ uname: userName }).then(function (foundUser) {
+
+        if (foundUser.password === Password) {
+            res.redirect("homeAS/" + userName);
         }
         else {
-            if (row.password === Password) {
-                res.redirect("/homeAS/" + userName);
-            }
-            else {
-                res.redirect("/failure")
-            }
+            res.redirect("/failure");
         }
 
-
-    })
-
-    User.findOne({uname:userName},function (err,foundUser) {
-        if (err) {
-            console.log(err);
-        }
-        else{
-            if (foundUser.password===Password) {
-                res.redirect("homeAS/"+userName);
-            }
-            else{
-                res.redirect("/failure");
-            }
-        }
     })
 })
 
@@ -125,16 +122,16 @@ app.post("/sign-up", function (req, res) {
     let Password = req.body.password;
     let insertCommand = `insert into Users (uname,email,password) values(?,?,?)`
     let values = [userName, Email, Password];
-    db.run(insertCommand, values, (err) => {
-        if (err) console.log(err.message);
+    // db.run(insertCommand, values, (err) => {
+    //     if (err) console.log(err.message);
 
-    })
-    const user=new User({
-        uname:userName,
-        email:Email,
-        password:Password
+    // })
+    const user = new User({
+        uname: userName,
+        email: Email,
+        password: Password
     });
-    user.save(); 
+    user.save();
     // console.log(userName);
     // console.log(password);
     res.redirect("/homeAS/" + userName);
@@ -161,13 +158,13 @@ app.get("/SavedAddress/:parameter", function (req, res) {
     res.render("SavedAddress.ejs", { user: req.params.parameter })
 })
 
-app.post("/SavedAddress/:parameter",function (req,res) {
-    let address=req.body.new_address
-    User.findOne({uname:req.params.parameter},function (err,foundUser) {
+app.post("/SavedAddress/:parameter", function (req, res) {
+    let address = req.body.new_address
+    User.findOne({ uname: req.params.parameter }, function (err, foundUser) {
         if (err) {
             console.log(err)
         }
-        else{
+        else {
             foundUser.address.push(address);
         }
     })
@@ -214,14 +211,14 @@ app.get("/productdetails/:parameter", function (req, res) {
 app.post("/RemoveUser", function (req, res) {
     let userName = req.body.uname;
     let reason = req.body.reason;
-    db.run("delete from Users where uname=(?)", [userName], function (err) {
-        if (err) {
-            res.redirect(__dirname + "/views/deletionFailure.html")
-        }
-        else {
-            res.redirect("/RemoveUser")
-        }
-    })
+    // db.run("delete from Users where uname=(?)", [userName], function (err) {
+    //     if (err) {
+    //         res.redirect(__dirname + "/views/deletionFailure.html")
+    //     }
+    //     else {
+    //         res.redirect("/RemoveUser")
+    //     }
+    // })
 })
 
 
@@ -233,12 +230,12 @@ const createAdminTable = `create table if not exists Admins (
     address varchar(200)
 );`
 
-db.run(createAdminTable, (err) => {
-    if (err) {
-        console.log(err.message);
-    }
-    console.log("Admin table created !");
-})
+// db.run(createAdminTable, (err) => {
+//     if (err) {
+//         console.log(err.message);
+//     }
+//     console.log("Admin table created !");
+// })
 
 
 app.get("/adminsignup", function (req, res) {
@@ -292,12 +289,12 @@ const createQueryTable = `create table if not exists Queries(
     querrier varchar(50)
 );`
 
-db.run(createQueryTable, function (err) {
-    if (err) {
-        console.log(err.message)
-    }
-    console.log("Query Table created !");
-})
+// db.run(createQueryTable, function (err) {
+//     if (err) {
+//         console.log(err.message)
+//     }
+//     console.log("Query Table created !");
+// })
 
 app.post("/help/:parameter", function (req, res) {
     let Query = req.body.query;
