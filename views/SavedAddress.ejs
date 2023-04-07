@@ -16,33 +16,108 @@
 
     <link rel="stylesheet" href="/CSS/styles.css">
     <link rel="stylesheet" href="/CSS/navbar.css">
+    <script>
+        function addDivision() {
+            var home = document.getElementById("flexRadioDefault1");
+            var office = document.getElementById("flexRadioDefault2");
+            var addline1 = document.getElementById("addlineone").value;
+            var addline2 = document.getElementById("addlinetwo").value;
+            var city= document.getElementById("city").value;
+            var landmark = document.getElementById("landmark").value;
+
+            if (home.checked) {
+                var selectedradio = "Home";
+            }
+            else {
+                var selectedradio = "Office";
+            }
+
+            var div = document.createElement("div");
+            div.style.color= "rgb(79, 79, 79)";
+            div.style.border = "1px solid rgb(205, 205, 205)";
+            div.style.backgroundColor="rgb(239, 238, 238)";
+            div.style.marginTop="1rem";
+            div.style.display="block";
+            div.style.height=" 200px";
+            div.style.padding="1rem";
+            div.style.borderRadius="10px";
+            
+
+            div.innerHTML= "<h3>" + selectedradio + "</h3>";
+            div.innerHTML+="<hr>";
+            div.innerHTML+=addline1;
+            div.innerHTML+="<br>";
+            div.innerHTML+=addline2;
+
+            document.getElementById("newaddresses").appendChild(div);
+
+            
+
+        }
+    </script>
 </head>
 
 <body >
+
 <div class="container">
     <div class="Add-List">
-        <div class="addresses-list container-md">
-            <h3>Address-1</h3>
+        <h2 style="padding-top: 25px;color: rgb(77, 77, 77); padding-bottom: 10px;">Your Addresses</h2><hr>
+        <div class="addresses-list">
+            <h3>Address name</h3><hr>
             addressline-1 <br>
             addressline-2
         </div>
-        <div class="addresses-list container-md">
-            <h3>Address-2</h3>
+        <div class="addresses-list">
+            <h3>Address name</h3><hr>
             addressline-1 <br>
             addressline-2
         </div>
-        <div class="addresses-list container-md">
-            <h3>Address-3</h3>
+        <div class="addresses-list">
+            <h3>Address name</h3><hr>
             addressline-1 <br>
             addressline-2
+        </div>
+        <div id="newaddresses">
+
         </div>
     </div>
+    <br>
+    <hr>
+    <br>
+    <br>
 
+    <div class="containbox">
+        <h3 style="padding-top: 20px; color: rgb(83, 83, 83);"><i style="padding-right: 15px;" class="fa fa-address-book-o"></i>Add a new address</h3><hr>
+    
     <div class="address">
-        <textarea name="new_address" id="" cols="30" rows="5"class="addresses-inp" placeholder="new address"></textarea>
-        <button class="add-btn">+</button>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+            <label class="form-check-label" for="flexRadioDefault1">
+              Home
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Office
+            </label>
+          </div><br>
+            
+        <p style="font-size: 20px;">Flat, House no., Building, Apartment</p>
+        <input class="addflat" id="addlineone" type="text">
+        <p style="font-size: 10px; color: grey;">Address line 1</p>
+        <p style="font-size: 20px;">Area, Street, Sector, Village</p>
+        <input class="addstreet" id="addlinetwo" type="text">
+        <p style="font-size: 10px; color: grey;">Address line 2</p>
+        <p style="font-size: 20px;">Landmark</p>
+        <input class="addlandmark" id="landmark" type="text"><br><br>
+        <p style="font-size: 20px;">Town/City</p>
+        <input type="text" id="city" class="addcity">
+        <button class="add-btn" style=" position: absolute; right: 140px;" onclick="addDivision();">+</button><br><br>
     </div>
 </div>
+</div>
+
 </body>
 
 
