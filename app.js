@@ -1,4 +1,7 @@
 const express = require("express");
+const bcrypt=require("bcryptjs");
+const session=require("express-session");
+const mongodbSession=require("connect-mongodb-session")(session)
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const path = require("path");
@@ -12,7 +15,21 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 // const dbna = path.join(__dirname, "data", "ofsd.db");
 
-mongoose.connect("mongodb://127.0.0.1:27017/FFSD_ProjectDB", { useNewUrlParser: true })
+const mongodbURI="mongodb://127.0.0.1:27017/FFSD_ProjectDB"
+
+mongoose.connect(mongodbURI, { useNewUrlParser: true })
+
+const store=new mongodbSession({
+    uri:mongodbURI,
+    collection:"sessionInfo"
+})
+
+app.use(session({
+    secret:"This will sign the cookie",
+    resave:false,
+    saveUninitialized:false,
+    store:store
+}))
 
 const userSchema = {
     uname: String,
@@ -35,6 +52,16 @@ const offerSchema = {
 const productSchema = {
     productName: String,
     offersreceived: [offerSchema]
+}
+
+const isAuth=(req,res,next)=>{
+    // console.log(req.session.isAuth);
+    if (req.session.isAuth) {
+        next();
+    }
+    else{
+        res.redirect("/failure")
+    }
 }
 
 const User = mongoose.model("User", userSchema);
@@ -69,7 +96,7 @@ app.get("/", function (req, res) {
     res.render("home.ejs")
 })
 
-app.get("/homeAS/:parameter", function (req, res) {
+app.get("/homeAS/:parameter",isAuth, function (req, res) {
 
     res.render("homeAS.ejs", { user: req.params.parameter })
     // console.log(req.params.parameter)
@@ -102,12 +129,20 @@ app.post("/sign-in", function (req, res) {
 
     User.findOne({ uname: userName }).then(function (foundUser) {
 
-        if (foundUser.password === Password) {
-            res.redirect("homeAS/" + userName);
-        }
-        else {
-            res.redirect("/failure");
-        }
+        bcrypt.compare(Password,foundUser.password).then((isMatch)=>{
+            if(isMatch){
+                req.session.isAuth=true
+                req.session.user=userName
+                // res.redirect("/dashboard")
+                res.redirect("/homeAS/" + userName);
+                
+                // res.session.user=foundUser.uname
+            }
+            else {
+                // console.log("Incorrect")
+                res.redirect("/failure")
+            }
+        })
 
     })
 })
@@ -126,39 +161,52 @@ app.post("/sign-up", function (req, res) {
     //     if (err) console.log(err.message);
 
     // })
-    const user = new User({
-        uname: userName,
-        email: Email,
-        password: Password
-    });
-    user.save();
+
+    bcrypt.hash(Password,12).then((encryptedPassword)=>{
+        let user=new User({
+            uname:userName,
+            email:Email,
+            password:encryptedPassword
+        })
+        user.save()
+        res.redirect("/sign-in")
+    })
+
     // console.log(userName);
     // console.log(password);
-    res.redirect("/homeAS/" + userName);
+})
+
+app.post("/logout",(req,res)=>{
+    req.session.destroy((err)=>{
+        if (err) {
+            throw err;
+        }
+    })
+    res.redirect("/sign-in")
 })
 
 app.get("/failure", function (req, res) {
     res.sendFile(__dirname + "/views/failure.html")
 })
 
-app.get("/product/:parameter", function (req, res) {
+app.get("/product/:parameter",isAuth, function (req, res) {
     // console.log(req.params.parameters)
     res.render("Product (1).ejs", { user: req.params.parameter })
 })
 
-app.get("/userProfile/:parameter", function (req, res) {
+app.get("/userProfile/:parameter",isAuth, function (req, res) {
     res.render("userprofile.ejs", { user: req.params.parameter })
 })
 
-app.get("/sellerBargain/:parameter1/:parameter2", function (req, res) {
+app.get("/sellerBargain/:parameter1/:parameter2",isAuth, function (req, res) {
     res.render("sellerBargain.ejs", { productName: req.params.parameter1, user: req.params.parameter2 })
 })
 
-app.get("/SavedAddress/:parameter", function (req, res) {
+app.get("/SavedAddress/:parameter",isAuth, function (req, res) {
     res.render("SavedAddress.ejs", { user: req.params.parameter })
 })
 
-app.post("/SavedAddress/:parameter", function (req, res) {
+app.post("/SavedAddress/:parameter",isAuth, function (req, res) {
     let address = req.body.new_address
     User.findOne({ uname: req.params.parameter }, function (err, foundUser) {
         if (err) {
@@ -170,15 +218,15 @@ app.post("/SavedAddress/:parameter", function (req, res) {
     })
 })
 
-app.get("/Myads/:parameter", function (req, res) {
+app.get("/Myads/:parameter",isAuth, function (req, res) {
     res.render("Myads.ejs", { user: req.params.parameter })
 })
 
-app.get("/checkout/:parameters", function (req, res) {
+app.get("/checkout/:parameters",isAuth, function (req, res) {
     res.render("checkout.ejs", { user: req.params.parameters })
 })
 
-app.get("/MyOffers/:parameters", function (req, res) {
+app.get("/MyOffers/:parameters",isAuth, function (req, res) {
     res.render("MyOffers.ejs", { user: req.params.parameters })
 })
 
@@ -186,29 +234,29 @@ app.get("/aboutUs", function (req, res) {
     res.sendFile(__dirname + "/views/aboutUs.html")
 })
 
-app.get("/sell/:parameter", function (req, res) {
+app.get("/sell/:parameter",isAuth, function (req, res) {
     res.render("Sellproduct.ejs", { user: req.params.parameter })
 })
 
-app.get("/RemoveUser", function (req, res) {
+app.get("/RemoveUser",isAuth, function (req, res) {
     res.sendFile(__dirname + "/views/RemoveUser.html")
 })
 
-app.get("/help/:parameter", function (req, res) {
+app.get("/help/:parameter",isAuth, function (req, res) {
     res.render("help.ejs", { user: req.params.parameter })
 })
 
-app.get("/admin", function (req, res) {
+app.get("/admin",isAuth, function (req, res) {
     res.render("adminpage.ejs")
 })
 
 
 
-app.get("/productdetails/:parameter", function (req, res) {
+app.get("/productdetails/:parameter",isAuth, function (req, res) {
     res.render("productdetails.ejs", { user: req.params.parameter })
 })
 
-app.post("/RemoveUser", function (req, res) {
+app.post("/RemoveUser",isAuth, function (req, res) {
     let userName = req.body.uname;
     let reason = req.body.reason;
     // db.run("delete from Users where uname=(?)", [userName], function (err) {
@@ -248,13 +296,22 @@ app.post("/adminsignup", function (req, res) {
     let password = req.body.password;
     let insertCommand = `insert into Admins (uname,email,password) values(?,?,?)`
     let values = [userName, email, password];
-    db.run(insertCommand, values, (err) => {
-        if (err) console.log(err.message);
+    // db.run(insertCommand, values, (err) => {
+    //     if (err) console.log(err.message);
 
+    // })
+    bcrypt.hash(password,12).then((encryptedPassword)=>{
+        let admin=new Admin({
+            uname:uname,
+            email:email,
+            password:encryptedPassword
+        })
+        admin.save()
+        res.redirect("/admin");
     })
-    console.log(userName);
-    console.log(password);
-    res.redirect("/admin");
+    // console.log(userName);
+    // console.log(password);
+    // res.redirect("/admin");
 })
 
 app.get("/adminsignin", function (req, res) {
@@ -266,19 +323,38 @@ app.post("/adminsignin", function (req, res) {
     let Password = req.body.password;
     console.log(userName);
     console.log(Password);
-    db.each("select password from Admins where Admins.uname=(?)", userName, function (err, row) {
-        if (err) {
-            console.log(err.message);
-        }
-        else {
-            if (row.password === Password) {
-                res.redirect("/admin");
+    // db.each("select password from Admins where Admins.uname=(?)", userName, function (err, row) {
+    //     if (err) {
+    //         console.log(err.message);
+    //     }
+    //     else {
+    //         if (row.password === Password) {
+    //             res.redirect("/admin");
+    //         }
+    //         else {
+    //             res.redirect("/failure")
+    //         }
+    //     }
+
+
+    // })
+
+    
+    Admin.findOne({ uname: userName }).then(function (foundUser) {
+
+        bcrypt.compare(Password,foundUser.password).then((isMatch)=>{
+            if(isMatch){
+                req.session.isAuth=true
+                req.session.user=userName
+                res.redirect("/admin")
+                
+                // res.session.user=foundUser.uname
             }
             else {
+                // console.log("Incorrect")
                 res.redirect("/failure")
             }
-        }
-
+        })
 
     })
 
@@ -296,7 +372,7 @@ const createQueryTable = `create table if not exists Queries(
 //     console.log("Query Table created !");
 // })
 
-app.post("/help/:parameter", function (req, res) {
+app.post("/help/:parameter",isAuth, function (req, res) {
     let Query = req.body.query;
     let Querrier = req.params.parameter;
     const insertCommand = `insert into Queries (query,querrier) values (?,?)`
@@ -310,7 +386,7 @@ app.post("/help/:parameter", function (req, res) {
 
 });
 
-app.get("/queries", function (req, res) {
+app.get("/queries",isAuth, function (req, res) {
     const selectCommand = `select * from Queries`
     db.all(selectCommand, function (err, rows) {
         if (err) {
