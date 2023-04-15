@@ -8,7 +8,7 @@
 }
 
 .nav-item:hover {
-    /* transform: scale(1.04); */
+     transform: scale(1.04); 
 
 }
 
@@ -196,10 +196,7 @@
 
 .image {
 
-    
-
-
-
+color: white;
 }
 
 .price-overview {
@@ -236,9 +233,7 @@
     width: 45%;
 }
 
-.container {
-    padding-top: 100px;
-}
+
 
 .help-heading {
     margin: 10px;
@@ -404,4 +399,46 @@
 #selleroverviewcard {
     font-size: 17px;
     padding: px;
+}
+
+
+.catcon{
+    display: flex; 
+}
+
+.container{
+    height:5rem;
+    background-color: white;
+    display: flex;
+    text-align: center;
+    padding-left: 11rem;
+    z-index: +1;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+
+.catimg{
+    height: 2.5rem;
+    margin-top: 0.3rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    text-align: center;
+    position: inherit;
+}
+h6{
+    color: black;
+
+}
+h6:hover{
+    color: rgb(0, 247, 255);
+}
+
+
+body{
+    background-color: rgba(245, 245, 245, 0.701);
 }

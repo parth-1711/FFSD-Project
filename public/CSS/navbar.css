@@ -11,12 +11,14 @@
 .nav-log {
     text-decoration: none;
     font-size: 20;
-    color: rgb(111, 20, 197);
+    color: rgb(132, 0, 255);
     padding: 9px;
     border-radius: 5px;
-    
+    background-color: white;
+}
 
-    background-color: antiquewhite;
+.nav-log:hover{
+    background-color:rgb(183, 58, 255);
 }
 .containbox {
     padding: 20px;
@@ -54,7 +56,7 @@
     position: absolute;
     right: 20px;
     top: 17px;
-
+    
 }
 
 .userLogo {
