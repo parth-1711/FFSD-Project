@@ -239,8 +239,9 @@
 }
 
 .accept-button{
+  display: inline-block;
   width: 10%;
-  padding-left: 72%;
+  padding-left: 60%;
   /* left: 80%; */
 }
   
