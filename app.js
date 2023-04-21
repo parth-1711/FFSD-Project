@@ -460,7 +460,7 @@ app.post("/productdetails/:parameter", function (req, res) {
     let city = req.body.city;
     let images = req.body.images;
     
-    let productSch = new Product = {
+    let productSch = new Product ({
         title: Title,
         description: Description,
         howold:Howold,
@@ -468,7 +468,7 @@ app.post("/productdetails/:parameter", function (req, res) {
         address:flat+","+street+","+landmark+","+city+",",
         
         offersreceived: [offerSchema]
-    }
+    })
     
     res.redirect("/Myads/" + userName);
 });
@@ -482,6 +482,6 @@ app.post("/search",isAuth,(req,res)=>{
     })
 })
 
-app.listen(80, function () {
+app.listen(8008, function () {
     console.log("server is up and running");
 })

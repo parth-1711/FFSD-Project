@@ -152,17 +152,7 @@
   margin:5px;
 }
 
-.offer-list{
-  margin-top: 1rem;
-  padding: 1rem;
-  border-radius: 10px;
-  background-color: rgb(135, 72, 252);
-  
-}
 
-.offer-list:hover{
-  box-shadow: 10px 5px rgb(56, 3, 56);
-}
 
 .addresses-list{
   color: rgb(79, 79, 79);
@@ -231,10 +221,26 @@
   border-radius: 200px;
 }
 
+.offer-list{
+  display: block;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 25px #bdbdbd;
+}
+
+
+.container{
+  margin-bottom: 20px;
+}
+.product-text{
+  padding-top: 20px;
+}
 
 .accept-button{
   width: 10%;
   padding-left: 72%;
   /* left: 80%; */
 }
-  */
+  
