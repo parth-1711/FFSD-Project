@@ -482,6 +482,6 @@ app.post("/search",isAuth,(req,res)=>{
     })
 })
 
-app.listen(8008, function () {
+app.listen(80, function () {
     console.log("server is up and running");
 })
