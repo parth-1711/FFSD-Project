@@ -49,10 +49,6 @@ const offerSchema = {
     amount: Number
 }
 
-const productSchema = {
-    productName: String,
-    offersreceived: [offerSchema]
-}
 
 const querySchema={
     querrier : String,
@@ -67,6 +63,19 @@ const isAuth=(req,res,next)=>{
     else {
         res.redirect("/failure")
     }
+}
+
+const productSchema = {
+    title: String,
+    description: String,
+    howold:Number,
+    setprice:Number,
+    // flat:String,
+    // street:String,
+    // landmark:String,
+    // city:String,
+    address:String,
+    offersreceived: [offerSchema]
 }
 
 const User = mongoose.model("User", userSchema);
@@ -417,6 +426,30 @@ app.get("/queries",isAuth, function (req, res) {
     })
 
 })
+
+app.post("/productdetails/:parameter", function (req, res) {
+    let Title = req.body.title;
+    let Description = req.body.descrption;
+    let Howold = req.body.howold;
+    let Setprice = req.body.setprice;
+    let flat = req.body.flat;
+    let street = req.body.street;
+    let landmark = req.body.landmark;
+    let city = req.body.city;
+    let images = req.body.images;
+    
+    let productSch = new Product = {
+        title: Title,
+        description: Description,
+        howold:Howold,
+        setprice:Setprice,
+        address:flat+","+street+","+landmark+","+city+",",
+        
+        offersreceived: [offerSchema]
+    }
+    
+    res.redirect("/Myads/" + userName);
+});
 
 app.post("/search",isAuth,(req,res)=>{
     let searchString=req.body.searchString;
