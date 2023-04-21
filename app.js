@@ -54,6 +54,11 @@ const productSchema = {
     offersreceived: [offerSchema]
 }
 
+const querySchema={
+    querrier : String,
+    query : String
+}
+
 const isAuth=(req,res,next)=>{
     // console.log(req.session.isAuth);
     if (req.session.isAuth) {
@@ -68,6 +73,7 @@ const User = mongoose.model("User", userSchema);
 const Admin = mongoose.model("Admin", adminSchema);
 const Offer = mongoose.model("Offer", offerSchema);
 const Product = mongoose.model("Product", productSchema);
+const Query=mongoose.model("Query",querySchema);
 
 // const db = new sqlite.Database(dbna, (err) => {
 //     if (err) {
@@ -222,6 +228,9 @@ app.get("/Myads/:parameter",isAuth, function (req, res) {
     res.render("Myads.ejs", { user: req.params.parameter })
 })
 
+app.post("/Myads/:parameter",isAuth,(req,res)=>{
+    
+})
 app.get("/checkout/:parameters",isAuth, function (req, res) {
     res.render("checkout.ejs", { user: req.params.parameters })
 })
@@ -373,30 +382,48 @@ const createQueryTable = `create table if not exists Queries(
 // })
 
 app.post("/help/:parameter",isAuth, function (req, res) {
-    let Query = req.body.query;
+    let queryStatement = req.body.query;
     let Querrier = req.params.parameter;
-    const insertCommand = `insert into Queries (query,querrier) values (?,?)`
-    let values = [Query, Querrier];
-    db.run(insertCommand, values, function (err) {
-        if (err) {
-            console.log(err.message);
-        }
-    })
+
+    let query1=new Query({
+        querrier:Querrier,
+        query:queryStatement
+    });
+    query1.save()
+
+
+    // const insertCommand = `insert into Queries (query,querrier) values (?,?)`
+    // let values = [Query, Querrier];
+    // db.run(insertCommand, values, function (err) {
+    //     if (err) {
+    //         console.log(err.message);
+    //     }
+    // })
     res.redirect("/help/" + Querrier)
 
 });
 
 app.get("/queries",isAuth, function (req, res) {
-    const selectCommand = `select * from Queries`
-    db.all(selectCommand, function (err, rows) {
-        if (err) {
-            console.log(err.message)
-        }
-        res.render("adminqueries.ejs", { Rows: rows })
+    // const selectCommand = `select * from Queries`
+    // db.all(selectCommand, function (err, rows) {
+    //     if (err) {
+    //         console.log(err.message)
+    //     }
+    //     res.render("adminqueries.ejs", { Rows: rows })
+    // })
+
+    Query.find({}).then((foundQueries)=>{
+        res.render("adminqueries",{Rows : foundQueries});
     })
 
 })
 
+app.post("/search",isAuth,(req,res)=>{
+    let searchString=req.body.searchString;
+    Product.find({productName:new RegExp(searchString,'i')}).then((foundProducts)=>{
+        res.send(foundProducts);
+    })
+})
 
 app.listen(80, function () {
     console.log("server is up and running");
