@@ -46,11 +46,13 @@ const adminSchema = {
 
 const offerSchema = {
     offerer: userSchema,
-    amount: Number
+    amount: Number,
+    offerStatus: Number
 }
 
 const productSchema = {
     productName: String,
+    owner:String,
     offersreceived: [offerSchema]
 }
 
@@ -208,6 +210,27 @@ app.get("/sellerBargain/:parameter1/:parameter2", isAuth, function (req, res) {
     res.render("sellerBargain.ejs", { productName: req.params.parameter1, user: req.session.user })
 })
 
+app.post("sellerBargain/:parameter1/:parameter2",isAuth,(req,res)=>{
+    Product.findOne({productName:req.params.parameter1,owner:req.session.user}).then((foundProduct)=>{
+        let accFlag=-1;
+        for (let i = 0; i < foundProduct.offersreceived.length; i++) {
+            if (foundProduct.offersreceived[i].offerStatus===1) {
+                accFlag=i;
+            }
+            
+        }
+
+        let statusArraymsg=["Sorry your Offer is declined","Waiting for response from Seller","Congratulation! Offer Accepted witing for buyer's Response"]
+
+        if (accFlag!=-1) {
+            res.render("sellerBargain",{offers: [foundProduct.offersreceived[accFlag]],statusMsg:statusArraymsg});
+        }
+        else{
+            res.render("sellerBargain",{offers: foundProduct.offersreceived,statusMsg:statusArraymsg})
+        }
+    })
+})
+
 app.get("/SavedAddress/:parameter", isAuth, function (req, res) {
     res.render("SavedAddress.ejs", { user: req.session.user })
 })
@@ -219,7 +242,7 @@ app.post("/SavedAddress/:parameter", isAuth, function (req, res) {
             console.log(err)
         }
         else {
-            foundUser.address.push(address);
+            foundUser.address.push(address);  
         }
     })
 })
@@ -421,7 +444,9 @@ app.get("/queries",isAuth, function (req, res) {
 app.post("/search",isAuth,(req,res)=>{
     let searchString=req.body.searchString;
     Product.find({productName:new RegExp(searchString,'i')}).then((foundProducts)=>{
-        res.send(foundProducts);
+        // res.send(foundProducts);
+        // res.redirect()
+        console.log(foundProducts)
     })
 })
 
