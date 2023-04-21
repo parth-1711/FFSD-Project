@@ -20,7 +20,7 @@ body{
     margin-top: 40px;
     box-shadow: 0 0 25px rgba(122, 122, 122, 0.25);
     border-radius: 10px;
-    height: 400px;
+    
     display: block;
     padding: 30px;
 
@@ -208,4 +208,13 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+.adsv-block {
+    display: block;
+    height: 70px;
+    width: 700px;
+    border: 2px solid rgb(237, 237, 237);
+    border-radius: 8px;
+    padding:10px;
+    margin-bottom:15px;
 }
