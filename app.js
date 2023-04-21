@@ -1,7 +1,7 @@
 const express = require("express");
-const bcrypt=require("bcryptjs");
-const session=require("express-session");
-const mongodbSession=require("connect-mongodb-session")(session)
+const bcrypt = require("bcryptjs");
+const session = require("express-session");
+const mongodbSession = require("connect-mongodb-session")(session)
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const path = require("path");
@@ -15,20 +15,20 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 // const dbna = path.join(__dirname, "data", "ofsd.db");
 
-const mongodbURI="mongodb://127.0.0.1:27017/FFSD_ProjectDB"
+const mongodbURI = "mongodb://127.0.0.1:27017/FFSD_ProjectDB"
 
 mongoose.connect(mongodbURI, { useNewUrlParser: true })
 
-const store=new mongodbSession({
-    uri:mongodbURI,
-    collection:"sessionInfo"
+const store = new mongodbSession({
+    uri: mongodbURI,
+    collection: "sessionInfo"
 })
 
 app.use(session({
-    secret:"This will sign the cookie",
-    resave:false,
-    saveUninitialized:false,
-    store:store
+    secret: "This will sign the cookie",
+    resave: false,
+    saveUninitialized: false,
+    store: store
 }))
 
 const userSchema = {
@@ -64,7 +64,7 @@ const isAuth=(req,res,next)=>{
     if (req.session.isAuth) {
         next();
     }
-    else{
+    else {
         res.redirect("/failure")
     }
 }
@@ -102,9 +102,9 @@ app.get("/", function (req, res) {
     res.render("home.ejs")
 })
 
-app.get("/homeAS/:parameter",isAuth, function (req, res) {
+app.get("/homeAS/:parameter", isAuth, function (req, res) {
 
-    res.render("homeAS.ejs", { user: req.params.parameter })
+    res.render("homeAS.ejs", { user: req.session.user })
     // console.log(req.params.parameter)
 })
 
@@ -135,13 +135,13 @@ app.post("/sign-in", function (req, res) {
 
     User.findOne({ uname: userName }).then(function (foundUser) {
 
-        bcrypt.compare(Password,foundUser.password).then((isMatch)=>{
-            if(isMatch){
-                req.session.isAuth=true
-                req.session.user=userName
+        bcrypt.compare(Password, foundUser.password).then((isMatch) => {
+            if (isMatch) {
+                req.session.isAuth = true
+                req.session.user = userName
                 // res.redirect("/dashboard")
                 res.redirect("/homeAS/" + userName);
-                
+
                 // res.session.user=foundUser.uname
             }
             else {
@@ -168,11 +168,11 @@ app.post("/sign-up", function (req, res) {
 
     // })
 
-    bcrypt.hash(Password,12).then((encryptedPassword)=>{
-        let user=new User({
-            uname:userName,
-            email:Email,
-            password:encryptedPassword
+    bcrypt.hash(Password, 12).then((encryptedPassword) => {
+        let user = new User({
+            uname: userName,
+            email: Email,
+            password: encryptedPassword
         })
         user.save()
         res.redirect("/sign-in")
@@ -182,8 +182,8 @@ app.post("/sign-up", function (req, res) {
     // console.log(password);
 })
 
-app.post("/logout",(req,res)=>{
-    req.session.destroy((err)=>{
+app.post("/logout", (req, res) => {
+    req.session.destroy((err) => {
         if (err) {
             throw err;
         }
@@ -195,26 +195,26 @@ app.get("/failure", function (req, res) {
     res.sendFile(__dirname + "/views/failure.html")
 })
 
-app.get("/product/:parameter",isAuth, function (req, res) {
+app.get("/product/:parameter", isAuth, function (req, res) {
     // console.log(req.params.parameters)
-    res.render("Product (1).ejs", { user: req.params.parameter })
+    res.render("Product (1).ejs", { user: req.session.user })
 })
 
-app.get("/userProfile/:parameter",isAuth, function (req, res) {
-    res.render("userprofile.ejs", { user: req.params.parameter })
+app.get("/userProfile/:parameter", isAuth, function (req, res) {
+    res.render("userprofile.ejs", { user: req.session.user })
 })
 
-app.get("/sellerBargain/:parameter1/:parameter2",isAuth, function (req, res) {
-    res.render("sellerBargain.ejs", { productName: req.params.parameter1, user: req.params.parameter2 })
+app.get("/sellerBargain/:parameter1/:parameter2", isAuth, function (req, res) {
+    res.render("sellerBargain.ejs", { productName: req.params.parameter1, user: req.session.user })
 })
 
-app.get("/SavedAddress/:parameter",isAuth, function (req, res) {
-    res.render("SavedAddress.ejs", { user: req.params.parameter })
+app.get("/SavedAddress/:parameter", isAuth, function (req, res) {
+    res.render("SavedAddress.ejs", { user: req.session.user })
 })
 
-app.post("/SavedAddress/:parameter",isAuth, function (req, res) {
+app.post("/SavedAddress/:parameter", isAuth, function (req, res) {
     let address = req.body.new_address
-    User.findOne({ uname: req.params.parameter }, function (err, foundUser) {
+    User.findOne({ uname: req.session.parameter }, function (err, foundUser) {
         if (err) {
             console.log(err)
         }
@@ -224,8 +224,8 @@ app.post("/SavedAddress/:parameter",isAuth, function (req, res) {
     })
 })
 
-app.get("/Myads/:parameter",isAuth, function (req, res) {
-    res.render("Myads.ejs", { user: req.params.parameter })
+app.get("/Myads/:parameter", isAuth, function (req, res) {
+    res.render("Myads.ejs", { user: req.session.user })
 })
 
 app.post("/Myads/:parameter",isAuth,(req,res)=>{
@@ -235,37 +235,37 @@ app.get("/checkout/:parameters",isAuth, function (req, res) {
     res.render("checkout.ejs", { user: req.params.parameters })
 })
 
-app.get("/MyOffers/:parameters",isAuth, function (req, res) {
-    res.render("MyOffers.ejs", { user: req.params.parameters })
+app.get("/MyOffers/:parameters", isAuth, function (req, res) {
+    res.render("MyOffers.ejs", { user: req.session.user })
 })
 
 app.get("/aboutUs", function (req, res) {
     res.sendFile(__dirname + "/views/aboutUs.html")
 })
 
-app.get("/sell/:parameter",isAuth, function (req, res) {
-    res.render("Sellproduct.ejs", { user: req.params.parameter })
+app.get("/sell/:parameter", isAuth, function (req, res) {
+    res.render("Sellproduct.ejs", { user: req.session.user })
 })
 
-app.get("/RemoveUser",isAuth, function (req, res) {
+app.get("/RemoveUser", isAuth, function (req, res) {
     res.sendFile(__dirname + "/views/RemoveUser.html")
 })
 
-app.get("/help/:parameter",isAuth, function (req, res) {
-    res.render("help.ejs", { user: req.params.parameter })
+app.get("/help/:parameter", isAuth, function (req, res) {
+    res.render("help.ejs", { user: req.session.user })
 })
 
-app.get("/admin",isAuth, function (req, res) {
+app.get("/admin", isAuth, function (req, res) {
     res.render("adminpage.ejs")
 })
 
 
 
-app.get("/productdetails/:parameter",isAuth, function (req, res) {
-    res.render("productdetails.ejs", { user: req.params.parameter })
+app.get("/productdetails/:parameter", isAuth, function (req, res) {
+    res.render("productdetails.ejs", { user: req.session.user })
 })
 
-app.post("/RemoveUser",isAuth, function (req, res) {
+app.post("/RemoveUser", isAuth, function (req, res) {
     let userName = req.body.uname;
     let reason = req.body.reason;
     // db.run("delete from Users where uname=(?)", [userName], function (err) {
@@ -309,11 +309,11 @@ app.post("/adminsignup", function (req, res) {
     //     if (err) console.log(err.message);
 
     // })
-    bcrypt.hash(password,12).then((encryptedPassword)=>{
-        let admin=new Admin({
-            uname:uname,
-            email:email,
-            password:encryptedPassword
+    bcrypt.hash(password, 12).then((encryptedPassword) => {
+        let admin = new Admin({
+            uname: uname,
+            email: email,
+            password: encryptedPassword
         })
         admin.save()
         res.redirect("/admin");
@@ -348,15 +348,15 @@ app.post("/adminsignin", function (req, res) {
 
     // })
 
-    
+
     Admin.findOne({ uname: userName }).then(function (foundUser) {
 
-        bcrypt.compare(Password,foundUser.password).then((isMatch)=>{
-            if(isMatch){
-                req.session.isAuth=true
-                req.session.user=userName
+        bcrypt.compare(Password, foundUser.password).then((isMatch) => {
+            if (isMatch) {
+                req.session.isAuth = true
+                req.session.user = userName
                 res.redirect("/admin")
-                
+
                 // res.session.user=foundUser.uname
             }
             else {
