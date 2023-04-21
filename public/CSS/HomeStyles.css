@@ -1,11 +1,3 @@
-.nav-search:hover {
-    /* 
-    
-    
-    
-    transform: scale(1.04); */
-    color: #561500;
-}
 
 .nav-item:hover {
     transform: scale(1.04);
@@ -45,6 +37,10 @@
 
 }
 
+.nav-search:hover{
+    color:aqua;
+}
+
 /* 
 .nav-product-search {
     text-decoration: none;
@@ -54,17 +50,7 @@
     margin-right: 4%;
 }
 
-.bg {
-
-    position: absolute;
-    z-index: -1;
-    width: 100%;
-    height: 30%;
-    background-color: #400056;
-
-}
-
-
+/*
 
 
 .userLogo {
@@ -122,23 +108,15 @@
     width: 30%;
     color: gray;
 }
-
+*/
 .head {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 6vw;
-    margin-bottom: 7vw;
     align-items: center;
-    
+    width: 10rem;
 }
 
-.fixed-nav {
-    background-image: linear-gradient(45deg, rgb(181, 18, 164), rgb(223, 167, 62));
-    background-color: white; 
-    position: sticky;
-    width: 100%;
-} */
 
 #logout-prompt {
     border: 2px solid black;
@@ -157,12 +135,32 @@
 
 .products {
 
-    padding-left: 10px;
+ padding-left: 1rem;
+}
+
+.Search{
+    margin:0rem 1rem;
+    
+}
+.search-item{
+    width: 3rem;
+}
+
+.carousel {
+    height: 35rem;
+}
+
+.imgtitle {
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    font-size: 35px;
+    background-color: black;
+    color: white;
 }
 
 .recom {
-    
-    margin-top: 25rem;
+
+    margin-top: 5rem;
     margin-bottom: 2rem;
     padding-top: 1%;
     border: 1px solid black;
@@ -184,10 +182,14 @@
     height: 20rem;
     width: 18rem;
     overflow: hidden;
-    
+    border-radius: 15px;
 }
 
-.card-img-top{
+.box:hover {
+    background-color: rgb(111, 20, 197);
+}
+
+.card-img-top {
     justify-items: center;
     align-items: center;
     align-self: center;
@@ -195,10 +197,10 @@
     width: 12rem;
     margin-left: 3rem;
     margin-top: 0.5rem;
+    border-radius: 15px;
 }
 
-
-.card-text{
+.card-text {
     overflow: hidden;
 }
 
@@ -207,19 +209,6 @@
     transform: scale(1.05);
 }
 
-.after-float {
-    padding-top: 0px;
-}
-
-/* .title {
-
-    margin: 10x;
-    margin-left: 5%;
-    display: block;
-    height: 70px;
-    width: 500px;
-    background-color: black;
-} */
 
 .image {
 
@@ -261,12 +250,11 @@
 }
 
 
-
+/* 
 .help-heading {
-    margin: 10px;
     font-size: 28;
 
-}
+} */
 
 /* temp */
 
@@ -446,12 +434,12 @@
     display: flex;
 }
 
-.container1{
+.container1 {
     height: 6rem;
     background-color: white;
     display: flex;
     text-align: center;
-    padding-left: 11rem;
+    padding-left: 10rem;
     z-index: +1;
     padding-top: 1rem;
     width: 98.5vw;
@@ -477,7 +465,7 @@ h6 {
 }
 
 h6:hover {
-    color: rgb(0, 247, 255);
+    color: rgb(183, 58, 255);
 }
 
 

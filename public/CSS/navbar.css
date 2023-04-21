@@ -60,8 +60,7 @@
 }
 
 .userLogo {
-    position: relative;
-    left: 60%;
+    margin-left: 8rem;
 }
 
 .nav-searchdrop {
