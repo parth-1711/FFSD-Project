@@ -127,8 +127,10 @@ app.get("/sign-in", function (req, res) {
 })
 
 app.post("/sign-in", function (req, res) {
-    let userName = req.body.username
+    let userName = req.body.username;
     let Password = req.body.password;
+    console.log(userName);
+    console.log(Password);
     // console.log(userName);
     // console.log(Password);
     // db.each("select password from Users where Users.uname=(?)", userName, function (err, row) {
@@ -147,14 +149,15 @@ app.post("/sign-in", function (req, res) {
 
     // })
 
-    User.findOne({ uname: userName }).then(function (foundUser) {
+    Admin.findOne({ aname: userName }).then(function (foundUser) {
+        console.log(foundUser);
 
         bcrypt.compare(Password, foundUser.password).then((isMatch) => {
             if (isMatch) {
                 req.session.isAuth = true
                 req.session.user = userName
                 // res.redirect("/dashboard")
-                res.redirect("/homeAS/" + userName);
+                res.render("adminpage.ejs");
 
                 // res.session.user=foundUser.uname
             }
@@ -172,11 +175,33 @@ app.get("/sign-up", function (req, res) {
 })
 
 app.post("/sign-up", function (req, res) {
-    let userName = req.body.username;
-    let Email = req.body.email;
+    let userName = req.body.username
+    let email = req.body.email;
     let Password = req.body.password;
+    const isAdmin = req.body.admin === 'true';
+
+  if (isAdmin) {
+    let insertCommand = `insert into Admins (uname,email,password) values(?,?,?)`
+    let values = [userName, email, Password];
+    // db.run(insertCommand, values, (err) => {
+    //     if (err) console.log(err.message);
+
+    // })
+    bcrypt.hash(Password, 12).then((encryptedPassword) => {
+        let admin = new Admin({
+            aname: userName,
+            email: email,
+            password: encryptedPassword
+        })
+        admin.save()
+        res.redirect("/admin");
+    })
+    // console.log(userName);
+    // console.log(password);
+    // res.redirect("/admin");
+  } else {
     let insertCommand = `insert into Users (uname,email,password) values(?,?,?)`
-    let values = [userName, Email, Password];
+    let values = [userName, email, Password];
     // db.run(insertCommand, values, (err) => {
     //     if (err) console.log(err.message);
 
@@ -185,16 +210,16 @@ app.post("/sign-up", function (req, res) {
     bcrypt.hash(Password, 12).then((encryptedPassword) => {
         let user = new User({
             uname: userName,
-            email: Email,
+            email: email,
             password: encryptedPassword
         })
         user.save()
-        res.redirect("/sign-in")
+        res.redirect("/homeAS/" + userName);
     })
 
     // console.log(userName);
     // console.log(password);
-})
+}})
 
 app.post("/logout", (req, res) => {
     req.session.destroy((err) => {
@@ -368,11 +393,11 @@ app.get("/adminsignup", function (req, res) {
 })
 
 app.post("/adminsignup", function (req, res) {
-    let userName = req.body.username;
+    let uname = req.body.username;
     let email = req.body.email;
     let password = req.body.password;
     let insertCommand = `insert into Admins (uname,email,password) values(?,?,?)`
-    let values = [userName, email, password];
+    let values = [uname, email, password];
     // db.run(insertCommand, values, (err) => {
     //     if (err) console.log(err.message);
 
@@ -398,8 +423,7 @@ app.get("/adminsignin", function (req, res) {
 app.post("/adminsignin", function (req, res) {
     let userName = req.body.username
     let Password = req.body.password;
-    console.log(userName);
-    console.log(Password);
+
     // db.each("select password from Admins where Admins.uname=(?)", userName, function (err, row) {
     //     if (err) {
     //         console.log(err.message);
@@ -434,6 +458,7 @@ app.post("/adminsignin", function (req, res) {
         })
 
     })
+    
 
 })
 
@@ -525,3 +550,4 @@ app.post("/search",isAuth,(req,res)=>{
 app.listen(80, function () {
     console.log("server is up and running");
 })
+
