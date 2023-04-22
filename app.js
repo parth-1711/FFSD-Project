@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 // const dbna = path.join(__dirname, "data", "ofsd.db");
-
-const mongodbURI = "mongodb://127.0.0.1:27017/FFSD_ProjectDB"
+const mongodbURI="mongodb+srv://parthirache8:tX15BDJHvUPQi3rq@cluster0.wnqv1xn.mongodb.net/?retryWrites=true&w=majority"
+// const mongodbURI = "mongodb://127.0.0.1:27017/FFSD_ProjectDB"
 
 mongoose.connect(mongodbURI, { useNewUrlParser: true })
 
@@ -227,7 +227,7 @@ app.post("/logout", (req, res) => {
             throw err;
         }
     })
-    res.redirect("/sign-in")
+    res.redirect("/")
 })
 
 app.get("/failure", function (req, res) {
@@ -539,7 +539,7 @@ app.post("/search",isAuth,(req,res)=>{
     let searchString=req.body.searchString;
     Product.find({productName:new RegExp(searchString,'i')}).then((foundProducts)=>{
         // res.send(foundProducts);
-        // res.redirect()
+        res.render("aftersearch",{user:req.session.user,productList:foundProducts})
         console.log(foundProducts)
     })
 })
