@@ -57,29 +57,32 @@
     </script>
 </head>
 
-<body >
+<body>
 
 <div class="container">
     <div class="Add-List">
         <h2 style="padding-top: 25px;color: rgb(77, 77, 77); padding-bottom: 10px;">Your Addresses</h2><hr>
-        <div class="addresses-list">
-            <h3>Address name</h3><hr>
-            addressline-1 <br>
-            addressline-2
-        </div>
-        <div class="addresses-list">
-            <h3>Address name</h3><hr>
-            addressline-1 <br>
-            addressline-2
-        </div>
-        <div class="addresses-list">
-            <h3>Address name</h3><hr>
-            addressline-1 <br>
-            addressline-2
-        </div>
-        <div id="newaddresses">
-
-        </div>
+        <%let i=1 %>
+        <% Rows.adress.forEach(row =>{ %>
+            
+            <div class="">
+                <div class="addresses-list">
+                    <p style="font-size: 24px;">Address <%= i %></p>
+                    <% i=i+1 %>
+                    <hr>
+                    <% r = row.split("\n") %>
+                    <%= r[0] %>
+                    <br>
+                    <%= r[1] %>
+                    <br>
+                    <%= r[2] %>
+                    <br>
+                    <%= r[3] %>
+                </div>
+            </div>
+            
+        <% })%>
+        
     </div>
     <br>
     <hr>
@@ -88,7 +91,7 @@
 
     <div class="containbox">
         <h3 style="padding-top: 20px; color: rgb(83, 83, 83);"><i style="padding-right: 15px;" class="fa fa-address-book-o"></i>Add a new address</h3><hr>
-    
+    <form method="post">
     <div class="address">
         <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
@@ -104,17 +107,18 @@
           </div><br>
             
         <p style="font-size: 20px;">Flat, House no., Building, Apartment</p>
-        <input class="addflat" id="addlineone" type="text">
+        <input class="addflat" id="addlineone" type="text" name="addlineone">
         <p style="font-size: 10px; color: grey;">Address line 1</p>
         <p style="font-size: 20px;">Area, Street, Sector, Village</p>
-        <input class="addstreet" id="addlinetwo" type="text">
+        <input class="addstreet" id="addlinetwo" type="text" name="addlinetwo">
         <p style="font-size: 10px; color: grey;">Address line 2</p>
         <p style="font-size: 20px;">Landmark</p>
-        <input class="addlandmark" id="landmark" type="text"><br><br>
+        <input class="addlandmark" id="landmark" type="text"  name="landmark"><br><br>
         <p style="font-size: 20px;">Town/City</p>
-        <input type="text" id="city" class="addcity">
-        <button class="add-btn" style=" position: absolute; right: 140px;" onclick="addDivision();">+</button><br><br>
+        <input type="text" id="city" class="addcity"  name="city">
+        <button class="add-btn" style=" position: absolute; right: 140px;" onclick="addDivision(); ">+</button><br><br>
     </div>
+    </form>
 </div>
 </div>
 

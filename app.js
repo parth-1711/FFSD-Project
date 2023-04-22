@@ -257,24 +257,43 @@ app.post("/acceptOffer/:parameter",isAuth,(req,res)=>{
     })
 })
 
-app.get("/SavedAddress/:parameter", isAuth, function (req, res) {
-    res.render("SavedAddress.ejs", { user: req.session.user })
+
+
+app.get("/SavedAddress/:parameter", isAuth, function (req, res) {   
+    User.findOne({uname: req.session.user})
+        .then((docs)=>{
+            let num = docs.__v;
+            res.render("SavedAddress.ejs", { user: req.session.user, Rows:docs})
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
+    
 })
 
 app.post("/SavedAddress/:parameter", isAuth, function (req, res) {
-    let address = req.body.new_address
-    User.findOne({ uname: req.session.parameter }, function (err, foundUser) {
-        if (err) {
-            console.log(err)
-        }
-        else {
-            foundUser.address.push(address);  
-        }
+    let addline1 = req.body.addlineone;
+    let addlin2 = req.body.addlinetwo;
+    let landm = req.body.landmark;
+    let city = req.body.city;
+    let new_addr = addline1+ "\n" + addlin2 + "\n" + landm + "\n" + city;
+    User.findOne({uname: req.session.user})
+        .then((docs)=>{
+            docs.adress.push(new_addr);
+            docs.save();
+            res.render("SavedAddress.ejs", { user: req.session.user ,  Rows:docs});
     })
+    .catch((err)=>{
+        console.log(err);
+    });
+
 })
 
 app.get("/Myads/:parameter", isAuth, function (req, res) {
     res.render("Myads.ejs", { user: req.session.user })
+})
+app.get("/search/:parameter", isAuth, function (req, res) {
+    res.render("aftersearch.ejs", { user: req.session.user })
 })
 
 app.post("/Myads/:parameter",isAuth,(req,res)=>{
@@ -478,7 +497,7 @@ app.post("/productdetails/:parameter", function (req, res) {
     let city = req.body.city;
     let images = req.body.images;
     
-    let productSch = new Product = {
+    let productSch = new Product ({
         title: Title,
         description: Description,
         howold:Howold,
@@ -486,7 +505,7 @@ app.post("/productdetails/:parameter", function (req, res) {
         address:flat+","+street+","+landmark+","+city+",",
         
         offersreceived: [offerSchema]
-    }
+    })
     
     res.redirect("/Myads/" + userName);
 });
@@ -499,6 +518,9 @@ app.post("/search",isAuth,(req,res)=>{
         console.log(foundProducts)
     })
 })
+
+
+
 
 app.listen(80, function () {
     console.log("server is up and running");
