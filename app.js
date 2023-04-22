@@ -239,20 +239,36 @@ app.post("sellerBargain/:parameter1/:parameter2",isAuth,(req,res)=>{
     })
 })
 
-app.get("/SavedAddress/:parameter", isAuth, function (req, res) {
-    res.render("SavedAddress.ejs", { user: req.session.user })
+
+
+app.get("/SavedAddress/:parameter", isAuth, function (req, res) {   
+    User.findOne({uname: req.session.user})
+        .then((docs)=>{
+            let num = docs.__v;
+            res.render("SavedAddress.ejs", { user: req.session.user, Rows:docs})
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
+    
 })
 
 app.post("/SavedAddress/:parameter", isAuth, function (req, res) {
-    let address = req.body.new_address
-    User.findOne({ uname: req.session.parameter }, function (err, foundUser) {
-        if (err) {
-            console.log(err)
-        }
-        else {
-            foundUser.address.push(address);  
-        }
+    let addline1 = req.body.addlineone;
+    let addlin2 = req.body.addlinetwo;
+    let landm = req.body.landmark;
+    let city = req.body.city;
+    let new_addr = addline1+ "\n" + addlin2 + "\n" + landm + "\n" + city;
+    User.findOne({uname: req.session.user})
+        .then((docs)=>{
+            docs.adress.push(new_addr);
+            docs.save();
+            res.render("SavedAddress.ejs", { user: req.session.user ,  Rows:docs});
     })
+    .catch((err)=>{
+        console.log(err);
+    });
+
 })
 
 app.get("/Myads/:parameter", isAuth, function (req, res) {
@@ -481,6 +497,9 @@ app.post("/search",isAuth,(req,res)=>{
         console.log(foundProducts)
     })
 })
+
+
+
 
 app.listen(80, function () {
     console.log("server is up and running");
