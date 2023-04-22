@@ -202,7 +202,7 @@ app.post("/logout", (req, res) => {
             throw err;
         }
     })
-    res.redirect("/sign-in")
+    res.redirect("/")
 })
 
 app.get("/failure", function (req, res) {

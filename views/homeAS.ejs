@@ -77,11 +77,11 @@
             <a href="/Myads/<%= user %>" class="nav-search">My Ads</a>
             <hr>
             <!-- <input type="button" class="nav-search" onclick="logoutConf()" value="logout"> -->
-            <p class="nav-search" onclick="logoutConf()">Logout</p>
+            <p class="nav-search" onclick="logoutConf()" style="cursor: pointer;">Logout</p>
             <!-- <a href="" class="nav-search" onclick="logoutConf()">Logout</a> -->
             <hr>
             <div id="logout-prompt" class="hidden">
-              <form action="/logout" method="post">
+              <form action="/logout" method="post" >
                 <div style="background-color: red; margin-bottom: 2%; border-radius: 15px;">
                   <input type="button" value="" class="btn-close lbtn" onclick="hide()">
                   <!-- <button class="btn-close lbtn" onclick="hide()"></button> -->
@@ -188,7 +188,7 @@
   </div>
 
   <div class="recom">
-    <h3>Recommended Products</h3>
+    <h3>Fresh Reccomendations For You</h3>
   </div>
   <div class="cardscon">
     <div class="category1">
@@ -199,32 +199,48 @@
             <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Product</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
+              <div class="pdtprice">
+                ₹ 9999
+              </div>
+              <div class="pdtdesc">
+                Chennai,TamilNadu
+              </div>
             </div>
           </div>
           <div class="card box">
             <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Product</h5>
-              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+              <div class="pdtprice">
+                ₹ 9999
+              </div>
+              <div class="pdtdesc">
+                Chennai,TamilNadu
+              </div>
             </div>
           </div>
           <div class="card box">
             <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Product</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This card has even longer content than the first to show that equal height action.</p>
+              <div class="pdtprice">
+                ₹ 9999
+              </div>
+              <div class="pdtdesc">
+                Chennai,TamilNadu
+              </div>
             </div>
           </div>
           <div class="card box">
             <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Product</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This card has even longer content than the first to show that equal height action.</p>
-
+              <div class="pdtprice">
+                ₹ 9999
+              </div>
+              <div class="pdtdesc">
+                Chennai,TamilNadu
+              </div>
             </div>
           </div>
         </div>
@@ -233,70 +249,104 @@
     <div class="category2">
       <div class="card-deck">
         <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
+          <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Product</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-              content. This content is a little bit longer.</p>
+            <div class="pdtprice">
+              ₹ 9999
+            </div>
+            <div class="pdtdesc">
+              Chennai,TamilNadu
+            </div>
           </div>
         </div>
         <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
+          <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Product</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <div class="pdtprice">
+              ₹ 9999
+            </div>
+            <div class="pdtdesc">
+              Chennai,TamilNadu
+            </div>
           </div>
         </div>
         <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
+          <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Product</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-              content. This card has even longer content than the first to show that equal height action.</p>
+            <div class="pdtprice">
+              ₹ 9999
+            </div>
+            <div class="pdtdesc">
+              Chennai,TamilNadu
+            </div>
           </div>
         </div>
         <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
+          <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Product</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-              content. This card has even longer content than the first to show that equal height action.</p>
+            <div class="pdtprice">
+              ₹ 9999
+            </div>
+            <div class="pdtdesc">
+              Chennai,TamilNadu
+            </div>
           </div>
         </div>
       </div>
     </div>
+
     <div class="category3">
       <div class="card-deck">
         <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
+          <img class="card-img-top" src="/images/ProductImage3.jpeg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Product</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-              content. This content is a little bit longer.</p>
+            <div class="pdtprice">
+              ₹ 9999
+            </div>
+            <div class="pdtdesc">
+              Chennai,TamilNadu
+            </div>
           </div>
         </div>
         <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
+          <img class="card-img-top" src="/images/ProductImage3.jpeg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Product</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <div class="pdtprice">
+              ₹ 9999
+            </div>
+            <div class="pdtdesc">
+              Chennai,TamilNadu
+            </div>
           </div>
         </div>
         <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
+          <img class="card-img-top" src="/images/ProductImage3.jpeg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Product</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-              content. This card has even longer content than the first to show that equal height action.</p>
+            <div class="pdtprice">
+              ₹ 9999
+            </div>
+            <div class="pdtdesc">
+              Chennai,TamilNadu
+            </div>
           </div>
         </div>
         <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
+          <img class="card-img-top" src="/images/ProductImage3.jpeg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Product</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-              content. This card has even longer content than the first to show that equal height action.</p>
-
+            <div class="pdtprice">
+              ₹ 9999
+            </div>
+            <div class="pdtdesc">
+              Chennai,TamilNadu
+            </div>
           </div>
         </div>
       </div>
@@ -310,6 +360,8 @@
 
 </body>
 
+<div class="footer">
 <%- include('partials/footer'); -%>
+</div>
 
 </HTML>
