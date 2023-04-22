@@ -47,7 +47,10 @@ const adminSchema = {
 const offerSchema = {
     offerer: userSchema,
     amount: Number,
-    offerStatus: Number
+    offerStatus: {
+        type:Number,
+        default:0
+    }
 }
 
 
@@ -76,6 +79,7 @@ const productSchema = {
     // landmark:String,
     // city:String,
     address:String,
+    owner:String,
     offersreceived: [offerSchema]
 }
 
@@ -236,6 +240,20 @@ app.post("sellerBargain/:parameter1/:parameter2",isAuth,(req,res)=>{
         else{
             res.render("sellerBargain",{offers: foundProduct.offersreceived,statusMsg:statusArraymsg})
         }
+    })
+})
+
+app.post("/acceptOffer/:parameter",isAuth,(req,res)=>{
+    const offerId=req.body.oId;
+    Product.findOne({productName:req.params.parameter,owner:req.session.user}).then((foundProduct)=>{
+        for (let i = 0; i < foundProduct.offersreceived.length; i++) {
+            if (foundProduct.offersreceived[i]._id=oId) {
+                foundProduct.offersreceived[i].offerStatus=1
+            }
+            else foundProduct.offersreceived[i].offerStatus=-1 
+            
+        }
+        res.redirect("sellerBargain/"+req.params.parameter+"/"+req.session.user)
     })
 })
 
