@@ -35,7 +35,8 @@ const userSchema = {
     uname: String,
     email: String,
     password: String,
-    adress: [String]
+    adress: [String],
+    offers: [offerSchema]
 };
 
 const adminSchema = {
