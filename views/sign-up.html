@@ -1,56 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Up Form</title>
-  <link rel="icon" type="image/x-icon" href="/images/logo.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="/CSS/Sign-inStyles.css" />
-</head>
-
-<body>
-  <div class="container">
-    <div class="form-wrapper">
-      <form class="signup-form" oninput="validation()" action="/sign-up" method="post">
-        <img src="images/PHOENIX - Copy.png" width="120px">
-        <h1>Create Account</h1>
-        <div class="social-media">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Form</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+    <link
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/CSS/Sign-inStyles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-wrapper">
+        <form class="signup-form" oninput="validation()" action="/sign-up" method="post">  
+          <img src="images/PHOENIX - Copy.png" width="120px">
+          <h1>Create Account</h1>
+          <div class="social-media">
+            
+          </div>
+         
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Name" name="username" id="username"/>
+          </div>
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email" name="email" id="email"/>
+          </div>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" name="password" id="password"/>
+          </div>
+          <label for="admin" style="font-size: 20px; display:inline;">Admin:</label>
+          <input type="checkbox" id="admin" name="admin" value="true">
+        
+        <div id="warning" class="hidden" style="background-color: rgba(220,206,254,255); text-align:center; font-weight:bold;">
+          Password must contain atleast 8 characters,a digit,a spaecial characters,an uppercase letter and a lower case letter
         </div>
-
-        <div class="input-group">
-          <i class="fas fa-user"></i>
-          <input type="text" placeholder="Name" name="username" id="username" />
-        </div>
-        <div class="input-group">
-          <i class="fas fa-envelope"></i>
-          <input type="email" placeholder="Email" name="email" id="email" />
-        </div>
-        <div class="input-group">
-          <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Password" name="password" id="password" />
-        </div>
-        <div id="warning" class="hidden">
-          Password must contain atleast 8 characters,a digit,a spaecial characters,an uppercase letter and a lower case
-          letter
-        </div>
-        <button type="submit" value="submit" class="btn btn-dark hidden" id="submit-btn">Submit</button>
-
-        <div class="login">
-          <p style="color: white;">Already have an account ? <b><a href="/sign-in">login</a></b></p>
-        </div>
-      </form>
+          <button type="submit" value="submit" class="btn btn-dark hidden" id="submit-btn">Submit</button>
+          
+      <div class="login">
+        <p style="color: white;">Already have an account ? <b><a href="/sign-in">login</a></b></p>
+      </div>
+        </form>
+      </div>
     </div>
-  </div>
-
-
+    
+    
   <script src="script.js"></script>
 </body>
 

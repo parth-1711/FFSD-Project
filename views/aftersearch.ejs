@@ -100,11 +100,18 @@
         </nav>
       </div>
 
-      
+      <% for(let i=0;i< productList.length;i++ ){ %>
       <div class="sort-product">
         <img src="" alt="img">
        <div> 
-        <p>text</p>
+        <p><% productList[i].title %></p>
+        </div>
+      </div>
+      <%}%>
+      <!-- <div class="sort-product">
+        <img src="" alt="img">
+       <div> 
+        <p>txt</p>
         </div>
       </div>
       <div class="sort-product">
@@ -112,13 +119,7 @@
        <div> 
         <p>txt</p>
         </div>
-      </div>
-      <div class="sort-product">
-        <img src="" alt="img">
-       <div> 
-        <p>txt</p>
-        </div>
-      </div>
+      </div> -->
       
 </body>
 <%- include('partials/footer'); -%>

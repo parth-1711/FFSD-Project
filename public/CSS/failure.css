@@ -9,3 +9,8 @@ body{
     display: flex;
     justify-content: center;
 }
+
+.tryagain-one:hover {
+    background-color: rgba(29,147,206,255);
+    color: white;
+}

@@ -113,7 +113,7 @@ body{
 .read-more-btn{
     display: inline-block;
     color: rgb(235, 234, 234);
-    background-color: darkorange;
+    background-color: rgb(255, 140, 0);
     border: none;
     border-radius: 5px;
     padding: 12px 20px;
@@ -122,7 +122,7 @@ body{
     transition: 200ms ease;
 }
 .read-more-btn:hover{
-    background-color: rgb(111, 20, 197);
+    background-color: rgb(255, 197, 126);
 }
 .about-us img{
     border-radius: 10px;

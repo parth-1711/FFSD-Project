@@ -14,33 +14,34 @@
 
 <body>
     <div class="row">
-        <div class="container">
-            <div class="col-3" id="usercard">
-                <div class="image">
-                    <img src="/images/adminimg.png" alt="up" style="width: 150px;height: 150px;">
-                </div>
-                <div class="username">
-                    <h5>Welcome Admin</h5>
-                </div>
-                <div class="table">
-                    <a href="/queries">
-                        <td>Queries</td>
-                    </a>
-                    <hr>
-                    <a href="#">
-                        <td>Manage Products</td>
-                    </a>
-                    <hr>
-                    <a href="/RemoveUser">
-                        <td>Manage Users</td>
-                    </a>
-                    <hr>
-                    <a href="/adminsignin"><button type="button" class="btn btn-primary">Log Out</button></a>
-
-                </div>
-            </div>
+    <div class="col-3" id="usercard">
+        <div class="image">
+            <img src="/images/adminimg.png" alt="up" style="width: 150px;height: 150px;">
+        </div>
+        <div class="username">
+            <h5>Welcome Admin</h5>
+        </div>
+        <div class="table">
+            <a href="/queries">
+                <td>Queries</td>
+            </a>
+            <hr>
+            <a href="#">
+                <td>Manage Products</td>
+            </a>
+            <hr>
+            <a href="/RemoveUser">
+                <td>Delete User</td>
+            </a>
+            <hr>
+            <form action="/logout" method="post">
+                <button type="submit" class="btn btn-primary">Log Out</button>
+            </form>
+            
+        
         </div>
     </div>
+</div>
 </body>
 
 <div>

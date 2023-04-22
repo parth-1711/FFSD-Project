@@ -119,8 +119,8 @@
 
 
 #logout-prompt {
-    border: 2px solid black;
-    border-radius: 15px;
+    border: 1px solid rgb(69, 69, 69);
+    
     background-color: white;
 }
 
