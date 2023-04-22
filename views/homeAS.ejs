@@ -37,17 +37,21 @@
         <li class="nav-item"><a class="nav-search" href="/aboutUs">About Us</a></li>
         <li class="nav-item"><a class="nav-search" href="/help/<%=user %>">Contact Us</a></li>
         <li class="nav-item1">
-          <div class="Search">
+          <form action="/search" method="post">
+            <div class="Search">
+            
               <div class="search-item">
-                  <i class="fas fa-search"></i>
-                  <input class="products" type="text" placeholder="Search for products">
+                <i class="fas fa-search"></i>
+                <input class="products" type="text" name="searchString" placeholder="Search for products">
               </div>
               <div class="search-item">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <input class="Location" type="text" placeholder="Location">
+                <i class="fas fa-map-marker-alt"></i>
+                <input class="Location" type="text" placeholder="Location">
               </div>
-  
-          </div>
+            
+            </div>
+            <input type="submit" hidden />
+          </form>
         </li>
         <li class="nav-item"></li>
       </ul>

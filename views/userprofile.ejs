@@ -13,10 +13,10 @@
         <link rel="stylesheet" href="/CSS/userprofile.css">
         <link rel="stylesheet" href="/CSS/navbar.css">
     </head>
+ 
+    <body style="background-color: rgba(220,206,254,255);">
 
-    <body>
-
-        <div class="container">
+        <div class="container" style="background-color: white; border-radius:10px; margin-bottom:30px; padding:15px; height:800px;">
 
             <div class="row">
 
@@ -25,8 +25,9 @@
                         <img src="/images/userprofile.png" alt="up" style="width: 150px; height: 150px;">
                     </div>
                     <div class="username">
-                        <h5><%= user %></h5>
+                        <h3><%= user %></h3>
                     </div>
+                    <br>
 
                     <div class="functionality">
                         <div class="table">
@@ -54,7 +55,10 @@
                                 <td>Reviews</td>
                             </a>
                             <hr>
-                            <a href="/sign-in"><button type="button" class="btn btn-primary">Log Out</button></a>
+                            <form action="/logout" method="post">
+                                <input type="submit" class="btn btn-primary" style="background-color: rgb(111, 20, 197);border:none;" value="Log Out">
+                            </form>
+                            <!-- <a href="/sign-in"><button type="button" class="btn btn-primary">Log Out</button></a> -->
                             
                         </div>
                     </div>
@@ -63,15 +67,51 @@
                 
                 <div class="col" id="details">
                     <div class="username1">
-                        <h3>WELCOME <%= user %>!!!</h3>
+                        <h3>Hi, Welcome back <%= user %></h3>
                     </div>
                     <hr>
-                    <img src="/images/PHOENIX.png" alt="ri" style="opacity: 30%; height: 55vh;">
-                    <h4>You have not listed any products yet...</h4>
-                    <a href="/sell/<%= user%>"><button type="button" class="btn btn-info" style="margin-left:25%; color: black; margin-top: 5%;">Start Selling</button></a>
+                    <!-- <img src="/images/PHOENIX.png" alt="ri" style="opacity: 30%; height: 55vh;">
+                    <h4>You have not listed any products yet...</h4> -->
+                    
+                    <div class="myproducts">
+                        <h4 style="text-align: left; color:rgb(89, 89, 89);">Your Advertisements</h4><hr>
+                        <div class="adsv-block">
+                            <div style="text-align: left;">
+                                <img src="/images/Phone.jpg" width="50px">
+                                <label style="font-size: 18px; border-left:1px solid black;padding-left:20px;">Samsung galaxy S22 Ultra</label>
+                            </div>
+                        </div>
+                        <div class="adsv-block">
+                            <div style="text-align: left;">
+                                <img src="/images/Phone.jpg" width="50px">
+                                <label style="font-size: 18px; border-left:1px solid black;padding-left:20px;">Samsung galaxy S22 Ultra</label>
+                            </div>
+                        </div>
+                        <div class="adsv-block">
+                            <div style="text-align: left;">
+                                <img src="/images/Phone.jpg" width="50px">
+                                <label style="font-size: 18px; border-left:1px solid black;padding-left:20px;">Samsung galaxy S22 Ultra</label>
+                            </div>
+                        </div>
+                        <div class="adsv-block">
+                            <div style="text-align: left;">
+                                <img src="/images/Phone.jpg" width="50px">
+                                <label style="font-size: 18px; border-left:1px solid black;padding-left:20px;">Samsung galaxy S22 Ultra</label>
+                            </div>
+                        </div>
+
+                        <div >
+                            <a href="/Myads/<%= user %>"><button class="btn btn-primary" style="background-color: rgb(111, 20, 197);border:none; margin-top:40px; margin-left:25%;">View More</button></a>
+                            
+                        </div>
+                        
+                    <!-- </div>
+                    <a href="/sell/<%= user%>"><button type="button" class="btn btn-info" style="margin-left:25%; color: white; margin-top: 5%; background-color: rgb(111, 20, 197);border:none;">Start Selling</button></a>
+                </div> -->
+                    </div>
+
                 </div>
             </div>
-
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -79,7 +119,9 @@
             crossorigin="anonymous"></script>
 
     </body>
-
     <%- include('partials/footer'); -%>
+ 
+    
 
     </html>
+    
