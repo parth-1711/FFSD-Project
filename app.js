@@ -258,6 +258,9 @@ app.post("/SavedAddress/:parameter", isAuth, function (req, res) {
 app.get("/Myads/:parameter", isAuth, function (req, res) {
     res.render("Myads.ejs", { user: req.session.user })
 })
+app.get("/search/:parameter", isAuth, function (req, res) {
+    res.render("aftersearch.ejs", { user: req.session.user })
+})
 
 app.post("/Myads/:parameter",isAuth,(req,res)=>{
     

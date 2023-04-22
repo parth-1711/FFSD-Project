@@ -473,3 +473,18 @@ body {
     background-color: rgba(245, 245, 245, 0.701);
     height: 100vh;
 }
+
+/* after search */
+
+.sort-product{
+    background-color: #dbdbdb;
+    height: 245px;
+    width: 97%;
+    margin: 20px;
+    display: flex;
+}
+.sort-product img{
+    width: 245px;
+    margin-left: 5px;
+    margin-right: 15px;
+}
