@@ -316,7 +316,24 @@ app.get("/sell/:parameter", isAuth, function (req, res) {
 })
 
 app.get("/RemoveUser", isAuth, function (req, res) {
-    res.sendFile(__dirname + "/views/RemoveUser.html")
+    User.find({}).then((foundUsers)=>{
+        res.render("RemoveUser.ejs",{Rows : foundUsers});
+    })
+    // res.render("RemoveUser.ejs")
+})
+
+app.post("/RemoveUser",isAuth,(req,res)=>{
+    let username = req.body.searcheduser;
+    User.find({uname: new RegExp(username,'i')}).then((foundUsers)=>{
+        res.render("RemoveUser.ejs",{Rows : foundUsers});
+    })
+})
+
+app.post("/ConfirmRemoval",isAuth,(req,res)=>{
+    let username = req.body.confirmremoval;
+    User.deleteOne({uname: username}).then(()=>{
+        res.redirect("/RemoveUser");
+    })
 })
 
 app.get("/help/:parameter", isAuth, function (req, res) {
@@ -333,19 +350,18 @@ app.get("/productdetails/:parameter", isAuth, function (req, res) {
     res.render("productdetails.ejs", { user: req.session.user })
 })
 
-app.post("/RemoveUser", isAuth, function (req, res) {
-    let userName = req.body.uname;
-    let reason = req.body.reason;
-    // db.run("delete from Users where uname=(?)", [userName], function (err) {
-    //     if (err) {
-    //         res.redirect(__dirname + "/views/deletionFailure.html")
-    //     }
-    //     else {
-    //         res.redirect("/RemoveUser")
-    //     }
-    // })
-})
-
+// app.post("/RemoveUser", isAuth, function (req, res) {
+//     let userName = req.body.uname;
+//     let reason = req.body.reason;
+//     // db.run("delete from Users where uname=(?)", [userName], function (err) {
+//     //     if (err) {
+//     //         res.redirect(__dirname + "/views/deletionFailure.html")
+//     //     }
+//     //     else {
+//     //         res.redirect("/RemoveUser")
+//     //     }
+//     // })
+// })
 
 const createAdminTable = `create table if not exists Admins (
     uname varchar(50) primary key,
