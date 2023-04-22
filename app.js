@@ -194,7 +194,7 @@ app.post("/sign-up", function (req, res) {
             password: encryptedPassword
         })
         admin.save()
-        res.redirect("/admin");
+        res.redirect("/sign-in");
     })
     // console.log(userName);
     // console.log(password);
