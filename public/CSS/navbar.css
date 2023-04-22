@@ -28,7 +28,7 @@
 }
 .nav-log:hover {
    
-    color: rgb(111, 20, 197);
+    color: rgb(255, 255, 255);
 }
 .bg {
 
@@ -43,6 +43,8 @@
 .nav-search {
     color: aliceblue;
 }
+
+
 
 .nav-search1 {
     margin-bottom: 100px;

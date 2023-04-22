@@ -333,7 +333,7 @@ app.get("/MyOffers/:parameters", isAuth, function (req, res) {
 })
 
 app.get("/aboutUs", function (req, res) {
-    res.sendFile(__dirname + "/views/aboutUs.html")
+    res.render("aboutUs.ejs")
 })
 
 app.get("/sell/:parameter", isAuth, function (req, res) {
