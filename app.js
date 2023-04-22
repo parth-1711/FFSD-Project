@@ -129,25 +129,9 @@ app.get("/sign-in", function (req, res) {
 app.post("/sign-in", function (req, res) {
     let userName = req.body.username;
     let Password = req.body.password;
-    console.log(userName);
-    console.log(Password);
-    // console.log(userName);
-    // console.log(Password);
-    // db.each("select password from Users where Users.uname=(?)", userName, function (err, row) {
-    //     if (err) {
-    //         console.log(err.message);
-    //     }
-    //     else {
-    //         if (row.password === Password) {
-    //             res.redirect("/homeAS/" + userName);
-    //         }
-    //         else {
-    //             res.redirect("/failure")
-    //         }
-    //     }
-
-
-    // })
+    const isAdmin = req.body.admin === 'true';
+    console.log(isAdmin);
+    if(isAdmin) {
 
     Admin.findOne({ aname: userName }).then(function (foundUser) {
         console.log(foundUser);
@@ -156,18 +140,34 @@ app.post("/sign-in", function (req, res) {
             if (isMatch) {
                 req.session.isAuth = true
                 req.session.user = userName
-                // res.redirect("/dashboard")
                 res.render("adminpage.ejs");
-
-                // res.session.user=foundUser.uname
             }
             else {
-                // console.log("Incorrect")
                 res.redirect("/failure")
             }
         })
 
     })
+}
+
+   else {
+    User.findOne({ uname: userName }).then(function (foundUser) {
+        console.log(foundUser);
+
+        bcrypt.compare(Password, foundUser.password).then((isMatch) => {
+            if (isMatch) {
+                req.session.isAuth = true
+                req.session.user = userName
+                res.redirect("/homeAS/"+userName);
+            }
+            else {
+                res.redirect("/failure")
+            }
+        })
+
+    })
+
+   }
 })
 
 app.get("/sign-up", function (req, res) {
@@ -214,7 +214,7 @@ app.post("/sign-up", function (req, res) {
             password: encryptedPassword
         })
         user.save()
-        res.redirect("/homeAS/" + userName);
+        res.redirect("/sign-in");
     })
 
     // console.log(userName);
