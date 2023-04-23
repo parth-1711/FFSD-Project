@@ -7,6 +7,7 @@ const ejs = require("ejs");
 const path = require("path");
 const sqlite = require("sqlite3");
 const mongoose = require("mongoose");
+const { title } = require("process");
 
 const app = express();
 
@@ -73,16 +74,17 @@ const isAuth=(req,res,next)=>{
 }
 
 const productSchema = {
-    images:String,
+    
     title: String,
     description: String,
-    howold:Number,
+    howold:String,
     setprice:Number,
     // flat:String,
     // street:String,
     // landmark:String,
     // city:String,
     address:String,
+    images:String,
     owner:String,
     offersreceived: [offerSchema]
 }
@@ -584,26 +586,29 @@ app.get("/queries",isAuth, function (req, res) {
 
 app.post("/productdetails/:parameter", function (req, res) {
     let Title = req.body.title;
-    let Description = req.body.descrption;
+    let Description = req.body.description;
     let Howold = req.body.howold;
     let Setprice = req.body.setprice;
     let flat = req.body.flat;
     let street = req.body.street;
     let landmark = req.body.landmark;
     let city = req.body.city;
-    let images = req.body.images;
-    
+    let Frontview = req.body.images1;
+    let Backview = req.body.images2;
+    let Sideview = req.body.images3;
+    let own = req.session.user;
     let productSch = new Product ({
         title: Title,
         description: Description,
         howold:Howold,
         setprice:Setprice,
         address:flat+","+street+","+landmark+","+city+",",
-        
-        offersreceived: [offerSchema]
+        images:Frontview+","+Backview+","+Sideview+",",
+        owner:own
     })
+    productSch.save()
     
-    res.redirect("/Myads/" + userName);
+    res.redirect("/Myads/" + req.session.user);
 });
 
 app.post("/search",isAuth,(req,res)=>{
