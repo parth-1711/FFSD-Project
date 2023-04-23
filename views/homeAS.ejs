@@ -44,10 +44,6 @@
                 <i class="fas fa-search"></i>
                 <input class="products" type="text" name="searchString" placeholder="Search for products">
               </div>
-              <div class="search-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <input class="Location" type="text" placeholder="Location">
-              </div>
             
             </div>
             <input type="submit" hidden />
@@ -76,17 +72,19 @@
             <hr>
             <a href="/Myads/<%= user %>" class="nav-search">My Ads</a>
             <hr>
+            <a href="/sell/<%= user %>" class="nav-search">Sell</a>
+            <hr>
             <!-- <input type="button" class="nav-search" onclick="logoutConf()" value="logout"> -->
             <p class="nav-search" onclick="logoutConf()" style="cursor: pointer;">Logout</p>
             <!-- <a href="" class="nav-search" onclick="logoutConf()">Logout</a> -->
             <hr>
             <div id="logout-prompt" class="hidden">
               <form action="/logout" method="post" >
-                <div style="background-color: red; margin-bottom: 2%; border-radius: 15px;">
-                  <input type="button" value="" class="btn-close lbtn" onclick="hide()">
+                <div style="background-color: red; margin-bottom: 2%; display:block; height:28px;">
+                  <input type="button" value="" class="btn-close lbtn" onclick="hide()" style="margin-left: 12%;">
                   <!-- <button class="btn-close lbtn" onclick="hide()"></button> -->
                 </div>
-                <p style="margin-left: 5%;">Are you sure you want to go out ?</p>
+                <p style="margin-left: 5%; font-weight:bold;">Are you sure you want to log out ?</p>
                 <input type="submit" value="Yes" class="lbtn btn btn-success">
                 <!-- <a href="/sign-in"><button class="lbtn btn btn-success">Yes</button></a> -->
               </form>

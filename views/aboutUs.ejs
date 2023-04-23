@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="/CSS/aboutUs.css">
 </head>
 
-<body>
+<body style="background-color: rgba(220,206,254,255);">
     <div class="top-div">
     <div class="homeIcon"><a href="/"><i class="fas fa-home" style="color: white;" class="homehover"></i></a></div>
     <div class="logo-flex">
@@ -34,6 +34,11 @@
     <div class="heading">
         <h1>About PHOENIX</h1>
         <p>PHOENIX E-MART is an online platform for buying and selling of 2<sup>nd</sup> hand/used products.</p>
+        <hr style="color: white;">
+    
+        <b><p style="font-size:40px;">DISCOVER HIDDEN GEMS AT UNBEATABLE PRICES WITH OUR SECONDHAND STORE</p></b>
+        
+        
     </div>
     <section class="about-us">
         <img src="/images/aboutusimg.jpg" alt="img">
@@ -52,7 +57,7 @@
     </section>
     </div>
    
-    <section class="about-us2">
+    <section class="about-us2" style="margin: 20px; margin-bottom:60px;">
         <div class="content2">
             <h2>Team</h2>
             <p>
@@ -64,23 +69,14 @@
                 <li>Krishnamurthy</li>
             </ul>
             </p>
-            <button class="read-more-btn">Contact Us</button>
+            <button class="read-more-btn" href="/help">Contact Us</button>
         </div>
         <img src="/images/aboutusimg.jpg" alt="img">
     </section>
-    <div class="btm-div">
-        <div class="btm-div-img-up">
-       <img class="btmdiv-img-1" src="images\aboutus-images\btm-div-4.jpg" alt="">
-       <img class="btmdiv-img-2" src="images\aboutus-images\btm-div-3.jpg" alt="">
-       </div>
-       <div class="btm-div-img-dn">
-       <img class="btmdiv-img-3" src="images\aboutus-images\btm-div.jpg " alt="">
-       <img class="btmdiv-img-4" src="images\aboutus-images\btm-div-5.jpg" alt="">
-       <img class="btmdiv-img-5" src="images\aboutus-images\btm-div-6.jpg" alt="">
-       <img class="btmdiv-img-6" src="images\aboutus-images\btm-div-7.jpg" alt="">
-       <img class="btmdiv-img-7" src="images\aboutus-images\btm-div-8.jpg" alt="">
-        </div>
-    </div>
+    <%- include('partials/footer'); -%>
+    
+        
+    
 
 </body>
 </html>
