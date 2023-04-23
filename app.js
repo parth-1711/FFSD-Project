@@ -307,7 +307,7 @@ app.post("/acceptOffer/:parameter",isAuth,(req,res)=>{
     const offerId=req.body.oId;
     Product.findOne({productName:req.params.parameter,owner:req.session.user}).then((foundProduct)=>{
         for (let i = 0; i < foundProduct.offersreceived.length; i++) {
-            if (foundProduct.offersreceived[i]._id=oId) {
+            if (foundProduct.offersreceived[i]._id===oId) {
                 foundProduct.offersreceived[i].offerStatus=1
             }
             else foundProduct.offersreceived[i].offerStatus=-1 
@@ -560,6 +560,7 @@ app.get("/queries",isAuth, function (req, res) {
         res.render("adminqueries",{Rows : foundQueries});
     })
 
+
 })
 
 app.post("/productdetails/:parameter", function (req, res) {
@@ -597,7 +598,25 @@ app.post("/search",isAuth,(req,res)=>{
 })
 
 
-
+app.post("/uploadOffer/:productName/:Owner",(req,res)=>{
+    let offerer=req.body.offerer;
+    let amount1=req.body.amount;
+    let offer=new Offer({
+        offerer:offerer,
+        amount:amount1
+    })
+    offer.save();
+    Product.find({title:req.params.productName,owner:req.params.Owner }).then((foundProduct)=>{
+        
+        foundProduct.offersreceived.push(offer);
+        
+        foundProduct.save()
+    })
+    User.find({uname:req.session.user}).then((foundUser)=>{
+        foundUser.offers.push(offer);
+        res.redirect("/myOffers/"+req.session.user);
+    })
+})
 
 app.listen(80, function () {
     console.log("server is up and running");
