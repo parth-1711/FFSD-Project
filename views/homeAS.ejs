@@ -194,19 +194,19 @@
       <div class="card-deck">
         <div class="cardscat">
           <% for(let i=0;i<16;i++){ %>
-          <a href="/productdetails/">
+          <a href="/product?param=<%= ProductList[i]._id%>">
             
             <div class="card box">
               <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
               <div class="card-body">
                 <div class="pdttitle" style="height: 1.5rem;overflow: hidden;">
-                <h5 class="card-title"><%= ProducList[i].title%></h5>
+                <h5 class="card-title"><%= ProductList[i].title%></h5>
               </div>
                 <div class="pdtprice" style="height: 1.5rem; margin:0.7rem;">
-                  <h5>₹<%= ProducList[i].setprice%></h5>
+                  <h5>₹<%= ProductList[i].setprice%></h5>
                 </div>
                 <div class="pdtdesc" style="height: 1.5rem; margin-left: 0.9rem">
-                  <%= ProducList[i].address%>
+                  <%= ProductList[i].address%>
                 </div>
               </div>
             </div>
