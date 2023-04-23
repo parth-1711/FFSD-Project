@@ -275,7 +275,26 @@ app.get("/product", isAuth, function (req, res) {
 )
 
 app.get("/userProfile/:parameter", isAuth, function (req, res) {
-    res.render("userprofile.ejs", { user: req.session.user })
+    var currentUser = req.session.user;
+    currentUser = currentUser.toLowerCase();
+    const arrTitle=[];
+    const arrImg=[];
+    
+    Product.find({owner: currentUser}).then((foundProducts)=>{
+        
+        for (let i=0; i<4; i++) {
+            arrTitle[i]= foundProducts[i].title;
+        }
+        for (let i=0; i<4; i++) {
+            const imgs = foundProducts[i].images.split(",");
+            arrImg[i]= imgs[0];
+        }
+        
+        
+        res.render("userprofile.ejs", { arr : arrTitle , arrImage : arrImg , user: req.session.user })
+        
+    })
+    
 })
 
 app.get("/sellerBargain/:parameter1/:parameter2", isAuth, function (req, res) {
