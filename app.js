@@ -31,6 +31,17 @@ app.use(session({
     store: store
 }))
 
+const offerSchema = {
+    offerer: String,
+    productName:String,
+    owner:String, 
+    amount: Number,
+    offerStatus: {
+        type:Number,
+        default:0
+    }
+}
+
 const userSchema = {
     uname: String,
     email: String,
@@ -45,14 +56,6 @@ const adminSchema = {
     password: String,
 }
 
-const offerSchema = {
-    offerer: userSchema,
-    amount: Number,
-    offerStatus: {
-        type:Number,
-        default:0
-    }
-}
 
 
 const querySchema={
@@ -71,6 +74,7 @@ const isAuth=(req,res,next)=>{
 }
 
 const productSchema = {
+    images:String,
     title: String,
     description: String,
     howold:Number,
@@ -244,34 +248,32 @@ app.get("/userProfile/:parameter", isAuth, function (req, res) {
     res.render("userprofile.ejs", { user: req.session.user })
 })
 
-app.get("/sellerBargain/:parameter1/:parameter2", isAuth, function (req, res) {
-    res.render("sellerBargain.ejs", { productName: req.params.parameter1, user: req.session.user })
-})
-
-app.post("sellerBargain/:parameter1/:parameter2",isAuth,(req,res)=>{
-    Product.findOne({productName:req.params.parameter1,owner:req.session.user}).then((foundProduct)=>{
+app.get("/sellerBargain/:parameter1", isAuth, function (req, res) {
+    Product.findOne({_id:req.params.parameter1,owner:req.session.user}).then((foundProduct)=>{
         let accFlag=-1;
+        pimage=[]
         for (let i = 0; i < foundProduct.offersreceived.length; i++) {
             if (foundProduct.offersreceived[i].offerStatus===1) {
                 accFlag=i;
             }
-            
+            pimage.push(foundProduct[i].images.split(",")[0])
         }
 
         let statusArraymsg=["Sorry your Offer is declined","Waiting for response from Seller","Congratulation! Offer Accepted witing for buyer's Response"]
 
         if (accFlag!=-1) {
-            res.render("sellerBargain",{offers: [foundProduct.offersreceived[accFlag]],statusMsg:statusArraymsg});
+            res.render("sellerBargain",{offers: [foundProduct.offersreceived[accFlag]],image:[pimage[accFlag]],statusMsg:statusArraymsg,user: req.session.user});
         }
         else{
-            res.render("sellerBargain",{offers: foundProduct.offersreceived,statusMsg:statusArraymsg})
+            res.render("sellerBargain",{offers: foundProduct.offersreceived,image:pimage,statusMsg:statusArraymsg,user: req.session.user})
         }
     })
+    // res.render("sellerBargain.ejs", { productName: req.params.parameter1, user: req.session.user })
 })
 
-app.post("/acceptOffer/:parameter",isAuth,(req,res)=>{
+app.post("sellerBargain/:parameter1",isAuth,(req,res)=>{
     const offerId=req.body.oId;
-    Product.findOne({productName:req.params.parameter,owner:req.session.user}).then((foundProduct)=>{
+    Product.findOne({productName:req.params.parameter1,owner:req.session.user}).then((foundProduct)=>{
         for (let i = 0; i < foundProduct.offersreceived.length; i++) {
             if (foundProduct.offersreceived[i]._id===oId) {
                 foundProduct.offersreceived[i].offerStatus=1
@@ -279,8 +281,12 @@ app.post("/acceptOffer/:parameter",isAuth,(req,res)=>{
             else foundProduct.offersreceived[i].offerStatus=-1 
             
         }
-        res.redirect("sellerBargain/"+req.params.parameter+"/"+req.session.user)
+        res.redirect("sellerBargain/"+req.params.parameter)
     })
+})
+
+app.post("/acceptOffer/:parameter",isAuth,(req,res)=>{
+    
 })
 
 
@@ -316,7 +322,18 @@ app.post("/SavedAddress/:parameter", isAuth, function (req, res) {
 })
 
 app.get("/Myads/:parameter", isAuth, function (req, res) {
-    res.render("Myads.ejs", { user: req.session.user })
+
+    Product.find({owner:req.session.user}).then((foundProducts)=>{
+        pimage=[]
+        for(let i=0;i<foundProducts.length;i++){
+            pimage.push(foundProducts[i].images.split(",")[0])
+            
+        }
+        console.log(pimage);
+        // console.log(foundProducts)
+        res.render("Myads.ejs", { user: req.session.user,image:pimage,ProductList:foundProducts })
+    })
+    
 })
 app.get("/search/:parameter", isAuth, function (req, res) {
     res.render("aftersearch.ejs", { user: req.session.user })
@@ -555,7 +572,7 @@ app.post("/productdetails/:parameter", function (req, res) {
 
 app.post("/search",isAuth,(req,res)=>{
     let searchString=req.body.searchString;
-    Product.find({productName:new RegExp(searchString,'i')}).then((foundProducts)=>{
+    Product.find({title:new RegExp(searchString,'i')}).then((foundProducts)=>{
         // res.send(foundProducts);
         res.render("aftersearch",{user:req.session.user,productList:foundProducts})
         console.log(foundProducts)
