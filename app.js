@@ -30,13 +30,22 @@ app.use(session({
     saveUninitialized: false,
     store: store
 }))
-
+const offerSchema = {
+    offerer: String,
+    ProductName: String,
+    owner: String,
+    amount: Number,
+    offerStatus: {
+        type:Number,
+        default:0
+    }
+}
 const userSchema = {
     uname: String,
     email: String,
     password: String,
     adress: [String],
-    offers: [offerSchema]
+    
 };
 
 const adminSchema = {
@@ -45,14 +54,7 @@ const adminSchema = {
     password: String,
 }
 
-const offerSchema = {
-    offerer: userSchema,
-    amount: Number,
-    offerStatus: {
-        type:Number,
-        default:0
-    }
-}
+
 
 
 const querySchema={
@@ -71,6 +73,7 @@ const isAuth=(req,res,next)=>{
 }
 
 const productSchema = {
+    images:String,
     title: String,
     description: String,
     howold:Number,
@@ -235,10 +238,41 @@ app.get("/failure", function (req, res) {
     res.sendFile(__dirname + "/views/failure.html")
 })
 
-app.get("/product/:parameter", isAuth, function (req, res) {
+let v=1;
+app.get("/product", isAuth, function (req, res) {
+
     // console.log(req.params.parameters)
-    res.render("Product (1).ejs", { user: req.session.user })
-})
+    var param = req.query.param;
+    const arr = param.split("-");
+    var finalstr = "";
+    // if (arr[0]=="logo.png" || arr[0] == "...") {
+    //     return false;
+    // }
+
+    for (let i=0; i<arr.length; i++) {
+        if(i==arr.length -1) {
+        finalstr += arr[i];
+        }
+        else {
+            finalstr += arr[i];
+            finalstr += " ";
+        }
+
+    }
+
+    Product.findOne({ title: finalstr }).then(function (foundp) {
+
+        var imgs = foundp.images;
+        const imgarr = imgs.split(",");
+
+        
+
+         res.render("product (1).ejs" , {seller: foundp.owner, img1 : imgarr, foundproduct : foundp, title: foundp.title, price:foundp.setprice, address: foundp.address, description: foundp.description, user : req.session.user})
+
+    })
+
+    }
+)
 
 app.get("/userProfile/:parameter", isAuth, function (req, res) {
     res.render("userprofile.ejs", { user: req.session.user })
@@ -558,6 +592,7 @@ app.post("/search",isAuth,(req,res)=>{
         // res.send(foundProducts);
         res.render("aftersearch",{user:req.session.user,productList:foundProducts})
         console.log(foundProducts)
+
     })
 })
 
