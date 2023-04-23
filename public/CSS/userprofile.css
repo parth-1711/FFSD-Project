@@ -27,8 +27,10 @@ body{
 
 }
 .table a{
-    color:black
+    color:black;
+    margin-top: 5%;
 }
+
 .nav-product-search {
     text-decoration: none;
     padding-left: 40px;
@@ -186,12 +188,13 @@ body{
     margin: 5%;
 }
 
-.table {
-    margin-top: 5%;
-}
 
 a {
     text-decoration: none;
+}
+
+a:hover{
+    color: blueviolet;
 }
 
 .btn {

@@ -160,8 +160,17 @@ a {
 }
 
 a:hover{
-    color: blue ;
+    color: blueviolet ;
 }
+
+/* .container{
+    background-color: white;
+    height: auto;
+    width: 80rem;
+    box-shadow: inset;
+} */
+
+
 .btn {
     display: flex;
     justify-items: center;

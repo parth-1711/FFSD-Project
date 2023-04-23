@@ -15,8 +15,19 @@ body{
 
 }
 
-.Remove-form{
-    margin: 5%;
+.top{
+    padding-top: 2rem;
+    background-color: white;
+    text-align: center;
+    padding-bottom: 2rem;
+    width: 80vw;
+    justify-self: center;
+    margin-left: 9rem;
+}
+
+.title{
+
+    padding: 1rem 0rem;
 }
 #warning{
     background-color: red;
@@ -27,7 +38,82 @@ body{
     padding: 4%;
   }
 
+  .btn{
+    background-color: blue;
+    color: white;
+  }
+
+  .d-flex{
+    margin-left: 24vw;
+  }
+
+  .userlist{
+    background-color: white;
+    width: 80vw;
+    padding: 2rem;
+    margin-left: 9rem;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  }
+
+  .container-md{
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  }
+
+  .userdetails{
+    display: flex;
+    width: 50vw;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .removebutton{
+    display: flex;
+    justify-content: center;
+    width: 25vw;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+  }
+
+  #removebutton:hover{
+    background-color: rgb(255, 59, 59);
+    color: white;
+  }
+
+  .prompt{
+    background-color: antiquewhite;
+  }
+
+  .insideprompt{
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .lbtn{
+    position: inherit;
+    margin-left: 98%;
+    align-items: flex-end;
+  }
+
+  .btn-outline-danger{
+    margin-left: 29rem;
+    margin-bottom: 1rem;
+  }
+
   .hidden{
     display: none;
     
+  }
+
+  .top{
+    margin-top: 3rem;
+  }
+
+  container{
+    height: 100vh;
   }
