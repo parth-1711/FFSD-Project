@@ -222,7 +222,7 @@
 }
 
 .offer-list{
-  display: block;
+  display: flex;
   margin-top: 1.5rem;
   padding: 1rem;
   border-radius: 10px;
@@ -240,8 +240,8 @@
 
 .accept-button{
   display: inline-block;
-  width: 10%;
-  padding-left: 60%;
+  width: 20rem;
+  /* padding-left: 60%; */
   /* left: 80%; */
 }
   

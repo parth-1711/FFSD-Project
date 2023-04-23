@@ -4,8 +4,6 @@
     <head>
         <title>Product title</title>
         <link rel="icon" type="image/x-icon" href="/images/logo.png">
-
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,27 +32,27 @@
                             <a href="#">
                                 <td>My Orders</td>
                             </a>
-                            <hr>
+                            <hr style="height:2px;">
                             <a href="/MyOffers/<%= user %>">
                                 <td>My Offers</td>
                             </a>
-                            <hr>
+                            <hr style="height:2px;">
                             <a href="#">
                                 <td>Edit Profile</td>
                             </a>
-                            <hr> 
+                            <hr style="height:2px;">
                             <a href="/SavedAddress/<%= user %>">
                                 <td>Saved Addresses</td>
                             </a>
-                            <hr>
+                            <hr style="height:2px;">
                             <a href="/help/<%= user %>">
                                 <td>Help Center</td>
                             </a>
-                            <hr>
+                            <hr style="height:2px;">
                             <a href="#">
                                 <td>Reviews</td>
                             </a>
-                            <hr>
+                            <hr style="height:2px;">
                             <form action="/logout" method="post">
                                 <input type="submit" class="btn btn-primary" style="background-color: rgb(111, 20, 197);border:none;" value="Log Out">
                             </form>

@@ -1,6 +1,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,78 +21,20 @@
                 style=" font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;margin-top: 2%;">
                 My ADS</h3>
 
+            <% for(let i=0;i<ProductList.length;i++){ %>
             <div class="offer-list container-md">
-                <img src="/images/Phone.jpg" alt="product image" width="10%" >
-                <div style="position: relative;left: 5%; display: inline-block;">
-                    Name of the product:- ABC XYZ <br>
-                    info:- edfgtrdcvb
+                <img src="/images/fsd-product/<%=image[i]%>" alt="product image" width="10%" >
+                <div style="position: relative;left: 5%; display: inline-block; width: 60rem;">
+                    <p>Name of the product:- <%=ProductList[i].title %></p> <br>
+                    Price:- <%=ProductList[i].setprice %>
                 </div>
                 <div class="accept-button">
-                    <a href="/sellerBargain/ABC-XYZ/<%= user %>"><input type="button" class="btn btn-success"
-                            value="Offers Received"></a>
+                    <a href="/sellerBargain/<%=ProductList[i]._id %>"><input type="button" class="btn btn-success"value="Offers Received"></a>
                 </div>
 
             </div>
-            <div class="offer-list container-md">
-                <img src="/images/Phone.jpg" alt="product image" width="10%" >
-                <div style="position: relative;left: 5%; display: inline-block;">
-                    Name of the product:- ABC XYZ <br>
-                    info:- edfgtrdcvb
-                </div>
-                <div class="accept-button">
-                    <a href="/sellerBargain/ABC-XYZ/<%= user %>"><input type="button" class="btn btn-success"
-                            value="Offers Received"></a>
-                </div>
-
-            </div>
-            <div class="offer-list container-md">
-                <img src="/images/Phone.jpg" alt="product image" width="10%" >
-                <div style="position: relative;left: 5%; display: inline-block;">
-                    Name of the product:- ABC XYZ <br>
-                    info:- edfgtrdcvb
-                </div>
-                <div class="accept-button">
-                    <a href="/sellerBargain/ABC-XYZ/<%= user %>"><input type="button" class="btn btn-success"
-                            value="Offers Received"></a>
-                </div>
-
-            </div>
-            <div class="offer-list container-md">
-                <img src="/images/Phone.jpg" alt="product image" width="10%" >
-                <div style="position: relative;left: 5%; display: inline-block;">
-                    Name of the product:- ABC XYZ <br>
-                    info:- edfgtrdcvb
-                </div>
-                <div class="accept-button">
-                    <a href="/sellerBargain/ABC-XYZ/<%= user %>"><input type="button" class="btn btn-success"
-                            value="Offers Received"></a>
-                </div>
-
-            </div>
-            <div class="offer-list container-md">
-                <img src="/images/Phone.jpg" alt="product image" width="10%" >
-                <div style="position: relative;left: 5%; display: inline-block;">
-                    Name of the product:- ABC XYZ <br>
-                    info:- edfgtrdcvb
-                </div>
-                <div class="accept-button">
-                    <a href="/sellerBargain/ABC-XYZ/<%= user %>"><input type="button" class="btn btn-success"
-                            value="Offers Received"></a>
-                </div>
-
-            </div>
-            <div class="offer-list container-md">
-                <img src="/images/Phone.jpg" alt="product image" width="10%" >
-                <div style="position: relative;left: 5%; display: inline-block;">
-                    Name of the product:- ABC XYZ <br>
-                    info:- edfgtrdcvb
-                </div>
-                <div class="accept-button">
-                    <a href="/sellerBargain/ABC-XYZ/<%= user %>"><input type="button" class="btn btn-success"
-                            value="Offers Received"></a>
-                </div>
-
-            </div>
+            <%}%>
+            
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
