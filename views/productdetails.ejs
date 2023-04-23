@@ -23,38 +23,46 @@
         <div class="containform">
             <p style="font-size: 30px; font-weight: bold;">Please fill in the details</p>
             <hr>
-            <form>
+            <form  method="post">
                 <p style="font-size: 20px;">Ad title: </p>
-                <input type="text" class="adtitl"><br>
+                <input type="text" class="adtitl" name="title"><br>
                 <p style="font-size: 10px; color: grey;">Mention the name of your item with some key features</p>
                 <p style="font-size: 20px;">Description </p>
-                <input type="text" class="adddesc"><br>
+                <input type="text" class="adddesc" name="description"><br>
                 <p style="font-size: 10px; color: grey;">Include condition, features and reason for selling</p>
 
                 <p style="font-size: 20px;">How old is your item </p>
-                <input type="text" class="addoldness"><br>
+                <input type="text" class="addoldness" name="howold"><br>
                 <p style="font-size: 10px; color: grey;">Mention clearly</p>
 
                 <p style="font-size: 20px;">Set price: </p>
-                <input type="text" class="addprice"><br>
+                <input type="text" class="addprice" name="setprice"><br>
                 <p style="font-size: 10px; color: grey;">In rupees ₹</p>
                 <hr>
                 <p style="font-size: 30px; margin-top: 30px; font-weight: bold;"><i class="fa fa-address-book-o"></i>
                     Please confirm your address</p><br>
                 <p style="font-size: 20px;">Flat, House no., Building, Company, Apartment</p>
-                <input class="addflat" type="text">
+                <input class="addflat" type="text" name="flat">
                 <p style="font-size: 10px; color: grey;">Address line 1</p>
                 <p style="font-size: 20px;">Area, Street, Sector, Village</p>
-                <input class="addstreet" type="text">
+                <input class="addstreet" type="text" name="street">
                 <p style="font-size: 10px; color: grey;">Address line 2</p>
                 <p style="font-size: 20px;">Landmark</p>
-                <input class="addlandmark" type="text">
+                <input class="addlandmark" type="text" name="landmark" >
                 <p style="font-size: 20px;">Town/City</p>
-                <input type="text" class="addcity">
+                <input type="text" class="addcity" name="city">
                 <hr>
-                <p style="font-size: 30px; font-weight: bold;"> <i class="fa fa-camera"></i> Add images of your item</p>
+                <p style="font-size: 30px; font-weight: bold;"> <i class="fa fa-link"></i> Add Drive link</p>
                 <br>
-                <input type="file" class="addimages" multiple>
+                <p style="font-size: 20px;">Front View</p>
+                <input type="text" class="addlandmark" name="images1">
+                <p style="font-size: 10px; color: grey;">Paste the Drive link of image</p>
+                <p style="font-size: 20px;">Back View</p>
+                <input type="text" class="addlandmark" name="images2">
+                <p style="font-size: 10px; color: grey;">Paste the Drive link of image</p>
+                <p style="font-size: 20px;">Side View</p>
+                <input type="text" class="addlandmark" name="images3">
+                <p style="font-size: 10px; color: grey;">Paste the Drive link of image</p>
                 <hr>
                 <input type="submit" value="Submit" class="btn btn-outline-success" style="margin-left: 45%;">
 

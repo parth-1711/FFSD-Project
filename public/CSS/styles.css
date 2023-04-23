@@ -240,8 +240,8 @@
 
 .accept-button{
   display: inline-block;
-  width: 10%;
-  padding-left: 60%;
+  width: 20rem;
+  /* padding-left: 60%; */
   /* left: 80%; */
 }
   
