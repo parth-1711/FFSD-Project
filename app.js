@@ -256,7 +256,7 @@ app.get("/product", isAuth, function (req, res) {
 
 app.get("/userProfile/:parameter", isAuth, function (req, res) {
     var currentUser = req.session.user;
-    currentUser = currentUser.toLowerCase();
+    
     const arrTitle=[];
     const arrImg=[];
     
