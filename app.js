@@ -607,17 +607,7 @@ app.post("/productdetails/:parameter", function (req, res) {
         owner:own
     })
     productSch.save()
-    console.log(Title);
-    console.log(Description);
-    console.log(Howold);
-    console.log(Setprice);
-    console.log(flat);
-    console.log(street);
-    console.log(landmark);
-    console.log(city);
-    console.log(Frontview);
-    console.log(Backview);
-    console.log(Sideview);
+    
     res.redirect("/Myads/" + req.session.user);
 });
 
