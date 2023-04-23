@@ -57,14 +57,7 @@ const adminSchema = {
     password: String,
 }
 
-const offerSchema = {
-    offerer: userSchema,
-    amount: Number,
-    offerStatus: {
-        type:Number,
-        default:0
-    }
-}
+
 
 
 const querySchema={
