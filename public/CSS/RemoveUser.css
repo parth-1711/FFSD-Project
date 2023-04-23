@@ -53,6 +53,7 @@ body{
     padding: 2rem;
     margin-left: 9rem;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    border: 1px solid black;
   }
 
   .container-md{
@@ -77,11 +78,14 @@ body{
     width: 25vw;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    border-radius: 5px;
+  }
+
+  #removebutton{
+    border-radius: 8px;
   }
 
   #removebutton:hover{
-    background-color: rgb(255, 59, 59);
+    background-color: rgb(255, 0, 0);
     color: white;
   }
 
@@ -110,10 +114,21 @@ body{
     
   }
 
+  .username{
+    display: flex; justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .reason{
+    display: flex;
+    justify-content:space-between;
+    margin-bottom: 1rem;
+  }
+
   .top{
     margin-top: 3rem;
   }
 
-  container{
+  .container{
     height: 100vh;
   }

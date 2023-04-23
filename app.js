@@ -31,6 +31,16 @@ app.use(session({
     store: store
 }))
 
+const offerSchema = {
+    offerer: String,
+    amount: Number,
+    offerStatus: {
+        type:Number,
+        default:0
+    }
+}
+
+
 const userSchema = {
     uname: String,
     email: String,
@@ -45,23 +55,12 @@ const adminSchema = {
     password: String,
 }
 
-const offerSchema = {
-    offerer: userSchema,
-    amount: Number,
-    offerStatus: {
-        type:Number,
-        default:0
-    }
-}
-
-
 const querySchema={
     querrier : String,
     query : String
 }
 
 const isAuth=(req,res,next)=>{
-    // console.log(req.session.isAuth);
     if (req.session.isAuth) {
         next();
     }
@@ -73,12 +72,8 @@ const isAuth=(req,res,next)=>{
 const productSchema = {
     title: String,
     description: String,
-    howold:Number,
+    howold:String,
     setprice:Number,
-    // flat:String,
-    // street:String,
-    // landmark:String,
-    // city:String,
     address:String,
     owner:String,
     offersreceived: [offerSchema]
@@ -90,81 +85,78 @@ const Offer = mongoose.model("Offer", offerSchema);
 const Product = mongoose.model("Product", productSchema);
 const Query=mongoose.model("Query",querySchema);
 
-// const db = new sqlite.Database(dbna, (err) => {
-//     if (err) {
-//         console.log(err.message);
-//     }
-//     console.log("Connected");
-// })
-
-const createTable = `create table if not exists Users (
-    uname varchar(50) primary key,
-    email varchar(100),
-    password varchar(100),
-    mobileNo varchar(12),
-    address varchar(200)
-);`
-
-// db.run(createTable, (err) => {
-//     if (err) {
-//         console.log(err.message);
-//     }
-//     console.log("table created !");
-// })
 
 
-app.get("/", function (req, res) {
-    res.render("home.ejs")
+app.get("/", isAuth, function (req, res) {
+    Product.find({}).then((foundProducts)=>{
+        res.render("home.ejs", { user: req.session.user,ProducList:foundProducts })
+    })
 })
 
 app.get("/homeAS/:parameter", isAuth, function (req, res) {
+    Product.find({}).then((foundProducts)=>{
+        res.render("homeAS.ejs", { user: req.session.user,ProducList:foundProducts })
+    })
+})
 
-    res.render("homeAS.ejs", { user: req.session.user })
-    // console.log(req.params.parameter)
+app.get("/furniture",(req,res)=>{
+    Product.find({tags: "furniture"}).then((foundProducts)=>{
+        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts })
+    })
+})
+
+app.get("/automobile",(req,res)=>{
+    Product.find({tags: "automobile"}).then((foundProducts)=>{
+        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts })
+    })
 })
 
 app.get("/sign-in", function (req, res) {
-    res.sendFile(__dirname + "/views/sign-in.html")
+    res.render("sign-in.ejs")
 })
 
 app.post("/sign-in", function (req, res) {
     let userName = req.body.username;
     let Password = req.body.password;
     const isAdmin = req.body.admin === 'true';
-    console.log(isAdmin);
+    // console.log(isAdmin);
     if(isAdmin) {
 
     Admin.findOne({ aname: userName }).then(function (foundUser) {
-        console.log(foundUser);
-
-        bcrypt.compare(Password, foundUser.password).then((isMatch) => {
-            if (isMatch) {
-                req.session.isAuth = true
-                req.session.user = userName
-                res.render("adminpage.ejs");
-            }
-            else {
-                res.redirect("/failure")
-            }
-        })
+        // console.log(foundUser);
+        if (foundUser) {
+            bcrypt.compare(Password, foundUser.password).then((isMatch) => {
+                if (isMatch) {
+                    req.session.isAuth = true
+                    req.session.user = userName
+                    res.render("adminpage.ejs");
+                }
+                else {
+                    res.redirect("/failure")
+                }
+            })
+        }
+        else res.redirect("/failure")
 
     })
 }
 
    else {
     User.findOne({ uname: userName }).then(function (foundUser) {
-        console.log(foundUser);
-
-        bcrypt.compare(Password, foundUser.password).then((isMatch) => {
-            if (isMatch) {
-                req.session.isAuth = true
-                req.session.user = userName
-                res.redirect("/homeAS/"+userName);
-            }
-            else {
-                res.redirect("/failure")
-            }
-        })
+        // console.log(foundUser);
+        if(foundUser){
+            bcrypt.compare(Password, foundUser.password).then((isMatch) => {
+                if (isMatch) {
+                    req.session.isAuth = true
+                    req.session.user = userName
+                    res.redirect("/homeAS/"+userName);
+                }
+                else {
+                    res.redirect("/failure")
+                }
+            })
+        }
+        else res.redirect("/failure")
 
     })
 
@@ -172,7 +164,7 @@ app.post("/sign-in", function (req, res) {
 })
 
 app.get("/sign-up", function (req, res) {
-    res.sendFile(__dirname + "/views/sign-up.html")
+    res.render("sign-up.ejs")
 })
 
 app.post("/sign-up", function (req, res) {
@@ -184,10 +176,6 @@ app.post("/sign-up", function (req, res) {
   if (isAdmin) {
     let insertCommand = `insert into Admins (uname,email,password) values(?,?,?)`
     let values = [userName, email, Password];
-    // db.run(insertCommand, values, (err) => {
-    //     if (err) console.log(err.message);
-
-    // })
     bcrypt.hash(Password, 12).then((encryptedPassword) => {
         let admin = new Admin({
             aname: userName,
@@ -197,16 +185,7 @@ app.post("/sign-up", function (req, res) {
         admin.save()
         res.redirect("/sign-in");
     })
-    // console.log(userName);
-    // console.log(password);
-    // res.redirect("/admin");
   } else {
-    let insertCommand = `insert into Users (uname,email,password) values(?,?,?)`
-    let values = [userName, email, Password];
-    // db.run(insertCommand, values, (err) => {
-    //     if (err) console.log(err.message);
-
-    // })
 
     bcrypt.hash(Password, 12).then((encryptedPassword) => {
         let user = new User({
@@ -217,9 +196,6 @@ app.post("/sign-up", function (req, res) {
         user.save()
         res.redirect("/sign-in");
     })
-
-    // console.log(userName);
-    // console.log(password);
 }})
 
 app.post("/logout", (req, res) => {
@@ -232,7 +208,7 @@ app.post("/logout", (req, res) => {
 })
 
 app.get("/failure", function (req, res) {
-    res.sendFile(__dirname + "/views/failure.html")
+    res.render("Failure.ejs")
 })
 
 app.get("/product/:parameter", isAuth, function (req, res) {
@@ -356,7 +332,8 @@ app.post("/RemoveUser",isAuth,(req,res)=>{
 })
 
 app.post("/ConfirmRemoval",isAuth,(req,res)=>{
-    let username = req.body.confirmremoval;
+    let username = req.body.username;
+    // console.log(username);
     User.deleteOne({uname: username}).then(()=>{
         res.redirect("/RemoveUser");
     })
@@ -376,120 +353,6 @@ app.get("/productdetails/:parameter", isAuth, function (req, res) {
     res.render("productdetails.ejs", { user: req.session.user })
 })
 
-// app.post("/RemoveUser", isAuth, function (req, res) {
-//     let userName = req.body.uname;
-//     let reason = req.body.reason;
-//     // db.run("delete from Users where uname=(?)", [userName], function (err) {
-//     //     if (err) {
-//     //         res.redirect(__dirname + "/views/deletionFailure.html")
-//     //     }
-//     //     else {
-//     //         res.redirect("/RemoveUser")
-//     //     }
-//     // })
-// })
-
-const createAdminTable = `create table if not exists Admins (
-    uname varchar(50) primary key,
-    email varchar(100),
-    password varchar(100),
-    mobileNo varchar(12),
-    address varchar(200)
-);`
-
-// db.run(createAdminTable, (err) => {
-//     if (err) {
-//         console.log(err.message);
-//     }
-//     console.log("Admin table created !");
-// })
-
-
-app.get("/adminsignup", function (req, res) {
-    res.sendFile(__dirname + "/views/adminsignup.html")
-})
-
-app.post("/adminsignup", function (req, res) {
-    let uname = req.body.username;
-    let email = req.body.email;
-    let password = req.body.password;
-    let insertCommand = `insert into Admins (uname,email,password) values(?,?,?)`
-    let values = [uname, email, password];
-    // db.run(insertCommand, values, (err) => {
-    //     if (err) console.log(err.message);
-
-    // })
-    bcrypt.hash(password, 12).then((encryptedPassword) => {
-        let admin = new Admin({
-            uname: uname,
-            email: email,
-            password: encryptedPassword
-        })
-        admin.save()
-        res.redirect("/admin");
-    })
-    // console.log(userName);
-    // console.log(password);
-    // res.redirect("/admin");
-})
-
-app.get("/adminsignin", function (req, res) {
-    res.sendFile(__dirname + "/views/adminsignin.html")
-})
-
-app.post("/adminsignin", function (req, res) {
-    let userName = req.body.username
-    let Password = req.body.password;
-
-    // db.each("select password from Admins where Admins.uname=(?)", userName, function (err, row) {
-    //     if (err) {
-    //         console.log(err.message);
-    //     }
-    //     else {
-    //         if (row.password === Password) {
-    //             res.redirect("/admin");
-    //         }
-    //         else {
-    //             res.redirect("/failure")
-    //         }
-    //     }
-
-
-    // })
-
-
-    Admin.findOne({ uname: userName }).then(function (foundUser) {
-
-        bcrypt.compare(Password, foundUser.password).then((isMatch) => {
-            if (isMatch) {
-                req.session.isAuth = true
-                req.session.user = userName
-                res.redirect("/admin")
-
-                // res.session.user=foundUser.uname
-            }
-            else {
-                // console.log("Incorrect")
-                res.redirect("/failure")
-            }
-        })
-
-    })
-    
-
-})
-
-const createQueryTable = `create table if not exists Queries(
-    query varchar(1000),
-    querrier varchar(50)
-);`
-
-// db.run(createQueryTable, function (err) {
-//     if (err) {
-//         console.log(err.message)
-//     }
-//     console.log("Query Table created !");
-// })
 
 app.post("/help/:parameter",isAuth, function (req, res) {
     let queryStatement = req.body.query;
@@ -500,28 +363,11 @@ app.post("/help/:parameter",isAuth, function (req, res) {
         query:queryStatement
     });
     query1.save()
-
-
-    // const insertCommand = `insert into Queries (query,querrier) values (?,?)`
-    // let values = [Query, Querrier];
-    // db.run(insertCommand, values, function (err) {
-    //     if (err) {
-    //         console.log(err.message);
-    //     }
-    // })
     res.redirect("/help/" + Querrier)
 
 });
 
 app.get("/queries",isAuth, function (req, res) {
-    // const selectCommand = `select * from Queries`
-    // db.all(selectCommand, function (err, rows) {
-    //     if (err) {
-    //         console.log(err.message)
-    //     }
-    //     res.render("adminqueries.ejs", { Rows: rows })
-    // })
-
     Query.find({}).then((foundQueries)=>{
         res.render("adminqueries",{Rows : foundQueries});
     })
@@ -554,14 +400,12 @@ app.post("/productdetails/:parameter", function (req, res) {
 
 app.post("/search",isAuth,(req,res)=>{
     let searchString=req.body.searchString;
-    Product.find({productName:new RegExp(searchString,'i')}).then((foundProducts)=>{
+    Product.find({title:new RegExp(searchString,'i')}).then((foundProducts)=>{
         // res.send(foundProducts);
         res.render("aftersearch",{user:req.session.user,productList:foundProducts})
-        console.log(foundProducts)
+        // console.log(foundProducts)
     })
 })
-
-
 
 
 app.listen(80, function () {

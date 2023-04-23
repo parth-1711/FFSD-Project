@@ -222,7 +222,7 @@
 }
 
 .offer-list{
-  display: block;
+  display: flex;
   margin-top: 1.5rem;
   padding: 1rem;
   border-radius: 10px;
