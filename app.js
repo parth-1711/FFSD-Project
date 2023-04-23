@@ -7,6 +7,7 @@ const ejs = require("ejs");
 const path = require("path");
 const sqlite = require("sqlite3");
 const mongoose = require("mongoose");
+const { title } = require("process");
 
 const app = express();
 
@@ -47,7 +48,7 @@ const userSchema = {
     email: String,
     password: String,
     adress: [String],
-    offers: [offerSchema]
+    
 };
 
 const adminSchema = {
@@ -55,6 +56,7 @@ const adminSchema = {
     email: String,
     password: String,
 }
+
 
 
 
@@ -77,13 +79,14 @@ const productSchema = {
     images:String,
     title: String,
     description: String,
-    howold:Number,
+    howold:String,
     setprice:Number,
     // flat:String,
     // street:String,
     // landmark:String,
     // city:String,
     address:String,
+    images:String,
     owner:String,
     offersreceived: [offerSchema]
 }
@@ -239,13 +242,63 @@ app.get("/failure", function (req, res) {
     res.sendFile(__dirname + "/views/failure.html")
 })
 
-app.get("/product/:parameter", isAuth, function (req, res) {
+let v=1;
+app.get("/product", isAuth, function (req, res) {
+
     // console.log(req.params.parameters)
-    res.render("Product (1).ejs", { user: req.session.user })
-})
+    var param = req.query.param;
+    const arr = param.split("-");
+    var finalstr = "";
+    // if (arr[0]=="logo.png" || arr[0] == "...") {
+    //     return false;
+    // }
+
+    for (let i=0; i<arr.length; i++) {
+        if(i==arr.length -1) {
+        finalstr += arr[i];
+        }
+        else {
+            finalstr += arr[i];
+            finalstr += " ";
+        }
+
+    }
+
+    Product.findOne({ title: finalstr }).then(function (foundp) {
+
+        var imgs = foundp.images;
+        const imgarr = imgs.split(",");
+
+        
+
+         res.render("product (1).ejs" , {howold:foundp.howold ,seller: foundp.owner, img1 : imgarr, foundproduct : foundp, title: foundp.title, price:foundp.setprice, address: foundp.address, description: foundp.description, user : req.session.user})
+
+    })
+
+    }
+)
 
 app.get("/userProfile/:parameter", isAuth, function (req, res) {
-    res.render("userprofile.ejs", { user: req.session.user })
+    var currentUser = req.session.user;
+    currentUser = currentUser.toLowerCase();
+    const arrTitle=[];
+    const arrImg=[];
+    
+    Product.find({owner: currentUser}).then((foundProducts)=>{
+        
+        for (let i=0; i<4; i++) {
+            arrTitle[i]= foundProducts[i].title;
+        }
+        for (let i=0; i<4; i++) {
+            const imgs = foundProducts[i].images.split(",");
+            arrImg[i]= imgs[0];
+        }
+        
+        
+        res.render("userprofile.ejs", { arr : arrTitle , arrImage : arrImg , user: req.session.user })
+        
+    })
+    
 })
 
 app.get("/sellerBargain/:parameter1", isAuth, function (req, res) {
@@ -548,26 +601,29 @@ app.get("/queries",isAuth, function (req, res) {
 
 app.post("/productdetails/:parameter", function (req, res) {
     let Title = req.body.title;
-    let Description = req.body.descrption;
+    let Description = req.body.description;
     let Howold = req.body.howold;
     let Setprice = req.body.setprice;
     let flat = req.body.flat;
     let street = req.body.street;
     let landmark = req.body.landmark;
     let city = req.body.city;
-    let images = req.body.images;
-    
+    let Frontview = req.body.images1;
+    let Backview = req.body.images2;
+    let Sideview = req.body.images3;
+    let own = req.session.user;
     let productSch = new Product ({
         title: Title,
         description: Description,
         howold:Howold,
         setprice:Setprice,
         address:flat+","+street+","+landmark+","+city+",",
-        
-        offersreceived: [offerSchema]
+        images:Frontview+","+Backview+","+Sideview+",",
+        owner:own
     })
+    productSch.save()
     
-    res.redirect("/Myads/" + userName);
+    res.redirect("/Myads/" + req.session.user);
 });
 
 app.post("/search",isAuth,(req,res)=>{
@@ -576,6 +632,7 @@ app.post("/search",isAuth,(req,res)=>{
         // res.send(foundProducts);
         res.render("aftersearch",{user:req.session.user,productList:foundProducts})
         console.log(foundProducts)
+
     })
 })
 

@@ -118,6 +118,8 @@
 }
 
 
+
+
 #logout-prompt {
     border: 1px solid rgb(69, 69, 69);
     
@@ -238,11 +240,6 @@
 }
 
 
-.image {
-
-    color: white;
-}
-
 .price-overview {
     margin: 1px;
     margin-left: 5%;
@@ -305,16 +302,19 @@
 #contactsellerbtn {
     display: flex;
     justify-content: center;
-    background-color: #400056;
+    background-color: rgb(111, 20, 197);
     color: white;
     padding: 10px;
     border-radius: 5px;
     border: 0px;
-    width: 90%;
+    margin-top: 20px;
+    width: 60%;
 }
 
 #contactsellerbtn:hover {
-    background-color: #856391;
+
+    cursor: pointer;
+    background-color: rgb(190, 123, 253)
 
 }
 
