@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-sm  navbar-light">
       <ul class="navbar-nav">
         <li class="nav-brand"><a href="/"><img src="/images/PHOENIX - Copy.png" height="50"></a></li>
-        <li class="nav-item"><a class="nav-search" href="/home">Home</a></li>
+        <li class="nav-item"><a class="nav-search" href="/">Home</a></li>
         <li class="nav-item"><a class="nav-search" href="/AboutUs">About Us</a></li>
         <li class="nav-item"><a class="nav-search" href="/help">Contact Us</a></li>
         <li class="nav-item1">
@@ -87,13 +87,13 @@
 
   <div class="carousel">
     <!-- <img src="/images/bg.jpeg" alt="baground image" width="100%"> -->
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-interval="1000">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="imgtitle">
             Electronics
           </div>
-          <img src="/images/elec7_app.jpg" class="d-block w-100" alt="..." style="height:35rem;">
+          <img src="/images/elec7_app.jpg" class="d-block w-100" alt="..." style="object-fit: cover; width: 100%;">
         </div>
         <div class="carousel-item">
           <div class="imgtitle">
@@ -143,7 +143,7 @@
           <a href="/product?param=<%= ProductList[i]._id%>">
             
             <div class="card box">
-              <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
+              <img class="card-img-top" src="/images/fsd-product/<%= ImagesArray[i] %>" alt="Card image cap">
               <div class="card-body">
                 <div class="pdttitle" style="height: 1.5rem;overflow: hidden;">
                 <h5 class="card-title"><%= ProductList[i].title%></h5>
@@ -165,7 +165,6 @@
 </div>
           
 
-
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
   </style>
@@ -173,5 +172,6 @@
 </body>
 
 <%- include('partials/footer'); -%>
+
 
 </HTML>

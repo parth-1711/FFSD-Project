@@ -7,6 +7,7 @@ const ejs = require("ejs");
 const path = require("path");
 const mongoose = require("mongoose");
 const { title } = require("process");
+const { log } = require("console");
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
-const mongodbURI="mongodb+srv://parthirache8:tX15BDJHvUPQi3rq@cluster0.wnqv1xn.mongodb.net/?retryWrites=true&w=majority"
+const mongodbURI = "mongodb+srv://parthirache8:tX15BDJHvUPQi3rq@cluster0.wnqv1xn.mongodb.net/?retryWrites=true&w=majority"
 
 mongoose.connect(mongodbURI, { useNewUrlParser: true })
 
@@ -32,12 +33,12 @@ app.use(session({
 
 const offerSchema = {
     offerer: String,
-    productName:String,
-    owner:String, 
+    productName: String,
+    owner: String,
     amount: Number,
     offerStatus: {
-        type:Number,
-        default:0
+        type: Number,
+        default: 0
     }
 }
 
@@ -55,12 +56,12 @@ const adminSchema = {
     password: String,
 }
 
-const querySchema={
-    querrier : String,
-    query : String
+const querySchema = {
+    querrier: String,
+    query: String
 }
 
-const isAuth=(req,res,next)=>{
+const isAuth = (req, res, next) => {
     if (req.session.isAuth) {
         next();
     }
@@ -70,14 +71,14 @@ const isAuth=(req,res,next)=>{
 }
 
 const productSchema = {
-    images:String,
+    images: String,
     title: String,
     description: String,
-    howold:String,
-    setprice:Number,
-    address:String,
-    images:String,
-    owner:String,
+    howold: String,
+    setprice: Number,
+    address: String,
+    images: String,
+    owner: String,
     offersreceived: [offerSchema]
 }
 
@@ -85,29 +86,37 @@ const User = mongoose.model("User", userSchema);
 const Admin = mongoose.model("Admin", adminSchema);
 const Offer = mongoose.model("Offer", offerSchema);
 const Product = mongoose.model("Product", productSchema);
-const Query=mongoose.model("Query",querySchema);
+const Query = mongoose.model("Query", querySchema);
 
 app.get("/", function (req, res) {
-    Product.find({}).then((foundProducts)=>{
-        res.render("home.ejs", { user: req.session.user,ProductList:foundProducts })
+    let pdtimgs = [];
+    Product.find({}).then((foundProducts) => {
+        for(let i=0;i<16;i++){
+            pdtimgs.push(foundProducts[i].images.split(",")[0]);
+        }
+        res.render("homeAS.ejs", { user: req.session.user, ProductList: foundProducts,ImagesArray:pdtimgs })
     })
 })
 
 app.get("/homeAS/:parameter", isAuth, function (req, res) {
-    Product.find({}).then((foundProducts)=>{
-        res.render("homeAS.ejs", { user: req.session.user,ProductList:foundProducts })
+    let pdtimgs = [];
+    Product.find({}).then((foundProducts) => {
+        for(let i=0;i<16;i++){
+            pdtimgs.push(foundProducts[i].images.split(",")[0]);
+        }
+        res.render("homeAS.ejs", { user: req.session.user, ProductList: foundProducts,ImagesArray:pdtimgs })
     })
 })
 
-app.get("/furniture",(req,res)=>{
-    Product.find({tags: "furniture"}).then((foundProducts)=>{
-        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts })
+app.get("/furniture", (req, res) => {
+    Product.find({ tags: "furniture" }).then((foundProducts) => {
+        res.render("aftersearch.ejs", { user: req.session.user, productList: foundProducts })
     })
 })
 
-app.get("/automobile",(req,res)=>{
-    Product.find({tags: "automobile"}).then((foundProducts)=>{
-        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts })
+app.get("/automobile", (req, res) => {
+    Product.find({ tags: "automobile" }).then((foundProducts) => {
+        res.render("aftersearch.ejs", { user: req.session.user, productList: foundProducts })
     })
 })
 
@@ -119,49 +128,49 @@ app.post("/sign-in", function (req, res) {
     let userName = req.body.username;
     let Password = req.body.password;
     const isAdmin = req.body.admin === 'true';
-    console.log(isAdmin);
-    if(isAdmin) {
+    //console.log(isAdmin);
+    if (isAdmin) {
 
-    Admin.findOne({ aname: userName }).then(function (foundUser) {
-        console.log(foundUser);
-        if (foundUser) {
-            bcrypt.compare(Password, foundUser.password).then((isMatch) => {
-                if (isMatch) {
-                    req.session.isAuth = true
-                    req.session.user = userName
-                    res.render("adminpage.ejs");
-                }
-                else {
-                    res.redirect("/failure")
-                }
-            })
-        }
-        else res.redirect("/failure")
+        Admin.findOne({ aname: userName }).then(function (foundUser) {
+            //console.log(foundUser);
+            if (foundUser) {
+                bcrypt.compare(Password, foundUser.password).then((isMatch) => {
+                    if (isMatch) {
+                        req.session.isAuth = true
+                        req.session.user = userName
+                        res.render("adminpage.ejs");
+                    }
+                    else {
+                        res.redirect("/failure")
+                    }
+                })
+            }
+            else res.redirect("/failure")
 
-    })
-}
+        })
+    }
 
 
-   else {
-    User.findOne({ uname: userName }).then(function (foundUser) {
-        console.log(foundUser);
-        if(foundUser){
-            bcrypt.compare(Password, foundUser.password).then((isMatch) => {
-                if (isMatch) {
-                    req.session.isAuth = true
-                    req.session.user = userName
-                    res.redirect("/homeAS/"+userName);
-                }
-                else {
-                    res.redirect("/failure")
-                }
-            })
-        }
-        else res.redirect("/failure")
+    else {
+        User.findOne({ uname: userName }).then(function (foundUser) {
+            //console.log(foundUser);
+            if (foundUser) {
+                bcrypt.compare(Password, foundUser.password).then((isMatch) => {
+                    if (isMatch) {
+                        req.session.isAuth = true
+                        req.session.user = userName
+                        res.redirect("/homeAS/" + userName);
+                    }
+                    else {
+                        res.redirect("/failure")
+                    }
+                })
+            }
+            else res.redirect("/failure")
 
-    })
+        })
 
-   }
+    }
 })
 
 
@@ -175,28 +184,29 @@ app.post("/sign-up", function (req, res) {
     let Password = req.body.password;
     const isAdmin = req.body.admin === 'true';
 
-  if (isAdmin) {
-    bcrypt.hash(Password, 12).then((encryptedPassword) => {
-        let admin = new Admin({
-            aname: userName,
-            email: email,
-            password: encryptedPassword
+    if (isAdmin) {
+        bcrypt.hash(Password, 12).then((encryptedPassword) => {
+            let admin = new Admin({
+                aname: userName,
+                email: email,
+                password: encryptedPassword
+            })
+            admin.save()
+            res.redirect("/sign-in");
         })
-        admin.save()
-        res.redirect("/sign-in");
-    })
-  } else {
-    
-    bcrypt.hash(Password, 12).then((encryptedPassword) => {
-        let user = new User({
-            uname: userName,
-            email: email,
-            password: encryptedPassword
+    } else {
+
+        bcrypt.hash(Password, 12).then((encryptedPassword) => {
+            let user = new User({
+                uname: userName,
+                email: email,
+                password: encryptedPassword
+            })
+            user.save()
+            res.redirect("/sign-in");
         })
-        user.save()
-        res.redirect("/sign-in");
-    })
-}})
+    }
+})
 
 app.post("/logout", (req, res) => {
     req.session.destroy((err) => {
@@ -211,7 +221,7 @@ app.get("/failure", function (req, res) {
     res.render("Failure.ejs")
 })
 
-let v=1;
+let v = 1;
 app.get("/product", isAuth, function (req, res) {
 
     // console.log(req.params.parameters)
@@ -234,103 +244,100 @@ app.get("/product", isAuth, function (req, res) {
 
         var imgs = foundp.images;
         const imgarr = imgs.split(",");
-
-        
-
-         res.render("product (1).ejs" , {howold:foundp.howold ,seller: foundp.owner, img1 : imgarr, foundproduct : foundp, title: foundp.title, price:foundp.setprice, address: foundp.address, description: foundp.description, user : req.session.user})
+        res.render("product (1).ejs", { howold: foundp.howold, seller: foundp.owner, img1: imgarr, foundproduct: foundp, title: foundp.title, price: foundp.setprice, address: foundp.address, description: foundp.description, user: req.session.user })
 
     })
 
-    }
+}
 )
 
 app.get("/userProfile/:parameter", isAuth, function (req, res) {
     var currentUser = req.session.user;
     currentUser = currentUser.toLowerCase();
-    const arrTitle=[];
-    const arrImg=[];
-    
-    Product.find({owner: currentUser}).then((foundProducts)=>{
-        console.log(foundProducts);
-        len=foundProducts.length
-        if (len>4) {
-            for (let i=0; i<4; i++) {
-                arrTitle[i]= foundProducts[i].title;
+    const arrTitle = [];
+    const arrImg = [];
+
+    Product.find({ owner: currentUser }).then((foundProducts) => {
+        // console.log(foundProducts);
+        len = foundProducts.length
+        if (len > 4) {
+            for (let i = 0; i < 4; i++) {
+                arrTitle[i] = foundProducts[i].title;
             }
-            for (let i=0; i<4; i++) {
+            for (let i = 0; i < 4; i++) {
                 const imgs = foundProducts[i].images.split(",");
-                arrImg[i]= imgs[0];
+                arrImg[i] = imgs[0];
             }
-        
+
         }
-        else{
-            for (let i=0; i<len; i++) {
-                arrTitle[i]= foundProducts[i].title;
+        else {
+            for (let i = 0; i < len; i++) {
+                arrTitle[i] = foundProducts[i].title;
             }
-            for (let i=0; i<len; i++) {
+            for (let i = 0; i < len; i++) {
                 const imgs = foundProducts[i].images.split(",");
-                arrImg[i]= imgs[0];
+                arrImg[i] = imgs[0];
             }
         }
-        
-        res.render("userprofile.ejs", { arr : arrTitle , arrImage : arrImg , user: req.session.user })
+
+        res.render("userprofile.ejs", { arr: arrTitle, arrImage: arrImg, user: req.session.user })
 
     })
-    
+
 })
 
 app.get("/sellerBargain/:parameter1", isAuth, function (req, res) {
-    Product.findOne({_id:req.params.parameter1,owner:req.session.user}).then((foundProduct)=>{
-        let accFlag=-1;
-        pimage=[]
+    Product.findOne({ _id: req.params.parameter1, owner: req.session.user }).then((foundProduct) => {
+        let accFlag = -1;
+        pimage = []
         for (let i = 0; i < foundProduct.offersreceived.length; i++) {
-            if (foundProduct.offersreceived[i].offerStatus===1) {
-                accFlag=i;
+            if (foundProduct.offersreceived[i].offerStatus === 1) {
+                accFlag = i;
             }
             pimage.push(foundProduct[i].images.split(",")[0])
         }
 
-        let statusArraymsg=["Sorry your Offer is declined","Waiting for response from Seller","Congratulation! Offer Accepted witing for buyer's Response"]
+        let statusArraymsg = ["Sorry your Offer is declined", "Waiting for response from Seller", "Congratulation! Offer Accepted witing for buyer's Response"]
 
-        if (accFlag!=-1) {
-            res.render("sellerBargain",{offers: [foundProduct.offersreceived[accFlag]],image:[pimage[accFlag]],statusMsg:statusArraymsg,user: req.session.user});
+        if (accFlag != -1) {
+            res.render("sellerBargain", { offers: [foundProduct.offersreceived[accFlag]], image: [pimage[accFlag]], statusMsg: statusArraymsg, user: req.session.user });
         }
-        else{
-            res.render("sellerBargain",{offers: foundProduct.offersreceived,image:pimage,statusMsg:statusArraymsg,user: req.session.user})
+        else {
+            res.render("sellerBargain", { offers: foundProduct.offersreceived, image: pimage, statusMsg: statusArraymsg, user: req.session.user })
         }
     })
 })
 
-app.post("sellerBargain/:parameter1",isAuth,(req,res)=>{
-    const offerId=req.body.oId;
-    Product.findOne({productName:req.params.parameter1,owner:req.session.user}).then((foundProduct)=>{
+app.post("sellerBargain/:parameter1", isAuth, (req, res) => {
+    const offerId = req.body.oId;
+    Product.findOne({ productName: req.params.parameter1, owner: req.session.user }).then((foundProduct) => {
         for (let i = 0; i < foundProduct.offersreceived.length; i++) {
-            if (foundProduct.offersreceived[i]._id===oId) {
-                foundProduct.offersreceived[i].offerStatus=1
+            if (foundProduct.offersreceived[i]._id === oId) {
+                foundProduct.offersreceived[i].offerStatus = 1
             }
-            else foundProduct.offersreceived[i].offerStatus=-1 
-            
+            else foundProduct.offersreceived[i].offerStatus = -1
+
         }
-        res.redirect("sellerBargain/"+req.params.parameter)
+        res.redirect("sellerBargain/" + req.params.parameter)
     })
 })
 
-app.post("/acceptOffer/:parameter",isAuth,(req,res)=>{
-    
+app.post("/acceptOffer/:parameter", isAuth, (req, res) => {
+
 })
 
 
 
-app.get("/SavedAddress/:parameter", isAuth, function (req, res) {   
-    User.findOne({uname: req.session.user})
-        .then((docs)=>{
+app.get("/SavedAddress/:parameter", isAuth, function (req, res) {
+    User.findOne({ uname: req.session.user })
+        .then((docs) => {
             let num = docs.__v;
-            res.render("SavedAddress.ejs", { user: req.session.user, Rows:docs})
-    })
-    .catch((err)=>{
-        console.log(err);
-    });
-    
+            res.render("SavedAddress.ejs", { user: req.session.user, Rows: docs })
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
 })
 
 app.post("/SavedAddress/:parameter", isAuth, function (req, res) {
@@ -338,40 +345,41 @@ app.post("/SavedAddress/:parameter", isAuth, function (req, res) {
     let addlin2 = req.body.addlinetwo;
     let landm = req.body.landmark;
     let city = req.body.city;
-    let new_addr = addline1+ "\n" + addlin2 + "\n" + landm + "\n" + city;
-    User.findOne({uname: req.session.user})
-        .then((docs)=>{
+    let new_addr = addline1 + "\n" + addlin2 + "\n" + landm + "\n" + city;
+    User.findOne({ uname: req.session.user })
+        .then((docs) => {
             docs.adress.push(new_addr);
             docs.save();
-            res.render("SavedAddress.ejs", { user: req.session.user ,  Rows:docs});
-    })
-    .catch((err)=>{
-        console.log(err);
-    });
+            res.render("SavedAddress.ejs", { user: req.session.user, Rows: docs });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 
 })
 
 app.get("/Myads/:parameter", isAuth, function (req, res) {
 
-    Product.find({owner:req.session.user}).then((foundProducts)=>{
-        pimage=[]
-        for(let i=0;i<foundProducts.length;i++){
+    Product.find({ owner: req.session.user }).then((foundProducts) => {
+        pimage = []
+        for (let i = 0; i < foundProducts.length; i++) {
             pimage.push(foundProducts[i].images.split(",")[0])
-            
+
         }
-        console.log(pimage);
-        res.render("Myads.ejs", { user: req.session.user,image:pimage,ProductList:foundProducts })
+        //console.log(pimage);
+        res.render("Myads.ejs", { user: req.session.user, image: pimage, ProductList: foundProducts })
     })
-    
+
 })
+
 app.get("/search/:parameter", isAuth, function (req, res) {
     res.render("aftersearch.ejs", { user: req.session.user })
 })
 
-app.post("/Myads/:parameter",isAuth,(req,res)=>{
-    
+app.post("/Myads/:parameter", isAuth, (req, res) => {
+
 })
-app.get("/checkout/:parameters",isAuth, function (req, res) {
+app.get("/checkout/:parameters", isAuth, function (req, res) {
     res.render("checkout.ejs", { user: req.params.parameters })
 })
 
@@ -388,21 +396,21 @@ app.get("/sell/:parameter", isAuth, function (req, res) {
 })
 
 app.get("/RemoveUser", isAuth, function (req, res) {
-    User.find({}).then((foundUsers)=>{
-        res.render("RemoveUser.ejs",{Rows : foundUsers});
+    User.find({}).then((foundUsers) => {
+        res.render("RemoveUser.ejs", { Rows: foundUsers });
     })
 })
 
-app.post("/RemoveUser",isAuth,(req,res)=>{
+app.post("/RemoveUser", isAuth, (req, res) => {
     let username = req.body.searcheduser;
-    User.find({uname: new RegExp(username,'i')}).then((foundUsers)=>{
-        res.render("RemoveUser.ejs",{Rows : foundUsers});
+    User.find({ uname: new RegExp(username, 'i') }).then((foundUsers) => {
+        res.render("RemoveUser.ejs", { Rows: foundUsers });
     })
 })
 
-app.post("/ConfirmRemoval",isAuth,(req,res)=>{
+app.post("/ConfirmRemoval", isAuth, (req, res) => {
     let username = req.body.username;
-    User.deleteOne({uname: username}).then(()=>{
+    User.deleteOne({ uname: username }).then(() => {
         res.redirect("/RemoveUser");
     })
 })
@@ -452,27 +460,27 @@ app.post("/adminsignin", function (req, res) {
         })
 
     })
-    
+
 
 })
 
 
-app.post("/help/:parameter",isAuth, function (req, res) {
+app.post("/help/:parameter", isAuth, function (req, res) {
     let queryStatement = req.body.query;
     let Querrier = req.params.parameter;
 
-    let query1=new Query({
-        querrier:Querrier,
-        query:queryStatement
+    let query1 = new Query({
+        querrier: Querrier,
+        query: queryStatement
     });
     query1.save()
     res.redirect("/help/" + Querrier)
 
 });
 
-app.get("/queries",isAuth, function (req, res) {
-    Query.find({}).then((foundQueries)=>{
-        res.render("adminqueries",{Rows : foundQueries});
+app.get("/queries", isAuth, function (req, res) {
+    Query.find({}).then((foundQueries) => {
+        res.render("adminqueries", { Rows: foundQueries });
     })
 
 
@@ -491,43 +499,45 @@ app.post("/productdetails/:parameter", function (req, res) {
     let Backview = req.body.images2;
     let Sideview = req.body.images3;
     let own = req.session.user;
-    let productSch = new Product ({
+    let tags = req.params.parameter;
+    let productSch = new Product({
         title: Title,
         description: Description,
-        howold:Howold,
-        setprice:Setprice,
-        address:flat+","+street+","+landmark+","+city+",",
-        images:Frontview+","+Backview+","+Sideview+",",
-        owner:own
+        howold: Howold,
+        setprice: Setprice,
+        address: flat + "," + street + "," + landmark + "," + city + ",",
+        images: Frontview + "," + Backview + "," + Sideview + ",",
+        owner: own,
+        tags:tags
     })
     productSch.save()
-    
+
     res.redirect("/Myads/" + req.session.user);
 });
 
-app.post("/search",isAuth,(req,res)=>{
-    Product.find({title:new RegExp(searchString,'i')}).then((foundProducts)=>{
-        res.render("aftersearch",{user:req.session.user,productList:foundProducts})
+app.post("/search", isAuth, (req, res) => {
+    Product.find({ title: new RegExp(searchString, 'i') }).then((foundProducts) => {
+        res.render("aftersearch", { user: req.session.user, productList: foundProducts })
     })
 })
 
-app.post("/uploadOffer/:productName/:Owner",(req,res)=>{
-    let offerer=req.body.offerer;
-    let amount1=req.body.amount;
-    let offer=new Offer({
-        offerer:offerer,
-        amount:amount1
+app.post("/uploadOffer/:productName/:Owner", (req, res) => {
+    let offerer = req.body.offerer;
+    let amount1 = req.body.amount;
+    let offer = new Offer({
+        offerer: offerer,
+        amount: amount1
     })
     offer.save();
-    Product.find({title:req.params.productName,owner:req.params.Owner }).then((foundProduct)=>{
-        
+    Product.find({ title: req.params.productName, owner: req.params.Owner }).then((foundProduct) => {
+
         foundProduct.offersreceived.push(offer);
-        
+
         foundProduct.save()
     })
-    User.find({uname:req.session.user}).then((foundUser)=>{
+    User.find({ uname: req.session.user }).then((foundUser) => {
         foundUser.offers.push(offer);
-        res.redirect("/myOffers/"+req.session.user);
+        res.redirect("/myOffers/" + req.session.user);
     })
 })
 
