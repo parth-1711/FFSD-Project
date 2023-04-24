@@ -8,7 +8,6 @@ const path = require("path");
 const mongoose = require("mongoose");
 const { title } = require("process");
 const { log } = require("console");
-const { log } = require("console");
 
 const app = express();
 
@@ -75,11 +74,11 @@ const productSchema = {
     images: String,
     title: String,
     description: String,
-    howold:String,
-    setprice:Number,
-    address:String,
-    images:String,
-    owner:String,
+    howold: String,
+    setprice: Number,
+    address: String,
+    images: String,
+    owner: String,
     offersreceived: []
 }
 
@@ -89,108 +88,95 @@ const Offer = mongoose.model("Offer", offerSchema);
 const Product = mongoose.model("Product", productSchema);
 const Query = mongoose.model("Query", querySchema);
 
-// productSchema.methods.offerneed=function(pId,offerId) {
-//     // Product.findOne({_id:pId}).then((foundProduct)=>{
-//         for (let i = 0; i < this.offersreceived.length; i++) {
-//             if (this.offersreceived[i]._id===offerId) {
-//                 this.offersreceived[i].offerStatus=1
-//                 // console.log(foundProduct)
-//             }
-//             else {
-//                 this.offersreceived[i].offerStatus=-1 
-//             }
-//         }
-//   return this.save()
-// }
 app.get("/", function (req, res) {
     let pdtimgs = [];
     Product.find({}).then((foundProducts) => {
-        for(let i=0;i<16;i++){
+        for (let i = 0; i < 16; i++) {
             pdtimgs.push(foundProducts[i].images.split(",")[0]);
         }
-        res.render("homeAS.ejs", { user: req.session.user, ProductList: foundProducts,ImagesArray:pdtimgs })
+        res.render("home.ejs", { user: req.session.user, ProductList: foundProducts, ImagesArray: pdtimgs })
     })
 })
 
 app.get("/homeAS/:parameter", isAuth, function (req, res) {
     let pdtimgs = [];
     Product.find({}).then((foundProducts) => {
-        for(let i=0;i<16;i++){
+        for (let i = 0; i < 16; i++) {
             pdtimgs.push(foundProducts[i].images.split(",")[0]);
         }
-        res.render("homeAS.ejs", { user: req.session.user, ProductList: foundProducts,ImagesArray:pdtimgs })
+        res.render("homeAS.ejs", { user: req.session.user, ProductList: foundProducts, ImagesArray: pdtimgs })
     })
 })
 
-app.get("/furniture",(req,res)=>{
-    Product.find({tags: "furniture"}).then((foundProducts)=>{
+app.get("/furniture", (req, res) => {
+    Product.find({ tags: "furniture" }).then((foundProducts) => {
         const finalimgarr = [];
-        for (let i=0 ; i< foundProducts.length; i++) {
+        for (let i = 0; i < foundProducts.length; i++) {
             var img = foundProducts[i].images;
             const imgarr = img.split(",");
             finalimgarr[i] = imgarr[0];
         }
-        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
+        res.render("aftersearch.ejs", { user: req.session.user, productList: foundProducts, imgs: finalimgarr })
     })
 })
 
-app.get("/mobile",(req,res)=>{
-    Product.find({tags: "mobile"}).then((foundProducts)=>{
+app.get("/mobile", (req, res) => {
+    Product.find({ tags: "mobile" }).then((foundProducts) => {
         const finalimgarr = [];
-        for (let i=0 ; i< foundProducts.length; i++) {
+        for (let i = 0; i < foundProducts.length; i++) {
             var img = foundProducts[i].images;
             const imgarr = img.split(",");
             finalimgarr[i] = imgarr[0];
         }
-        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
+        res.render("aftersearch.ejs", { user: req.session.user, productList: foundProducts, imgs: finalimgarr })
     })
 })
 
-app.get("/automobile",(req,res)=>{
-    Product.find({tags: "automobile"}).then((foundProducts)=>{
+app.get("/automobile", (req, res) => {
+    Product.find({ tags: "automobile" }).then((foundProducts) => {
         const finalimgarr = [];
-        for (let i=0 ; i< foundProducts.length; i++) {
+        for (let i = 0; i < foundProducts.length; i++) {
             var img = foundProducts[i].images;
             const imgarr = img.split(",");
             finalimgarr[i] = imgarr[0];
         }
-        
-        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
+
+        res.render("aftersearch.ejs", { user: req.session.user, productList: foundProducts, imgs: finalimgarr })
     })
 })
-app.get("/electronics",(req,res)=>{
-    Product.find({tags: "electronics"}).then((foundProducts)=>{
+app.get("/electronics", (req, res) => {
+    Product.find({ tags: "electronics" }).then((foundProducts) => {
         const finalimgarr = [];
-        for (let i=0 ; i< foundProducts.length; i++) {
+        for (let i = 0; i < foundProducts.length; i++) {
             var img = foundProducts[i].images;
             const imgarr = img.split(",");
             finalimgarr[i] = imgarr[0];
         }
-        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
+        res.render("aftersearch.ejs", { user: req.session.user, productList: foundProducts, imgs: finalimgarr })
     })
 })
 
-app.get("/fashion",(req,res)=>{
-    Product.find({tags: "fashion"}).then((foundProducts)=>{
+app.get("/fashion", (req, res) => {
+    Product.find({ tags: "fashion" }).then((foundProducts) => {
         const finalimgarr = [];
-        for (let i=0 ; i< foundProducts.length; i++) {
+        for (let i = 0; i < foundProducts.length; i++) {
             var img = foundProducts[i].images;
             const imgarr = img.split(",");
             finalimgarr[i] = imgarr[0];
         }
-        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
+        res.render("aftersearch.ejs", { user: req.session.user, productList: foundProducts, imgs: finalimgarr })
     })
 })
 
-app.get("/hardware",(req,res)=>{
-    Product.find({tags: "hardware"}).then((foundProducts)=>{
+app.get("/hardware", (req, res) => {
+    Product.find({ tags: "hardware" }).then((foundProducts) => {
         const finalimgarr = [];
-        for (let i=0 ; i< foundProducts.length; i++) {
+        for (let i = 0; i < foundProducts.length; i++) {
             var img = foundProducts[i].images;
             const imgarr = img.split(",");
             finalimgarr[i] = imgarr[0];
         }
-        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
+        res.render("aftersearch.ejs", { user: req.session.user, productList: foundProducts, imgs: finalimgarr })
     })
 })
 
@@ -298,30 +284,17 @@ app.get("/failure", function (req, res) {
 let v = 1;
 app.get("/product", isAuth, function (req, res) {
 
-    // console.log(req.params.parameters)
     var param = req.query.param;
     const arr = param.split("-");
-    // var finalstr = "";
-
-    // for (let i=0; i<arr.length; i++) {
-    //     if(i==arr.length -1) {
-    //     finalstr += arr[i];
-    //     }
-    //     else {
-    //         finalstr += arr[i];
-    //         finalstr += " ";
-    //     }
-
-    // }
 
     Product.findOne({ _id: param }).then(function (foundp) {
 
         var imgs = foundp.images;
         const imgarr = imgs.split(",");
 
-        
 
-         res.render("product (1).ejs" , {howold:foundp.howold ,seller: foundp.owner, img1 : imgarr, foundproduct : foundp, title: foundp.title, price:foundp.setprice, address: foundp.address, description: foundp.description, user : req.session.user,id:foundp._id})
+
+        res.render("product (1).ejs", { howold: foundp.howold, seller: foundp.owner, img1: imgarr, foundproduct: foundp, title: foundp.title, price: foundp.setprice, address: foundp.address, description: foundp.description, user: req.session.user, id: foundp._id })
 
     })
 
@@ -330,16 +303,16 @@ app.get("/product", isAuth, function (req, res) {
 
 app.get("/userProfile/:parameter", isAuth, function (req, res) {
     var currentUser = req.session.user;
-    
-    const arrTitle=[];
-    const arrImg=[];
-    
-    Product.find({owner: currentUser}).then((foundProducts)=>{
+
+    const arrTitle = [];
+    const arrImg = [];
+
+    Product.find({ owner: currentUser }).then((foundProducts) => {
         console.log(foundProducts);
-        len=foundProducts.length
-        if (len>4) {
-            for (let i=0; i<4; i++) {
-                arrTitle[i]= foundProducts[i].title;
+        len = foundProducts.length
+        if (len > 4) {
+            for (let i = 0; i < 4; i++) {
+                arrTitle[i] = foundProducts[i].title;
             }
             for (let i = 0; i < 4; i++) {
                 const imgs = foundProducts[i].images.split(",");
@@ -364,59 +337,50 @@ app.get("/userProfile/:parameter", isAuth, function (req, res) {
 })
 
 app.get("/sellerBargain/:parameter1", isAuth, function (req, res) {
-    let pId=req.params.parameter1;
+    let pId = req.params.parameter1;
     // console.log(pId);
-    Product.findOne({_id:req.params.parameter1,owner:req.session.user}).then((foundProduct)=>{
-        let accFlag=-1;
-        pimage=[]
+    Product.findOne({ _id: req.params.parameter1, owner: req.session.user }).then((foundProduct) => {
+        let accFlag = -1;
+        pimage = []
         for (let i = 0; i < foundProduct.offersreceived.length; i++) {
             if (foundProduct.offersreceived[i].offerStatus === 1) {
                 accFlag = i;
             }
-            // pimage.push(foundProduct[i].images.split(",")[0])
         }
 
-        let statusArraymsg=["Sorry your Offer is declined","Waiting for response from Seller","Congratulation! Offer Accepted waiting for buyer's Response"]
+        let statusArraymsg = ["Sorry your Offer is declined", "Waiting for response from Seller", "Congratulation! Offer Accepted waiting for buyer's Response"]
 
-        if (accFlag!=-1) {
-            res.render("sellerBargain",{offers: [foundProduct.offersreceived[accFlag]],statusMsg:statusArraymsg,user: req.session.user,id:pId});
+        if (accFlag != -1) {
+            res.render("sellerBargain", { offers: [foundProduct.offersreceived[accFlag]], statusMsg: statusArraymsg, user: req.session.user, id: pId });
         }
-        else{
-            res.render("sellerBargain",{offers: foundProduct.offersreceived,statusMsg:statusArraymsg,user: req.session.user,id:req.params.parameter1})
+        else {
+            res.render("sellerBargain", { offers: foundProduct.offersreceived, statusMsg: statusArraymsg, user: req.session.user, id: req.params.parameter1 })
         }
     })
 })
 
-app.post("/sellerBargain/:parameter1/:parameter2",isAuth,(req,res)=>{
-    const pId=req.params.parameter1;
+app.post("/sellerBargain/:parameter1/:parameter2", isAuth, (req, res) => {
+    const pId = req.params.parameter1;
     // console.log(pId);
-    let offerId=req.params.parameter2;
-    // Offer.updateOne({_id:offerId},{offerStatus:1})
+    let offerId = req.params.parameter2;
 
-
-
-    Product.findOne({_id:pId}).then((foundProduct)=>{
+    Product.findOne({ _id: pId }).then((foundProduct) => {
         for (let i = 0; i < foundProduct.offersreceived.length; i++) {
-            if (foundProduct.offersreceived[i]._id==offerId) {
-                foundProduct.offersreceived[i].offerStatus=1
-                // foundProduct.save()
-                // console.log(foundProduct)
+            if (foundProduct.offersreceived[i]._id == offerId) {
+                foundProduct.offersreceived[i].offerStatus = 1
             }
             else {
-                foundProduct.offersreceived[i].offerStatus=-1 
-                // foundProduct.save()
-                // console.log(foundProduct)
+                foundProduct.offersreceived[i].offerStatus = -1
             }
-            // console.log(foundProduct.offersreceived[i].offerStatus);
         }
         foundProduct.markModified('offersreceived')
         foundProduct.save()
-        Offer.findOne({_id:offerId}).then((foundOffer)=>{
-            foundOffer.offerStatus=1
+        Offer.findOne({ _id: offerId }).then((foundOffer) => {
+            foundOffer.offerStatus = 1
             foundOffer.save()
-            res.redirect("/sellerBargain/"+pId)
+            res.redirect("/sellerBargain/" + pId)
         })
-        
+
     })
 })
 
@@ -477,18 +441,18 @@ app.get("/search/:parameter", isAuth, function (req, res) {
 app.post("/Myads/:parameter", isAuth, (req, res) => {
 
 })
-app.get("/checkout",isAuth, function (req, res) {
+app.get("/checkout", isAuth, function (req, res) {
     res.render("checkout.ejs", { user: req.session.user })
 })
 
 app.get("/MyOffers/:parameters", isAuth, function (req, res) {
 
-    Offer.find({offerer:req.session.user}).then((offers)=>{
+    Offer.find({ offerer: req.session.user }).then((offers) => {
         console.log(offers);
-        let statusArraymsg=["Sorry your Offer is declined","Waiting for response from Seller","Congratulation! Offer Accepted waiting for buyer's Response"]
-        res.render("MyOffers.ejs", { user: req.session.user,statusMsg:statusArraymsg, offerList:offers })
+        let statusArraymsg = ["Sorry your Offer is declined", "Waiting for response from Seller", "Congratulation! Offer Accepted waiting for buyer's Response"]
+        res.render("MyOffers.ejs", { user: req.session.user, statusMsg: statusArraymsg, offerList: offers })
     })
-    
+
 })
 
 app.get("/aboutUs", function (req, res) {
@@ -612,33 +576,40 @@ app.post("/productdetails/:parameter", function (req, res) {
         address: flat + "," + street + "," + landmark + "," + city + ",",
         images: Frontview + "," + Backview + "," + Sideview + ",",
         owner: own,
-        tags:tags
+        tags: tags
     })
     productSch.save()
 
     res.redirect("/Myads/" + req.session.user);
 });
 
-app.post("/search",isAuth,(req,res)=>{
-    searchString=req.body.searchString
-    Product.find({title:new RegExp(searchString,'i')}).then((foundProducts)=>{
-        res.render("aftersearch",{user:req.session.user,productList:foundProducts})
+app.post("/search", isAuth, (req, res) => {
+    searchString = req.body.searchString
+    Product.find({ title: new RegExp(searchString, 'i') }).then((foundProducts) => {
+
+        const finalimgarr = [];
+        for (let i = 0; i < foundProducts.length; i++) {
+            var img = foundProducts[i].images;
+            const imgarr = img.split(",");
+            finalimgarr[i] = imgarr[0];
+        }
+
+        res.render("aftersearch", { user: req.session.user, productList: foundProducts, imgs: finalimgarr })
     })
 })
 
-app.post("/uploadOffer",(req,res)=>{
-    // let offerer=req.body.offerer;
-    let amount1=req.body.amount;
-    let id=req.query.param
-    
-    Product.findOne({_id:id }).then((foundProduct)=>{
+app.post("/uploadOffer", (req, res) => {
+    let amount1 = req.body.amount;
+    let id = req.query.param
+
+    Product.findOne({ _id: id }).then((foundProduct) => {
         console.log(amount1);
         console.log(foundProduct.title)
-        let offer=new Offer({
-            offerer:req.session.user,
-            productName:foundProduct.title,
-            owner:foundProduct.owner,
-            amount:amount1
+        let offer = new Offer({
+            offerer: req.session.user,
+            productName: foundProduct.title,
+            owner: foundProduct.owner,
+            amount: amount1
         })
         // console.log(foundProduct.offersreceived)
         console.log(offer)
@@ -647,9 +618,8 @@ app.post("/uploadOffer",(req,res)=>{
 
         foundProduct.save()
     })
-    User.find({uname:req.session.user}).then((foundUser)=>{
-        // foundUser.offers.push(offer);
-        res.redirect("/myOffers/"+req.session.user);
+    User.find({ uname: req.session.user }).then((foundUser) => {
+        res.redirect("/myOffers/" + req.session.user);
     })
 })
 

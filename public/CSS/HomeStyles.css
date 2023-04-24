@@ -13,6 +13,10 @@
 
 }
 
+.offcanvas-body:hover{
+    color: #d044ff;
+}
+
 .nav-log {
     text-decoration: none;
     font-size: 20;
@@ -38,7 +42,7 @@
 }
 
 .nav-search:hover{
-    color:white;
+    color:blue;
 }
 
 /* 
