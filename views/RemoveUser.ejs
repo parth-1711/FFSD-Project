@@ -33,43 +33,44 @@
 <body>
     <div class="top">
         <div class="title">
-            <h2>Search and delete accountable Users</h2>
+            <h1 style="color: white;">Search and delete accountable Users</h1>
         </div>
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar" >
             <div class="container-fluid">
                 <form method="post" class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" name="searcheduser"
-                        aria-label="Search" style="width: 25rem;">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                        aria-label="Search" style="width: 25rem; margin-left:140px">
+                    <button class="btn btn-primary" type="submit">Search</button>
                 </form>
             </div>
         </nav>
     </div>
-    <hr>
+    <br>
     <div class="userlist">
         <% for(i=0;i<Rows.length;i++){ %>
             <div class="container-md">
                 <div class="userdetails">
-                    User Name :- <%= Rows[i].uname %> <br>
-                    Email ID :- <%= Rows[i].email %>
+                    User Name - <%= Rows[i].uname %> <br>
+                    Email ID - <%= Rows[i].email %>
                 </div>
             
         </div>
             <% }%>
     </div>
+    <br>
     <form method="post" action="/ConfirmRemoval" class="prompt userlist" id="prompt">
         <div class="insideprompt">
-            <p style="margin-left: 1rem;"><h4>Enter the reason for deletion of user:</h4></p>
+            <p style=""><h4>Deletion of User</h4></p>
             <div class="username">
-                <label for="username" style="margin-right: 2rem; margin-top: 2rem;">
-                    Enter Username:
-                    <input type="text" placeholder="Enter username" name="username" id="username">
+                <label for="username" >
+                    
+                    <input type="text" class="form-control" placeholder="Enter username" name="username" id="username">
                 </label>
             </div>
             <div class="reason">
-            <textarea style="margin-left: 17rem;" name="reason" id="reason" cols="70" rows="10" placeholder="Enter the reason for deletion"></textarea>
+            <textarea class="form-control" name="reason" id="reason" cols="70" rows="10" placeholder="Enter the reason for deletion" style="resize: none;"></textarea>
             </div>
-            <button class="btn btn-outline-danger" type="submit" name="confirmremoval" value="">Confirm Removal</button>
+            <button class="btn btn-danger" type="submit" name="confirmremoval" value="">Confirm Removal</button>
         </div>
     </form>
 </body>

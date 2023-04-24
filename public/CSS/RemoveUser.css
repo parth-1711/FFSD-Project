@@ -16,16 +16,18 @@ body{
 }
 
 .top{
+  
     padding-top: 2rem;
     background-color: white;
     text-align: center;
     padding-bottom: 2rem;
-    width: 80vw;
+    background-color: #8a2be2;
     justify-self: center;
-    margin-left: 9rem;
+    
 }
 
 .title{
+  background-color: #8a2be2;
 
     padding: 1rem 0rem;
 }
@@ -39,7 +41,7 @@ body{
   }
 
   .btn{
-    background-color: blue;
+    
     color: white;
   }
 
@@ -52,17 +54,18 @@ body{
     width: 80vw;
     padding: 2rem;
     margin-left: 9rem;
+    border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    border: 1px solid black;
+    border: 1px solid rgb(192, 192, 192);
   }
 
   .container-md{
     display: flex;
     margin-top: 1rem;
     margin-bottom: 2rem;
-    border: 2px solid black;
+    border: 1px solid rgb(180, 180, 180);
     border-radius: 5px;
-    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    
   }
 
   .userdetails{
@@ -89,9 +92,7 @@ body{
     color: white;
   }
 
-  .prompt{
-    background-color: antiquewhite;
-  }
+  
 
   .insideprompt{
     margin-top: 0.5rem;
@@ -104,6 +105,9 @@ body{
     align-items: flex-end;
   }
 
+  #searchBtn:hover {
+    background-color: #bb73ff;
+  }
   .btn-outline-danger{
     margin-left: 29rem;
     margin-bottom: 1rem;
@@ -115,7 +119,7 @@ body{
   }
 
   .username{
-    display: flex; justify-content: center;
+    display: flex;
     margin-bottom: 1rem;
   }
 
@@ -125,9 +129,7 @@ body{
     margin-bottom: 1rem;
   }
 
-  .top{
-    margin-top: 3rem;
-  }
+  
 
   .container{
     height: 100vh;
