@@ -508,15 +508,17 @@ body {
 /* after search */
 
 .sort-product{
-    background-color: #dbdbdb;
+    background-color: #eae9e9;
     height: 10rem;
     margin: 1rem 0rem;
     display: flex;
     width: 95vw;
     margin-left: 2rem;
+    border-radius: 5px;
+    border: 2px solid rgb(202, 202, 202);
 }
 .sort-product img{
-    width: 8rem;
+    width: 11rem;
     height: 8rem;
     margin-top: 1rem;
     margin-left: 1rem;

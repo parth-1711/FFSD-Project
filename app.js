@@ -108,7 +108,14 @@ app.get("/furniture",(req,res)=>{
 
 app.get("/automobile",(req,res)=>{
     Product.find({tags: "automobile"}).then((foundProducts)=>{
-        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts })
+        const finalimgarr = [];
+        for (let i=0 ; i< foundProducts.length; i++) {
+            var img = foundProducts[i].images;
+            const imgarr = img.split(",");
+            finalimgarr[i] = imgarr[0];
+        }
+        console.log(finalimgarr);
+        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
     })
 })
 
