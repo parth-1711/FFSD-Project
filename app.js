@@ -386,13 +386,8 @@ app.post("/sellerBargain/:parameter1/:parameter2",isAuth,(req,res)=>{
 
 
     Product.findOne({_id:pId}).then((foundProduct)=>{
-        // req.product=foundProduct
-        // req.product.offerneed(pId,offerId).then(result=>{
-        //     res.redirect('/sellerBargain/'+pId)
-        // })
-
         for (let i = 0; i < foundProduct.offersreceived.length; i++) {
-            if (foundProduct.offersreceived[i]._id===offerId) {
+            if (foundProduct.offersreceived[i]._id==offerId) {
                 foundProduct.offersreceived[i].offerStatus=1
                 // foundProduct.save()
                 // console.log(foundProduct)
@@ -402,12 +397,16 @@ app.post("/sellerBargain/:parameter1/:parameter2",isAuth,(req,res)=>{
                 // foundProduct.save()
                 // console.log(foundProduct)
             }
-            console.log(foundProduct.offersreceived[i].offerStatus);
+            // console.log(foundProduct.offersreceived[i].offerStatus);
         }
         foundProduct.markModified('offersreceived')
         foundProduct.save()
+        Offer.findOne({_id:offerId}).then((foundOffer)=>{
+            foundOffer.offerStatus=1
+            foundOffer.save()
+            res.redirect("/sellerBargain/"+pId)
+        })
         
-        res.redirect("/sellerBargain/"+pId)
     })
 })
 

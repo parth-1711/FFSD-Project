@@ -27,8 +27,8 @@
             Name of the buyer:- <%=offers[i].offerer%> <br>
             Amount:- <%=offers[i].amount%> <br>
             Status:-<%=statusMsg[offers[i].offerStatus+1]%>
-            <%=offers[i]._id%>
-            <%=id%>
+            <!-- <%=offers[i]._id%>
+            <%=id%> -->
         </div>
         <form action="/sellerBargain/<%=id%>/<%=offers[i]._id%>" method="post">
         <div class="accept-button">
