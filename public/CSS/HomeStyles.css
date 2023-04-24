@@ -355,7 +355,7 @@
     display: block;
     border-radius: 10px;
     width: 27.5%;
-    height: 500px;
+    height: 550px;
     margin-right: 5%;
     float: left;
     padding: 20px;
@@ -368,8 +368,9 @@
     display: block;
     width: 67.5%;
     float: left;
-    height: 500px;
+    height: 550px;
     padding: 20px;
+    word-spacing: 3px;
 
 }
 
