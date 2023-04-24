@@ -56,20 +56,23 @@ body{
     margin-bottom: 50px;
 }
 .about-us{
+    background-color: rgba(220,206,254,255);
     display: flex;
     align-items: center;
-    width: 85%;
-    margin: auto;
+    padding: 40px;
+    
+    
 }
 .about-us2{
+    
     display: flex;
     align-items: center;
     position: relative;
     padding-left: 300px;
     width: 85%;
-    padding-top: 8rem;
     padding-bottom: 50px;
-    margin: auto;
+    
+
 }
 .about-us img{
     flex: 0 50%;
@@ -82,10 +85,11 @@ body{
     /* height: 120%; */
 }
 .content{
+    color: black;
     padding: 35px;
 }
 .content2{
-    padding: 35px;
+    
     padding-right: 200px;
 }
 .content h2{

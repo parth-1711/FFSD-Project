@@ -101,20 +101,22 @@
     <% for(let i=0;i< productList.length;i++){ %>
       <div class="pdtelem">
         <div class="sort-product">
-          <img src="" alt="img">
+          <img src="/images/fsd-product/<%= imgs[i] %>" alt="<%= imgs[i]%>">
+          
           <div class="pdtdetails">
-            <div>
-              Product Name : <%= productList[i].title %>
+            <div style="font-size: 25px;">
+              <%= productList[i].title %>
             </div>
-            <div>
-              Price : ₹<%= productList[i].setprice %>
+            <div style="font-weight: 700; color:rgb(104, 103, 103); font-size:18px;padding-top:5px;">
+              ₹ <%= productList[i].setprice %>
             </div>
+            <hr>
             <div>
-              Products's Age : <%= productList[i].howold %>
+              <%= productList[i].howold %> old
             </div>
           </div>
           <div class="detailsbtn" style="width: 20vw;">
-            <a href="/productdetails"><button type="submit" class="btn btn-success">View Details</button></a>
+            <a href="/product?param=<%= productList[i]._id%>"><button type="submit" class="btn btn-success" style="position: absolute; right:50; background-color:rgb(111, 20, 197);">More Details</button></a>
           </div>
         </div>
       </div>
