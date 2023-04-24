@@ -7,6 +7,7 @@ const ejs = require("ejs");
 const path = require("path");
 const mongoose = require("mongoose");
 const { title } = require("process");
+const { log } = require("console");
 
 const app = express();
 
@@ -376,7 +377,12 @@ app.get("/checkout/:parameters",isAuth, function (req, res) {
 })
 
 app.get("/MyOffers/:parameters", isAuth, function (req, res) {
-    res.render("MyOffers.ejs", { user: req.session.user })
+
+    Offer.find({offerer:req.session.user}).then((offers)=>{
+        console.log(offers);
+        res.render("MyOffers.ejs", { user: req.session.user, offerList:offers })
+    })
+    
 })
 
 app.get("/aboutUs", function (req, res) {
@@ -516,6 +522,8 @@ app.post("/uploadOffer/:productName/:Owner",(req,res)=>{
     let amount1=req.body.amount;
     let offer=new Offer({
         offerer:offerer,
+        productName:req.params.productName,
+        owner:req.params.Owner,
         amount:amount1
     })
     offer.save();
