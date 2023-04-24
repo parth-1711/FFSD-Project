@@ -21,12 +21,12 @@
         <h3
             style=" font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;margin-top: 2%;">
             Offers </h3>
-    
+        <% for(let i=0;i<offerList.length;i++){ %>
         <div class="offer-list container-md">
             <img src="/images/Phone.jpg" alt="product image" width="10%" >
             <div class="product-text" style="position: relative;left: 5%; display: inline-block;">
-                Name of the product:- ABC XYZ <br>
-                info:- edfgtrdcvb
+                Name of the product:- <%=offerList[i].productName%> <br>
+                amount:- <%=offerList[i].amount%>
             </div>
             <div class="accept-button">
                 <a href="/sellerBargain/ABC-XYZ/<%= user %>"><input type="button" class="btn btn-success"
@@ -34,6 +34,7 @@
             </div>
     
         </div>
+        <%}%>
         <div class="offer-list container-md">
             <img src="/images/Phone.jpg" alt="product image" width="10%" >
             <div class="product-text" style="position: relative;left: 5%; display: inline-block;">
