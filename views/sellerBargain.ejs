@@ -19,18 +19,20 @@
 
 <body>
 
-<div class="container">
+<div class="container" style="height: 100%;">
     <h3 style=" font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;margin-top: 2%;">OFFERS RECEIVED</h3>
     <% for(let i=0;i<offers.length;i++){ %>
     <div class="offer-list container-md">
         <div>
             Name of the buyer:- <%=offers[i].offerer%> <br>
-            Amount:- <%=offers[i].amount%>
-            Status:-<%=statusMsg[offers[i].offerStatus]%>
+            Amount:- <%=offers[i].amount%> <br>
+            Status:-<%=statusMsg[offers[i].offerStatus+1]%>
+            <%=offers[i]._id%>
+            <%=id%>
         </div>
-        <form action="/sellerBargain/<%=offers[i].productName%>" method="post">
+        <form action="/sellerBargain/<%=id%>/<%=offers[i]._id%>" method="post">
         <div class="accept-button">
-            <input type="button" class="btn btn-success" value="Accept offer" style="margin-left: 400px ;">
+            <input type="submit" class="btn btn-success" value="Accept offer" style="margin-left: 400px ;">
             
         </div>
         </form>

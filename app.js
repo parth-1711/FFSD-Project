@@ -79,7 +79,7 @@ const productSchema = {
     address:String,
     images:String,
     owner:String,
-    offersreceived: [offerSchema]
+    offersreceived: []
 }
 
 const User = mongoose.model("User", userSchema);
@@ -88,6 +88,19 @@ const Offer = mongoose.model("Offer", offerSchema);
 const Product = mongoose.model("Product", productSchema);
 const Query=mongoose.model("Query",querySchema);
 
+// productSchema.methods.offerneed=function(pId,offerId) {
+//     // Product.findOne({_id:pId}).then((foundProduct)=>{
+//         for (let i = 0; i < this.offersreceived.length; i++) {
+//             if (this.offersreceived[i]._id===offerId) {
+//                 this.offersreceived[i].offerStatus=1
+//                 // console.log(foundProduct)
+//             }
+//             else {
+//                 this.offersreceived[i].offerStatus=-1 
+//             }
+//         }
+//   return this.save()
+// }
 app.get("/", function (req, res) {
     Product.find({}).then((foundProducts)=>{
         res.render("home.ejs", { user: req.session.user,ProductList:foundProducts })
@@ -238,7 +251,7 @@ app.get("/product", isAuth, function (req, res) {
 
         
 
-         res.render("product (1).ejs" , {howold:foundp.howold ,seller: foundp.owner, img1 : imgarr, foundproduct : foundp, title: foundp.title, price:foundp.setprice, address: foundp.address, description: foundp.description, user : req.session.user})
+         res.render("product (1).ejs" , {howold:foundp.howold ,seller: foundp.owner, img1 : imgarr, foundproduct : foundp, title: foundp.title, price:foundp.setprice, address: foundp.address, description: foundp.description, user : req.session.user,id:foundp._id})
 
     })
 
@@ -281,6 +294,8 @@ app.get("/userProfile/:parameter", isAuth, function (req, res) {
 })
 
 app.get("/sellerBargain/:parameter1", isAuth, function (req, res) {
+    let pId=req.params.parameter1;
+    // console.log(pId);
     Product.findOne({_id:req.params.parameter1,owner:req.session.user}).then((foundProduct)=>{
         let accFlag=-1;
         pimage=[]
@@ -288,31 +303,51 @@ app.get("/sellerBargain/:parameter1", isAuth, function (req, res) {
             if (foundProduct.offersreceived[i].offerStatus===1) {
                 accFlag=i;
             }
-            pimage.push(foundProduct[i].images.split(",")[0])
+            // pimage.push(foundProduct[i].images.split(",")[0])
         }
 
-        let statusArraymsg=["Sorry your Offer is declined","Waiting for response from Seller","Congratulation! Offer Accepted witing for buyer's Response"]
+        let statusArraymsg=["Sorry your Offer is declined","Waiting for response from Seller","Congratulation! Offer Accepted waiting for buyer's Response"]
 
         if (accFlag!=-1) {
-            res.render("sellerBargain",{offers: [foundProduct.offersreceived[accFlag]],image:[pimage[accFlag]],statusMsg:statusArraymsg,user: req.session.user});
+            res.render("sellerBargain",{offers: [foundProduct.offersreceived[accFlag]],statusMsg:statusArraymsg,user: req.session.user,id:pId});
         }
         else{
-            res.render("sellerBargain",{offers: foundProduct.offersreceived,image:pimage,statusMsg:statusArraymsg,user: req.session.user})
+            res.render("sellerBargain",{offers: foundProduct.offersreceived,statusMsg:statusArraymsg,user: req.session.user,id:req.params.parameter1})
         }
     })
 })
 
-app.post("sellerBargain/:parameter1",isAuth,(req,res)=>{
-    const offerId=req.body.oId;
-    Product.findOne({productName:req.params.parameter1,owner:req.session.user}).then((foundProduct)=>{
+app.post("/sellerBargain/:parameter1/:parameter2",isAuth,(req,res)=>{
+    const pId=req.params.parameter1;
+    // console.log(pId);
+    let offerId=req.params.parameter2;
+    // Offer.updateOne({_id:offerId},{offerStatus:1})
+
+
+
+    Product.findOne({_id:pId}).then((foundProduct)=>{
+        // req.product=foundProduct
+        // req.product.offerneed(pId,offerId).then(result=>{
+        //     res.redirect('/sellerBargain/'+pId)
+        // })
+
         for (let i = 0; i < foundProduct.offersreceived.length; i++) {
-            if (foundProduct.offersreceived[i]._id===oId) {
+            if (foundProduct.offersreceived[i]._id===offerId) {
                 foundProduct.offersreceived[i].offerStatus=1
+                // foundProduct.save()
+                // console.log(foundProduct)
             }
-            else foundProduct.offersreceived[i].offerStatus=-1 
-            
+            else {
+                foundProduct.offersreceived[i].offerStatus=-1 
+                // foundProduct.save()
+                // console.log(foundProduct)
+            }
+            console.log(foundProduct.offersreceived[i].offerStatus);
         }
-        res.redirect("sellerBargain/"+req.params.parameter)
+        foundProduct.markModified('offersreceived')
+        foundProduct.save()
+        
+        res.redirect("/sellerBargain/"+pId)
     })
 })
 
@@ -372,15 +407,16 @@ app.get("/search/:parameter", isAuth, function (req, res) {
 app.post("/Myads/:parameter",isAuth,(req,res)=>{
     
 })
-app.get("/checkout/:parameters",isAuth, function (req, res) {
-    res.render("checkout.ejs", { user: req.params.parameters })
+app.get("/checkout",isAuth, function (req, res) {
+    res.render("checkout.ejs", { user: req.session.user })
 })
 
 app.get("/MyOffers/:parameters", isAuth, function (req, res) {
 
     Offer.find({offerer:req.session.user}).then((offers)=>{
         console.log(offers);
-        res.render("MyOffers.ejs", { user: req.session.user, offerList:offers })
+        let statusArraymsg=["Sorry your Offer is declined","Waiting for response from Seller","Congratulation! Offer Accepted waiting for buyer's Response"]
+        res.render("MyOffers.ejs", { user: req.session.user,statusMsg:statusArraymsg, offerList:offers })
     })
     
 })
@@ -512,29 +548,35 @@ app.post("/productdetails/:parameter", function (req, res) {
 });
 
 app.post("/search",isAuth,(req,res)=>{
+    searchString=req.body.searchString
     Product.find({title:new RegExp(searchString,'i')}).then((foundProducts)=>{
         res.render("aftersearch",{user:req.session.user,productList:foundProducts})
     })
 })
 
-app.post("/uploadOffer/:productName/:Owner",(req,res)=>{
-    let offerer=req.body.offerer;
+app.post("/uploadOffer",(req,res)=>{
+    // let offerer=req.body.offerer;
     let amount1=req.body.amount;
-    let offer=new Offer({
-        offerer:offerer,
-        productName:req.params.productName,
-        owner:req.params.Owner,
-        amount:amount1
-    })
-    offer.save();
-    Product.find({title:req.params.productName,owner:req.params.Owner }).then((foundProduct)=>{
-        
+    let id=req.query.param
+    
+    Product.findOne({_id:id }).then((foundProduct)=>{
+        console.log(amount1);
+        console.log(foundProduct.title)
+        let offer=new Offer({
+            offerer:req.session.user,
+            productName:foundProduct.title,
+            owner:foundProduct.owner,
+            amount:amount1
+        })
+        // console.log(foundProduct.offersreceived)
+        console.log(offer)
+        offer.save()
         foundProduct.offersreceived.push(offer);
         
         foundProduct.save()
     })
     User.find({uname:req.session.user}).then((foundUser)=>{
-        foundUser.offers.push(offer);
+        // foundUser.offers.push(offer);
         res.redirect("/myOffers/"+req.session.user);
     })
 })

@@ -25,13 +25,17 @@
         <li class="nav-item"><a class="nav-search" href="/AboutUs">About Us</a></li>
         <li class="nav-item"><a class="nav-search" href="/help">Contact Us</a></li>
         <li class="nav-item1">
-          <div class="Search">
-            <div class="search-item">
-              <i class="fas fa-search"></i>
-              <input class="products" type="text" placeholder="Search for products">
-            </div>
+          <form action="/search" method="post">
+            <div class="Search">
 
-          </div>
+              <div class="search-item">
+                <i class="fas fa-search"></i>
+                <input class="products" type="text" name="searchString" placeholder="Search for products">
+              </div>
+
+            </div>
+            <input type="submit" hidden />
+          </form>
         </li>
   </div>
   </ul>
@@ -60,7 +64,7 @@
       </a>
       <a href="/mobile">
         <div class="stationary" class="categories">
-          <img class="catimg" src="/images/smartphone.png"  alt="bookimg">
+          <img class="catimg" src="/images/smartphone.png" alt="bookimg">
           <h6>Mobiles</h6>
         </div>
       </a>
@@ -140,30 +144,33 @@
       <div class="card-deck">
         <div class="cardscat">
           <% for(let i=0;i<16;i++){ %>
-          <a href="/product?param=<%= ProductList[i]._id%>">
-            
-            <div class="card box">
-              <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
-              <div class="card-body">
-                <div class="pdttitle" style="height: 1.5rem;overflow: hidden;">
-                <h5 class="card-title"><%= ProductList[i].title%></h5>
-              </div>
-                <div class="pdtprice" style="height: 1.5rem; margin:0.7rem;">
-                  <h5>₹<%= ProductList[i].setprice%></h5>
-                </div>
-                <div class="pdtdesc" style="height: 1.5rem; margin-left: 0.9rem">
-                  <%= ProductList[i].address%>
-                </div>
-              </div>
-            </div>
-          </a>
-          <% } %>
+            <a href="/product?param=<%= ProductList[i]._id%>">
 
-       </div>
+              <div class="card box">
+                <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
+                <div class="card-body">
+                  <div class="pdttitle" style="height: 1.5rem;overflow: hidden;">
+                    <h5 class="card-title">
+                      <%= ProductList[i].title%>
+                    </h5>
+                  </div>
+                  <div class="pdtprice" style="height: 1.5rem; margin:0.7rem;">
+                    <h5>₹<%= ProductList[i].setprice%>
+                    </h5>
+                  </div>
+                  <div class="pdtdesc" style="height: 1.5rem; margin-left: 0.9rem">
+                    <%= ProductList[i].address%>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <% } %>
+
+        </div>
+      </div>
     </div>
   </div>
-</div>
-          
+
 
 
   <style>
