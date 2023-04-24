@@ -25,13 +25,17 @@
         <li class="nav-item"><a class="nav-search" href="/AboutUs">About Us</a></li>
         <li class="nav-item"><a class="nav-search" href="/help">Contact Us</a></li>
         <li class="nav-item1">
-          <div class="Search">
-            <div class="search-item">
-              <i class="fas fa-search"></i>
-              <input class="products" type="text" placeholder="Search for products">
-            </div>
+          <form action="/search" method="post">
+            <div class="Search">
 
-          </div>
+              <div class="search-item">
+                <i class="fas fa-search"></i>
+                <input class="products" type="text" name="searchString" placeholder="Search for products">
+              </div>
+
+            </div>
+            <input type="submit" hidden />
+          </form>
         </li>
   </div>
   </ul>
@@ -60,7 +64,7 @@
       </a>
       <a href="/mobile">
         <div class="stationary" class="categories">
-          <img class="catimg" src="/images/smartphone.png"  alt="bookimg">
+          <img class="catimg" src="/images/smartphone.png" alt="bookimg">
           <h6>Mobiles</h6>
         </div>
       </a>
@@ -159,11 +163,11 @@
           </a>
           <% } %>
 
-       </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-          
+
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');

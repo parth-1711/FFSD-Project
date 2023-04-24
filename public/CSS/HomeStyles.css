@@ -38,7 +38,7 @@
 }
 
 .nav-search:hover{
-    color:aqua;
+    color:white;
 }
 
 /* 
@@ -356,7 +356,7 @@
     display: block;
     border-radius: 10px;
     width: 27.5%;
-    height: 500px;
+    height: 550px;
     margin-right: 5%;
     float: left;
     padding: 20px;
@@ -369,8 +369,9 @@
     display: block;
     width: 67.5%;
     float: left;
-    height: 500px;
+    height: 550px;
     padding: 20px;
+    word-spacing: 3px;
 
 }
 
@@ -508,15 +509,17 @@ body {
 /* after search */
 
 .sort-product{
-    background-color: #dbdbdb;
+    background-color: #eae9e9;
     height: 10rem;
     margin: 1rem 0rem;
     display: flex;
     width: 95vw;
     margin-left: 2rem;
+    border-radius: 5px;
+    border: 2px solid rgb(202, 202, 202);
 }
 .sort-product img{
-    width: 8rem;
+    width: 11rem;
     height: 8rem;
     margin-top: 1rem;
     margin-left: 1rem;
