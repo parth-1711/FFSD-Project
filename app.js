@@ -206,7 +206,6 @@ app.post("/sign-in", function (req, res) {
                 })
             }
             else res.redirect("/failure")
-
         })
     }
 
@@ -495,20 +494,20 @@ app.get("/productdetails/:parameter", isAuth, function (req, res) {
     res.render("productdetails.ejs", { user: req.session.user })
 })
 
-app.post("/adminsignup", function (req, res) {
-    let uname = req.body.username;
-    let email = req.body.email;
-    let password = req.body.password;
-    bcrypt.hash(password, 12).then((encryptedPassword) => {
-        let admin = new Admin({
-            uname: uname,
-            email: email,
-            password: encryptedPassword
-        })
-        admin.save()
-        res.redirect("/admin");
-    })
-})
+// app.post("/adminsignup", function (req, res) {
+//     let uname = req.body.username;
+//     let email = req.body.email;
+//     let password = req.body.password;
+//     bcrypt.hash(password, 12).then((encryptedPassword) => {
+//         let admin = new Admin({
+//             uname: uname,
+//             email: email,
+//             password: encryptedPassword
+//         })
+//         admin.save()
+//         res.redirect("/admin");
+//     })
+// })
 
 app.post("/adminsignin", function (req, res) {
     let userName = req.body.username
