@@ -102,7 +102,25 @@ app.get("/homeAS/:parameter", isAuth, function (req, res) {
 
 app.get("/furniture",(req,res)=>{
     Product.find({tags: "furniture"}).then((foundProducts)=>{
-        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts })
+        const finalimgarr = [];
+        for (let i=0 ; i< foundProducts.length; i++) {
+            var img = foundProducts[i].images;
+            const imgarr = img.split(",");
+            finalimgarr[i] = imgarr[0];
+        }
+        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
+    })
+})
+
+app.get("/mobile",(req,res)=>{
+    Product.find({tags: "mobile"}).then((foundProducts)=>{
+        const finalimgarr = [];
+        for (let i=0 ; i< foundProducts.length; i++) {
+            var img = foundProducts[i].images;
+            const imgarr = img.split(",");
+            finalimgarr[i] = imgarr[0];
+        }
+        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
     })
 })
 
@@ -114,7 +132,42 @@ app.get("/automobile",(req,res)=>{
             const imgarr = img.split(",");
             finalimgarr[i] = imgarr[0];
         }
-        console.log(finalimgarr);
+        
+        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
+    })
+})
+app.get("/electronics",(req,res)=>{
+    Product.find({tags: "electronics"}).then((foundProducts)=>{
+        const finalimgarr = [];
+        for (let i=0 ; i< foundProducts.length; i++) {
+            var img = foundProducts[i].images;
+            const imgarr = img.split(",");
+            finalimgarr[i] = imgarr[0];
+        }
+        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
+    })
+})
+
+app.get("/fashion",(req,res)=>{
+    Product.find({tags: "fashion"}).then((foundProducts)=>{
+        const finalimgarr = [];
+        for (let i=0 ; i< foundProducts.length; i++) {
+            var img = foundProducts[i].images;
+            const imgarr = img.split(",");
+            finalimgarr[i] = imgarr[0];
+        }
+        res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
+    })
+})
+
+app.get("/hardware",(req,res)=>{
+    Product.find({tags: "hardware"}).then((foundProducts)=>{
+        const finalimgarr = [];
+        for (let i=0 ; i< foundProducts.length; i++) {
+            var img = foundProducts[i].images;
+            const imgarr = img.split(",");
+            finalimgarr[i] = imgarr[0];
+        }
         res.render("aftersearch.ejs",{ user: req.session.user, productList:foundProducts, imgs : finalimgarr })
     })
 })
