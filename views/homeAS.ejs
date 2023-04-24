@@ -39,12 +39,12 @@
         <li class="nav-item1">
           <form action="/search" method="post">
             <div class="Search">
-            
+
               <div class="search-item">
                 <i class="fas fa-search"></i>
                 <input class="products" type="text" name="searchString" placeholder="Search for products">
               </div>
-            
+
             </div>
             <input type="submit" hidden />
           </form>
@@ -79,7 +79,7 @@
             <!-- <a href="" class="nav-search" onclick="logoutConf()">Logout</a> -->
             <hr>
             <div id="logout-prompt" class="hidden">
-              <form action="/logout" method="post" >
+              <form action="/logout" method="post">
                 <div style="background-color: red; margin-bottom: 2%; display:block; height:28px;">
                   <input type="button" value="" class="btn-close lbtn" onclick="hide()" style="margin-left: 12%;">
                   <!-- <button class="btn-close lbtn" onclick="hide()"></button> -->
@@ -106,16 +106,16 @@
           <h6>Electronics</h6>
         </div>
       </a>
-      <a href="/automobiles">
+      <a href="/automobile">
         <div class="automobiles" class="categories">
           <img class="catimg" src="/images/automobiles.png" alt="autoimg">
           <h6>Automobiles</h6>
         </div>
       </a>
-      <a href="stationary">
+      <a href="/mobile">
         <div class="stationary" class="categories">
-          <img class="catimg" src="/images/book.png" alt="bookimg">
-          <h6>Books & Stationary</h6>
+          <img class="catimg" src="/images/smartphone.png" alt="bookimg">
+          <h6>Mobiles</h6>
         </div>
       </a>
       <a href="/furniture">
@@ -158,9 +158,9 @@
         </div>
         <div class="carousel-item">
           <div class="imgtitle">
-            Books & Stationary
+            Mobile Phones
           </div>
-          <img src="/images/books.jpeg" class="d-block w-100" alt="..." style="height:35rem;">
+          <img src="/images/mobilecarousel.jpg" class="d-block w-100" alt="..." style="height:35rem;">
         </div>
         <div class="carousel-item">
           <div class="imgtitle">
@@ -193,164 +193,30 @@
 
       <div class="card-deck">
         <div class="cardscat">
-          <div class="card box">
-            <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Product</h5>
-              <div class="pdtprice">
-                ₹ 9999
+          <% for(let i=0;i<16;i++){ %>
+          <a href="/product?param=<%= ProductList[i]._id%>">
+            
+            <div class="card box">
+              <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
+              <div class="card-body">
+                <div class="pdttitle" style="height: 1.5rem;overflow: hidden;">
+                <h5 class="card-title"><%= ProductList[i].title%></h5>
               </div>
-              <div class="pdtdesc">
-                Chennai,TamilNadu
-              </div>
-            </div>
-          </div>
-          <div class="card box">
-            <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Product</h5>
-              <div class="pdtprice">
-                ₹ 9999
-              </div>
-              <div class="pdtdesc">
-                Chennai,TamilNadu
+                <div class="pdtprice" style="height: 1.5rem; margin:0.7rem;">
+                  <h5>₹<%= ProductList[i].setprice%></h5>
+                </div>
+                <div class="pdtdesc" style="height: 1.5rem; margin-left: 0.9rem">
+                  <%= ProductList[i].address%>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card box">
-            <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Product</h5>
-              <div class="pdtprice">
-                ₹ 9999
-              </div>
-              <div class="pdtdesc">
-                Chennai,TamilNadu
-              </div>
-            </div>
-          </div>
-          <div class="card box">
-            <img class="card-img-top" src="/images/ProductImage.jpeg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Product</h5>
-              <div class="pdtprice">
-                ₹ 9999
-              </div>
-              <div class="pdtdesc">
-                Chennai,TamilNadu
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="category2">
-      <div class="card-deck">
-        <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Product</h5>
-            <div class="pdtprice">
-              ₹ 9999
-            </div>
-            <div class="pdtdesc">
-              Chennai,TamilNadu
-            </div>
-          </div>
-        </div>
-        <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Product</h5>
-            <div class="pdtprice">
-              ₹ 9999
-            </div>
-            <div class="pdtdesc">
-              Chennai,TamilNadu
-            </div>
-          </div>
-        </div>
-        <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Product</h5>
-            <div class="pdtprice">
-              ₹ 9999
-            </div>
-            <div class="pdtdesc">
-              Chennai,TamilNadu
-            </div>
-          </div>
-        </div>
-        <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage2.jpeg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Product</h5>
-            <div class="pdtprice">
-              ₹ 9999
-            </div>
-            <div class="pdtdesc">
-              Chennai,TamilNadu
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </a>
+          <% } %>
 
-    <div class="category3">
-      <div class="card-deck">
-        <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage3.jpeg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Product</h5>
-            <div class="pdtprice">
-              ₹ 9999
-            </div>
-            <div class="pdtdesc">
-              Chennai,TamilNadu
-            </div>
-          </div>
-        </div>
-        <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage3.jpeg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Product</h5>
-            <div class="pdtprice">
-              ₹ 9999
-            </div>
-            <div class="pdtdesc">
-              Chennai,TamilNadu
-            </div>
-          </div>
-        </div>
-        <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage3.jpeg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Product</h5>
-            <div class="pdtprice">
-              ₹ 9999
-            </div>
-            <div class="pdtdesc">
-              Chennai,TamilNadu
-            </div>
-          </div>
-        </div>
-        <div class="card box">
-          <img class="card-img-top" src="/images/ProductImage3.jpeg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Product</h5>
-            <div class="pdtprice">
-              ₹ 9999
-            </div>
-            <div class="pdtdesc">
-              Chennai,TamilNadu
-            </div>
-          </div>
-        </div>
-      </div>
+       </div>
     </div>
   </div>
-
+</div>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
@@ -359,7 +225,7 @@
 </body>
 
 <div class="footer">
-<%- include('partials/footer'); -%>
+  <%- include('partials/footer'); -%>
 </div>
 
 </HTML>

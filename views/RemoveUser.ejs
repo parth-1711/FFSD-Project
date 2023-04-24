@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/CSS/RemoveUser.css">
     
-    <script>
+    <!-- <script>
         function ConfirmRemoval() {
             var prompt = document.getElementById("prompt");
             prompt.classList.remove("hidden");
@@ -26,7 +27,7 @@
             var prompt = document.getElementById("prompt")
             prompt.classList.add("hidden")
         }
-    </script>
+    </script> -->
 </head>
 
 <body>
@@ -53,22 +54,24 @@
                     Email ID :- <%= Rows[i].email %>
                 </div>
             
-            <div class="removebutton">
-                <button id="removebutton" onclick="ConfirmRemoval()" value="<%= Rows[i].uname %>">Remove</button>
-            </div>
         </div>
-            <form method="post" action="/ConfirmRemoval" class="hidden prompt" id="prompt">
-                <div class="insideprompt">
-                    <input type="button" style="display: block;" value="" class="btn-close lbtn" onclick="hide()">
-                    <p style="margin-left: 1rem;">Enter the reason for deletion of user:</p>
-                    <div class="reason">
-                    <textarea style="margin-left: 17rem;" name="reason" id="reason" cols="70" rows="10" placeholder="Enter the reason for deletion"></textarea>
-                    </div>
-                    <button class="btn btn-outline-danger" type="submit" name="confirmremoval" value="<%= Rows[i].uname%>">Confirm Removal</button>
-                </div>
-            </form>
             <% }%>
     </div>
+    <form method="post" action="/ConfirmRemoval" class="prompt userlist" id="prompt">
+        <div class="insideprompt">
+            <p style="margin-left: 1rem;"><h4>Enter the reason for deletion of user:</h4></p>
+            <div class="username">
+                <label for="username" style="margin-right: 2rem; margin-top: 2rem;">
+                    Enter Username:
+                    <input type="text" placeholder="Enter username" name="username" id="username">
+                </label>
+            </div>
+            <div class="reason">
+            <textarea style="margin-left: 17rem;" name="reason" id="reason" cols="70" rows="10" placeholder="Enter the reason for deletion"></textarea>
+            </div>
+            <button class="btn btn-outline-danger" type="submit" name="confirmremoval" value="">Confirm Removal</button>
+        </div>
+    </form>
 </body>
 
 
