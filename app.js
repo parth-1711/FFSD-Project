@@ -121,7 +121,7 @@ app.get("/furniture", (req, res) => {
 })
 
 app.get("/mobile", (req, res) => {
-    Product.find({ tags: "mobile" }).then((foundProducts) => {
+    Product.find({ tags: "mobiles" }).then((foundProducts) => {
         const finalimgarr = [];
         for (let i = 0; i < foundProducts.length; i++) {
             var img = foundProducts[i].images;
