@@ -445,14 +445,29 @@ app.get("/checkout", isAuth, function (req, res) {
 })
 
 app.get("/MyOffers/:parameters", isAuth, function (req, res) {
+    const finalimgarr=[];
 
     Offer.find({ offerer: req.session.user }).then((offers) => {
-        console.log(offers);
+        for (let j=0; j<offers.length; j++) {
+            var pname = offers[j].productName;
+            Product.findOne({title : pname}).then((foundUser) => {
+                
+                var imgs = foundUser.images;
+                imgarr = imgs.split(",");
+                finalimgarr[j]=imgarr[0];
+                console.log(imgarr[0]);
+            })
+        }
+        console.log(finalimgarr);
         let statusArraymsg = ["Sorry your Offer is declined", "Waiting for response from Seller", "Congratulation! Offer Accepted waiting for buyer's Response"]
-        res.render("MyOffers.ejs", { user: req.session.user, statusMsg: statusArraymsg, offerList: offers })
-    })
+        res.render("MyOffers.ejs", { user: req.session.user, statusMsg: statusArraymsg, offerList: offers, imgarr : finalimgarr })
+            
+        })
 
-})
+    })
+        
+        
+   
 
 app.get("/aboutUs", function (req, res) {
     res.render("aboutUs.ejs")
