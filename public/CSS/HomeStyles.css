@@ -506,14 +506,14 @@ h6:hover {
 
 
 body {
-    background-color: rgba(245, 245, 245, 0.701);
+    background-color: rgba(241, 243, 246, 0.701);
     height: 100vh;
 }
 
 /* after search */
 
 .sort-product{
-    background-color: #eae9e9;
+    background-color: #ffffff;
     height: 10rem;
     margin: 1rem 0rem;
     display: flex;
