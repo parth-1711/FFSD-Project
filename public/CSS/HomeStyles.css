@@ -178,22 +178,18 @@
     padding-bottom: 1%;
 }
 
-.cardscon{
-    margin-left: 8rem;
-}
+
 
 .pdtprice{
     display: flex;
-    color: green;
-    justify-content: center;
+    color: #616161;
     align-items: center;
 }
 
 .pdtdesc{
     display: flex;
-    color: red;
-    justify-content: center;
-    align-items: center;
+    padding-left: 2px;
+    color:#747474;
 }
 
 .box {
@@ -228,8 +224,8 @@
 
 .card-title{
     display: flex;
-    justify-content: center;
-    color: maroon;
+
+    color:rgb(0, 0, 0)
 }
 
 .price{
@@ -244,6 +240,9 @@
     transform: scale(1.05);
 }
 
+.card:hover {
+    box-shadow:rgba(184, 184, 184, 0.25) 0px 20px 20px;
+}
 
 .price-overview {
     margin: 1px;

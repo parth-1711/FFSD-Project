@@ -145,19 +145,19 @@
           <div class="imgtitle">
             Electronics
           </div>
-          <img src="/images/elec7_app.jpg" class="d-block w-100" alt="..." style="height:35rem;">
+          <img src="/images/elec7_app.jpg" class="d-block w-100" alt="empty cell" style="height:35rem;">
         </div>
         <div class="carousel-item">
           <div class="imgtitle">
             Automobiles
           </div>
-          <img src="/images/vehicles4.jpg" class="d-block w-100" alt="..." style="height:35rem;">
+          <img src="/images/vehicles4.jpg" class="d-block w-100" alt="empty cell" style="height:35rem;">
         </div>
         <div class="carousel-item">
           <div class="imgtitle">
             Mobile Phones
           </div>
-          <img src="/images/mobilecarousel.jpg" class="d-block w-100" alt="..." style="height:35rem;">
+          <img src="/images/mobiles.jpg" class="d-block w-100" alt="empty cell" style="height:35rem;">
         </div>
         <div class="carousel-item">
           <div class="imgtitle">
@@ -185,25 +185,29 @@
   <div class="recom">
     <h3>Fresh Reccomendations For You</h3>
   </div>
-  <div class="cardscon">
+  <div class="">
     <div class="category1">
 
-      <div class="card-deck">
-        <div class="cardscat">
+      <div class="">
+        <div class="container" >
           <% for(let i=0;i<16;i++){ %>
           <a href="/product?param=<%= ProductList[i]._id%>">
             
-            <div class="card box">
-              <img class="card-img-top" src="/images/fsd-product/<%= ImagesArray[i] %>" alt="Card image cap">
+            <div class="card" style="width: 18rem; height:21.5rem; margin:15px; float:left; position:static; border-radius:5px;">
+              <img class="card-img-top" src="/images/fsd-product/<%= ImagesArray[i] %>" style="object-fit:contain" alt="Card image cap">
               <div class="card-body">
-                <div class="pdttitle" style="height: 1.5rem;overflow: hidden;">
+                <div class="pdttitle" style="overflow: hidden;">
                 <h5 class="card-title"><%= ProductList[i].title%></h5>
               </div>
-                <div class="pdtprice" style="height: 1.5rem; margin:0.7rem;">
+                <div class="pdtprice" >
                   <h5>₹<%= ProductList[i].setprice%></h5>
-                </div>
-                <div class="pdtdesc" style="height: 1.5rem; margin-left: 0.9rem">
+                </div><hr style="margin-top:0;">
+                <div class="pdtdesc" >
                   <%= ProductList[i].address%>
+                  
+                </div>
+                <div style="color: rgb(101, 101, 101); font-size:13px; padding-left:2px;">
+                  posted 5 days ago
                 </div>
               </div>
             </div>
@@ -219,10 +223,15 @@
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
   </style>
 
+<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+  <div style="margin-top: 100rem;">
+    <%- include('partials/footer'); -%>
+  </div>
+
+
 </body>
 
-<div class="footer">
-  <%- include('partials/footer'); -%>
-</div>
+
 
 </HTML>
+
