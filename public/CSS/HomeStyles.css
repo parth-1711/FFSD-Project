@@ -13,9 +13,7 @@
 
 }
 
-.offcanvas-body:hover{
-    color: #d044ff;
-}
+
 
 .nav-log {
     text-decoration: none;
@@ -42,7 +40,7 @@
 }
 
 .nav-search:hover{
-    color:blue;
+    color:rgb(255, 255, 255);
 }
 
 /* 
@@ -209,7 +207,7 @@
 }
 
 .box:hover {
-    background-color: rgb(111, 20, 197);
+    background-color: rgb(0, 0, 0);
 }
 
 .card-img-top {
@@ -505,7 +503,7 @@ h6:hover {
 
 
 body {
-    background-color: rgba(241, 243, 246, 0.701);
+    background-color: rgba(250, 250, 250);
     height: 100vh;
 }
 
@@ -513,14 +511,17 @@ body {
 
 .sort-product{
     background-color: #ffffff;
-    height: 10rem;
+    height: 11rem;
     margin: 1rem 0rem;
     display: flex;
-    width: 95vw;
-    margin-left: 2rem;
-    border-radius: 5px;
-    border: 2px solid rgb(202, 202, 202);
+    width: 73vw;
+    margin-left: 3rem;
+    border-radius: 2px;
+
+    border: 0.25px solid rgb(232, 232, 232);
 }
+
+
 .sort-product img{
     width: 11rem;
     height: 8rem;
@@ -530,17 +531,22 @@ body {
 }
 
 .pdtdetails{
+    position: absolute;
     width: 60vw;
+    left:300px;
     margin-top: 1rem;
 }
 
 .detailsbtn{
     width: 20rem;
     margin-top: 4rem;
-    display: inline-block;
+    
 }
+
+
 
 .pdtelem{
     width: 100%;
     display: flex;
+    
 }

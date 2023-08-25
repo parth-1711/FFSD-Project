@@ -101,7 +101,7 @@
     <% for(let i=0;i< productList.length;i++){ %>
       <div class="pdtelem">
         <div class="sort-product">
-          <img src="/images/fsd-product/<%= imgs[i] %>" alt="<%= imgs[i]%>">
+          <img src="/images/fsd-product/<%= imgs[i] %>" style="object-fit:contain" alt="<%= imgs[i]%>" >
           
           <div class="pdtdetails">
             <div style="font-size: 25px;">
@@ -110,21 +110,27 @@
             <div style="font-weight: 700; color:rgb(104, 103, 103); font-size:18px;padding-top:5px;">
               ₹ <%= productList[i].setprice %>
             </div>
-            <hr>
-            <div>
+
+            <div style="color:rgb(104, 103, 103); font-size:15px;padding-top:5px;">
+              ₹ <%= productList[i].address %>
+            </div>
+
+            <div style="color: gray; font-size:15px; padding-top:5px">
               <%= productList[i].howold %> old
             </div>
+            <div style="color: gray; font-size:13px; ">
+              posted 5 days ago
+            </div>
+            
           </div>
           <div class="detailsbtn" style="width: 20vw;">
-            <a href="/product?param=<%= productList[i]._id%>"><button type="submit" class="btn btn-success" style="position: absolute; right:50; background-color:rgb(111, 20, 197);">More Details</button></a>
+            <a href="/product?param=<%= productList[i]._id%>"><button type="submit" class="btn btn-success" style="position: absolute; right:400; background-color:rgb(111, 20, 197);">More Details</button></a>
           </div>
         </div>
       </div>
   </div>
   <%}%>
-    <div class="end" style="display: flex; justify-content: center;">
-      <h5>End of List</h5>
-    </div>
+    
 </body>
 
 <%- include('partials/footer'); -%>
