@@ -12,17 +12,17 @@
         <link rel="stylesheet" href="/CSS/help.css">
 
     </head>
-    <img src="/images/background-help.png" width="100%" style="position:fixed; z-index: -1;">
+    <!-- <img src="/images/background-help.png" width="100%" style="position:fixed; z-index: -1;"> -->
     <%- include('partials/navbar'); -%>
-    <body>
+    <body style="background-color: rgba(213, 220, 220, 0.692);">
       
-<div class="container" style="border-radius: 20px; padding-left: 40px; padding-right: 40px;">
+<div class="container" style="border-radius: 20px; padding-left: 40px; padding-right: 40px; background-color: rgb(240, 245, 245);">
       <div class="help-header" style="width: 70%;">
         <h2 style="color: rgb(79, 79, 79); padding-top: 40px; ">HI, WE ARE HERE TO HELP YOU !</h2>
         <!-- <h4 style="padding-top: 10px; padding-bottom: 10px;">Please, select the category</h4> -->
       </div>
 
-      <div class="" style="margin-top: 15px;">
+      <div class="" style="margin: 30px;">
        
           <div class="category-block1">
             <i class="fa fa-user" style="font-size: 60px ;color: rgb(107, 19, 189)"></i>
@@ -45,23 +45,29 @@
        
 
       </div>
-      <hr style="margin-top: 60px;">
-      <div class="query-box">
+      <hr style="margin-top: 40px;">
+      <div class="query-box" style="background-color:#e1e6f3;">
 
         <br>
+      
         <div class="help-header" style="width: 70%;">
           <h2 style="color: black; font-size: 23px;">Couldn't find what you are looking for?</h2>
           <!-- <h4 style="padding-top: 10px; padding-bottom: 10px;">Please, select the category</h4> -->
         </div>
         <form action="/help/<%= user %>" method="post">
           <label for="query" style="color: rgb(53, 53, 53);font-size: 18px; margin-left: 10px;">Contact us</label><br>
-          <textarea name="query" id="query" cols="30" rows="10" class="query" placeholder="Enter your concern here.."></textarea>
+          <div class="text-back">
+            <textarea name="query" id="query" cols="30" rows="10" class="query" placeholder="Enter your concern here.."></textarea>
+            <img src="\images\fsd-product\help.jpg" class="help-img" width=""alt="imdfhft">
+          </div>
           <br>
           <button type="submit" class="sbtbtnq" style="margin-left: 10px; margin-bottom: 40px; margin-top: 10px; ">Submit</button>
         </form>
       </div>
+      <br>
     </div>
     </body>
+    <br>
     <br>
     <br>
         <%- include('partials/footer'); -%>
