@@ -16,45 +16,7 @@
 
     <link rel="stylesheet" href="/CSS/styles.css">
     <link rel="stylesheet" href="/CSS/navbar.css">
-    <script>
-        function addDivision() {
-            var home = document.getElementById("flexRadioDefault1");
-            var office = document.getElementById("flexRadioDefault2");
-            var addline1 = document.getElementById("addlineone").value;
-            var addline2 = document.getElementById("addlinetwo").value;
-            var city= document.getElementById("city").value;
-            var landmark = document.getElementById("landmark").value;
 
-            if (home.checked) {
-                var selectedradio = "Home";
-            }
-            else {
-                var selectedradio = "Office";
-            }
-
-            var div = document.createElement("div");
-            div.style.color= "rgb(79, 79, 79)";
-            div.style.border = "1px solid rgb(205, 205, 205)";
-            div.style.backgroundColor="rgb(239, 238, 238)";
-            div.style.marginTop="1rem";
-            div.style.display="block";
-            div.style.height=" 200px";
-            div.style.padding="1rem";
-            div.style.borderRadius="10px";
-            
-
-            div.innerHTML= "<h3>" + selectedradio + "</h3>";
-            div.innerHTML+="<hr>";
-            div.innerHTML+=addline1;
-            div.innerHTML+="<br>";
-            div.innerHTML+=addline2;
-
-            document.getElementById("newaddresses").appendChild(div);
-
-            
-
-        }
-    </script>
 </head>
 
 <body>
@@ -91,7 +53,7 @@
 
     <div class="containbox">
         <h3 style="padding-top: 20px; color: rgb(83, 83, 83);"><i style="padding-right: 15px;" class="fa fa-address-book-o"></i>Add a new address</h3><hr>
-    <form method="post">
+    <form method="post" action="/SavedAddress/<%= user %>" id="savdaddr-form">
     <div class="address">
         <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
@@ -116,14 +78,46 @@
         <input class="addlandmark" id="landmark" type="text"  name="landmark"><br><br>
         <p style="font-size: 20px;">Town/City</p>
         <input type="text" id="city" class="addcity"  name="city">
-        <button class="add-btn" style=" position: absolute; right: 140px;" onclick="addDivision(); ">+</button><br><br>
+        <button class="add-btn" id="add-btn" style=" position: absolute; right: 250px;">+</button><br><br>
     </div>
     </form>
 </div>
 </div>
 
+<script>
+      $(document).ready(function () {
+          // Target the form by its ID
+          var form = $('#savdaddr-form');
+      
+          // Attach a submit event handler to the form
+          form.submit(function (e) {
+              e.preventDefault(); // Prevent the default form submission
+      
+              // Serialize the form data
+              var formData = form.serialize();
+      
+              // Perform the AJAX POST request
+              $.ajax({
+                  type: 'POST',
+                  url: form.attr('action'),
+                  data: formData,
+                  success: function (response) {
+                      // Handle the success response here
+                      console.log('Form submitted successfully!');
+                      $('#query').val('');
+                      alert("form submitted");
+                      // You can update the page or show a success message as needed
+                  },
+                  error: function (error) {
+                      // Handle any errors here
+                      console.error('Error submitting form:', error);
+                      // You can display an error message or take other appropriate actions
+                  }
+              });
+          });
+      });
+      </script>
 </body>
-
 
 </html>
 
