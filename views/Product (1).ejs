@@ -99,10 +99,13 @@
                 <%= address %>
               </p>
             </div>
-            <form action="/uploadOffer?param=<%=id%>" method="post">
+            <form action="/uploadOffer?param=<%=id%>" method="post" onsubmit="return offerValidation()">
               <div class="form-outline">
                 <label class="form-label" for="formControlLg" style="font-size: 19px;">Make your offer here</label>
                 <input type="number" id="formControlLg" class="form-control form-control-lg" name="amount" placeholder="₹ " />
+                <div id="warning" class="hidden" style="text-align:center; color: crimson;">
+                  Offered amount shouldn't be 0 or negative !
+                </div>
 
               </div>
               <button id="contactsellerbtn" type="submit">Request</button>
@@ -158,7 +161,7 @@
 
 
 
-
+<script src="Scripts/offerValidation.js"></script>
 </body>
 <%- include('partials/footer'); -%>
 
