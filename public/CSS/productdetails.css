@@ -214,3 +214,7 @@
     position: sticky;
     width: 100%;
 }
+
+.hidden {
+    display: none;
+}

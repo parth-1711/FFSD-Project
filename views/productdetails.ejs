@@ -1,77 +1,182 @@
 <%- include('partials/navbar'); -%>
-    <html lang="en">
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sell</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <head>
-        <link rel="icon" type="image/x-icon" href="/images/logo.png">
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sell</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-        
-        <link rel="stylesheet" href="/CSS/productdetails.css">
-        <link rel="stylesheet" href="/CSS/navbar.css">
+    <link rel="stylesheet" href="/CSS/productdetails.css" />
+    <link rel="stylesheet" href="/CSS/navbar.css" />
+  </head>
 
-    </head>
+  <body>
+    <div class="containform">
+      <p style="font-size: 30px; font-weight: bold">
+        Please fill in the details
+      </p>
+      <hr />
+      <form method="post" onsubmit="return detailsvalidation()">
+        <p style="font-size: 20px">Ad title:</p>
+        <input type="text" class="adtitl" id="adtitle" name="title" /><br />
+        <p style="font-size: 10px; color: grey">
+          Mention the name of your item with some key features
+        </p>
+        <p style="font-size: 20px">Description</p>
+        <input
+          type="text"
+          class="adddesc"
+          id="adddesc"
+          name="description"
+        /><br />
+        <p style="font-size: 10px; color: grey">
+          Include condition, features and reason for selling
+        </p>
 
-    <body>
-        <div class="containform">
-            <p style="font-size: 30px; font-weight: bold;">Please fill in the details</p>
-            <hr>
-            <form  method="post">
-                <p style="font-size: 20px;">Ad title: </p>
-                <input type="text" class="adtitl" name="title"><br>
-                <p style="font-size: 10px; color: grey;">Mention the name of your item with some key features</p>
-                <p style="font-size: 20px;">Description </p>
-                <input type="text" class="adddesc" name="description"><br>
-                <p style="font-size: 10px; color: grey;">Include condition, features and reason for selling</p>
+        <p style="font-size: 20px">How old is your item</p>
+        <input type="text" class="addoldness" id="adage" name="howold" /><br />
+        <p style="font-size: 10px; color: grey">Mention clearly</p>
 
-                <p style="font-size: 20px;">How old is your item </p>
-                <input type="text" class="addoldness" name="howold"><br>
-                <p style="font-size: 10px; color: grey;">Mention clearly</p>
-
-                <p style="font-size: 20px;">Set price: </p>
-                <input type="text" class="addprice" name="setprice"><br>
-                <p style="font-size: 10px; color: grey;">In rupees ₹</p>
-                <hr>
-                <p style="font-size: 30px; margin-top: 30px; font-weight: bold;"><i class="fa fa-address-book-o"></i>
-                    Please confirm your address</p><br>
-                <p style="font-size: 20px;">Flat, House no., Building, Company, Apartment</p>
-                <input class="addflat" type="text" name="flat">
-                <p style="font-size: 10px; color: grey;">Address line 1</p>
-                <p style="font-size: 20px;">Area, Street, Sector, Village</p>
-                <input class="addstreet" type="text" name="street">
-                <p style="font-size: 10px; color: grey;">Address line 2</p>
-                <p style="font-size: 20px;">Landmark</p>
-                <input class="addlandmark" type="text" name="landmark" >
-                <p style="font-size: 20px;">Town/City</p>
-                <input type="text" class="addcity" name="city">
-                <hr>
-                <p style="font-size: 30px; font-weight: bold;"> <i class="fa fa-link"></i> Add Drive link</p>
-                <br>
-                <p style="font-size: 20px;">Front View</p>
-                <input type="text" class="addlandmark" name="images1">
-                <p style="font-size: 10px; color: grey;">Paste the Drive link of image</p>
-                <p style="font-size: 20px;">Back View</p>
-                <input type="text" class="addlandmark" name="images2">
-                <p style="font-size: 10px; color: grey;">Paste the Drive link of image</p>
-                <p style="font-size: 20px;">Side View</p>
-                <input type="text" class="addlandmark" name="images3">
-                <p style="font-size: 10px; color: grey;">Paste the Drive link of image</p>
-                <hr>
-                <input type="submit" value="Submit" class="btn btn-outline-success" style="margin-left: 45%;">
-
-            </form>
-
-
+        <p style="font-size: 20px">Set price:</p>
+        <input
+          type="text"
+          class="addprice"
+          id="addprice"
+          name="setprice"
+        /><br />
+        <p style="font-size: 10px; color: grey">In rupees ₹</p>
+        <hr />
+        <p style="font-size: 30px; margin-top: 30px; font-weight: bold">
+          <i class="fa fa-address-book-o"></i> Please confirm your address
+        </p>
+        <br />
+        <p style="font-size: 20px">
+          Flat, House no., Building, Company, Apartment
+        </p>
+        <input id="adln1" class="addflat" type="text" name="flat" />
+        <p style="font-size: 10px; color: grey">Address line 1</p>
+        <p style="font-size: 20px">Area, Street, Sector, Village</p>
+        <input id="adln2" class="addstreet" type="text" name="street" />
+        <p style="font-size: 10px; color: grey">Address line 2</p>
+        <p style="font-size: 20px">Landmark</p>
+        <input id="adln3" class="addlandmark" type="text" name="landmark" />
+        <p style="font-size: 20px">Town/City</p>
+        <input type="text" class="addcity" name="city" />
+        <hr />
+        <p style="font-size: 30px; font-weight: bold">
+          <i class="fa fa-link"></i> Add Drive link
+        </p>
+        <br />
+        <p style="font-size: 20px">Front View</p>
+        <input id="images1" type="text" class="addlandmark" name="images1" />
+        <p style="font-size: 10px; color: grey">
+          Paste the Drive link of image
+        </p>
+        <p style="font-size: 20px">Back View</p>
+        <input type="text" id="images2" class="addlandmark" name="images2" />
+        <p style="font-size: 10px; color: grey">
+          Paste the Drive link of image
+        </p>
+        <p style="font-size: 20px">Side View</p>
+        <input type="text" id="images3" class="addlandmark" name="images3" />
+        <p style="font-size: 10px; color: grey">
+          Paste the Drive link of image
+        </p>
+        <hr />
+        <div
+          id="empty-warning"
+          class="hidden"
+          style="text-align: center; color: crimson"
+        >
+          Any field shouldn't be empty !
         </div>
-    </body>
+        <div
+          id="neg-warning"
+          class="hidden"
+          style="text-align: center; color: crimson"
+        >
+          Price shouldn't be 0 or less than 0 !
+        </div>
 
-    <%- include('partials/footer'); -%>
+        <div
+          id="pat-warning"
+          class="hidden"
+          style="text-align: center; color: crimson"
+        >
+          title or age field shouldn't contain special characters !
+        </div>
 
-    </html>
+        <input
+          type="submit"
+          value="Submit"
+          class="btn btn-outline-success"
+          style="margin-left: 45%"
+        />
+      </form>
+    </div>
+
+    <script>
+      const detailsvalidation = () => {
+        let adtitle = document.getElementById("adtitle").value;
+        let desc = document.getElementById("adddesc").value;
+        let adage = document.getElementById("adage").value;
+        let addprice = document.getElementById("addprice").value;
+        let adpic1 = document.getElementById("images1").value;
+        let adpic2 = document.getElementById("images2").value;
+        let adpic3 = document.getElementById("images3").value;
+
+        let adadd1 = document.getElementById("adln1").value;
+        let adadd2 = document.getElementById("adln2").value;
+        let adadd3 = document.getElementById("adln3").value;
+
+        let adadd = adadd1 + adadd2 + adadd3;
+
+        console.log(addprice);
+
+        if (
+          !adtitle.trim() ||
+          !desc.trim() ||
+          !adage.trim() ||
+          !adpic1.trim() ||
+          !adpic2.trim() ||
+          !adpic3.trim()
+        ) {
+          document.getElementById("empty-warning").classList.remove("hidden");
+          return false;
+        }
+
+        if (parseFloat(addprice) <= 0) {
+          document.getElementById("neg-warning").classList.remove("hidden");
+          console.log(addprice);
+          return false;
+        }
+        let pattern = /[!@#$%^&*]/;
+
+        if (pattern.test(adtitle) || pattern.test(adage)) {
+          document.getElementById("pat-warning").classList.remove("hidden");
+          return false;
+        }
+        return true;
+      };
+    </script>
+  </body>
+
+  <%- include('partials/footer'); -%>
+</html>
