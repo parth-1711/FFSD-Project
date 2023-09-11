@@ -8,6 +8,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <link rel="stylesheet" href="/CSS/navbar.css">
         <link rel="stylesheet" href="/CSS/help.css">
 
@@ -16,7 +18,7 @@
     <%- include('partials/navbar'); -%>
     <body style="background-color: rgba(213, 220, 220, 0.692);">
       
-<div class="container" style="border-radius: 20px; padding-left: 40px; padding-right: 40px; background-color: rgb(240, 245, 245);">
+<div class="container" style="border-radius: 20px; padding-left: 40px; padding-right: 40px; background-color: rgb(246, 248, 248);">
       <div class="help-header" style="width: 70%;">
         <h2 style="color: rgb(79, 79, 79); padding-top: 40px; ">HI, WE ARE HERE TO HELP YOU !</h2>
         <!-- <h4 style="padding-top: 10px; padding-bottom: 10px;">Please, select the category</h4> -->
@@ -54,10 +56,10 @@
           <h2 style="color: black; font-size: 23px;">Couldn't find what you are looking for?</h2>
           <!-- <h4 style="padding-top: 10px; padding-bottom: 10px;">Please, select the category</h4> -->
         </div>
-        <form action="/help/<%= user %>" method="post">
+        <form id="help-form" action="/help/<%= user %>" method="post">
           <label for="query" style="color: rgb(53, 53, 53);font-size: 18px; margin-left: 10px;">Contact us</label><br>
           <div class="text-back">
-            <textarea name="query" id="query" cols="30" rows="10" class="query" placeholder="Enter your concern here.."></textarea>
+            <textarea name="query" id="query" cols="30" rows="10" class="query" placeholder="Enter your concern here.." style="background-color:rgb(255, 253, 253)"></textarea>
             <img src="\images\fsd-product\help.jpg" class="help-img" width=""alt="imdfhft">
           </div>
           <br>
@@ -66,6 +68,40 @@
       </div>
       <br>
     </div>
+    <script>
+      $(document).ready(function () {
+          // Target the form by its ID
+          var form = $('#help-form');
+      
+          // Attach a submit event handler to the form
+          form.submit(function (e) {
+              e.preventDefault(); // Prevent the default form submission
+      
+              // Serialize the form data
+              var formData = form.serialize();
+      
+              // Perform the AJAX POST request
+              $.ajax({
+                  type: 'POST',
+                  url: form.attr('action'),
+                  data: formData,
+                  success: function (response) {
+                      // Handle the success response here
+                      console.log('Form submitted successfully!');
+                      $('#query').val('');
+                      alert("form submitted");
+                      // You can update the page or show a success message as needed
+                  },
+                  error: function (error) {
+                      // Handle any errors here
+                      console.error('Error submitting form:', error);
+                      // You can display an error message or take other appropriate actions
+                  }
+              });
+          });
+      });
+      </script>
+      
     </body>
     <br>
     <br>
