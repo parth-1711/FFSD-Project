@@ -17,7 +17,7 @@
 
 <body style="background-color: rgb(139, 43, 230);">
     <div class="top-div">
-    <div class="homeIcon"><a href="/"><i class="fas fa-home" style="color: white;" class="homehover"></i></a></div>
+    <div class="homeIcon"><a href="/homeAS/<%= user%>"><i class="fas fa-home" style="color: white;" class="homehover"></i></a></div>
     <div class="logo-flex">
         <div>
             <a class="aboutUs-twitter" href=""><i class="fa-brands fa-twitter"
@@ -31,12 +31,13 @@
             <a class="aboutUs-gmail" href=""><i class="fas fa-envelope" style='font-size: 36px; color: rgb(255, 255, 255); '></i></a>
         </div>
     </div>
-    
+    </div>
     <div class="heading">
         <h1>About PHOENIX</h1>
         <p>PHOENIX E-MART is an online platform for buying and selling of 2<sup>nd</sup> hand/used products.</p>
-        <hr style="color: white; height:2px">
-        <b><p style="font-size:40px;">DISCOVER HIDDEN GEMS AT UNBEATABLE PRICES WITH OUR SECONDHAND STORE</p></b>
+    </div>
+    <div class="headingB">
+        <b><p>DISCOVER HIDDEN GEMS AT UNBEATABLE PRICES WITH OUR SECONDHAND STORE</p></b>
     </div>
     <section class="about-us">
         <img src="/images/aboutusimg.jpg" alt="img">
@@ -53,8 +54,6 @@
             </p>
         </div>
     </section>
-    </div>
-   
     <section class="about-us2" style="margin: 20px; margin-bottom:60px;">
         <div class="content2">
             <h2 style="color: white;">Team</h2>
@@ -67,7 +66,7 @@
                 <li>Krishnamurthy</li>
             </ul>
             </p>
-            <button class="read-more-btn" style="margin-left: 10px;" href="/help">Contact Us</button>
+            <a class="read-more-btn" style="margin-left: 10px; text-decoration: none;" href="/help/<%= user %>">Contact Us</a>
         </div>
         <img src="/images/aboutusimg.jpg" alt="img">
     </section>

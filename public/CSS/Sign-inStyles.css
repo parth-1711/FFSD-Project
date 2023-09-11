@@ -148,3 +148,7 @@ a:active {
   border-radius: 15px;
   padding: 4%;
 }
+
+.hidden{
+  display: none;
+}
