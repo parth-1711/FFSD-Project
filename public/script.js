@@ -79,3 +79,16 @@ function checkEmail(email) {
         return false;
     }
 }
+
+function buttonAnimation()
+{
+  let btn = document.getElementById("contactsellerbtn");
+  btn.style.color='black';
+  btn.style.background="lightgreen";
+  btn.style.transform="scale(1.1)";
+  setTimeout(()=>{
+    btn.style.background='rgb(111, 20, 197)';
+    btn.style.color='white';
+    btn.style.transform="scale(0.95)";
+  },1000)
+}
