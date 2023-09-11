@@ -16,3 +16,13 @@ function validation() {
     // console.log(uname);
     // console.log(password);
 }
+
+function buttonAnimation() 
+{
+    const btn = document.getElementsByClassName("submitRequest");
+
+    btn.style.transform = "rotate(360deg)";
+    btn.style.transform="scale(1.05)";
+    btn.style.background = "lightgreen";
+
+}

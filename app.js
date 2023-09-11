@@ -31,6 +31,8 @@ app.use(session({
     store: store
 }))
 
+// All schemas for Database
+
 const offerSchema = {
     offerer: String,
     productName: String,
@@ -61,15 +63,6 @@ const querySchema = {
     query: String
 }
 
-const isAuth = (req, res, next) => {
-    if (req.session.isAuth) {
-        next();
-    }
-    else {
-        res.redirect("/failure")
-    }
-}
-
 const productSchema = {
     images: String,
     title: String,
@@ -82,13 +75,32 @@ const productSchema = {
     offersreceived: []
 }
 
+// const User = require("./models/User");
+// const Offer = require("./models/Offer");
+// const Admin = require("./models/Admin");
+// const Product = require("./models/Product");
+// const Query = require("./models/Query");
+
+
+//middleware for checking whether user is logged in or not
+const isAuth = (req, res, next) => {
+    if (req.session.isAuth) {
+        next();
+    }
+    else {
+        res.redirect("/failure")
+    }
+}
+
+const Offer = mongoose.model("Offer", offerSchema);
 const User = mongoose.model("User", userSchema);
 const Admin = mongoose.model("Admin", adminSchema);
-const Offer = mongoose.model("Offer", offerSchema);
 const Product = mongoose.model("Product", productSchema);
 const Query = mongoose.model("Query", querySchema);
 
 app.get("/", function (req, res) {
+    //This is home route before sign in
+
     let pdtimgs = [];
     Product.find({}).then((foundProducts) => {
         for (let i = 0; i < 16; i++) {
@@ -99,6 +111,8 @@ app.get("/", function (req, res) {
 })
 
 app.get("/homeAS/:parameter", isAuth, function (req, res) {
+        //This is home route after sign in
+
     let pdtimgs = [];
     Product.find({}).then((foundProducts) => {
         for (let i = 0; i < 16; i++) {
@@ -144,6 +158,7 @@ app.get("/automobile", (req, res) => {
         res.render("aftersearch.ejs", { user: req.session.user, productList: foundProducts, imgs: finalimgarr })
     })
 })
+
 app.get("/electronics", (req, res) => {
     Product.find({ tags: "electronics" }).then((foundProducts) => {
         const finalimgarr = [];
@@ -185,6 +200,7 @@ app.get("/sign-in", function (req, res) {
 })
 
 app.post("/sign-in", function (req, res) {
+    //post route for sign in route it changes req.session.user to current user name and changes req.session.isAuth to true
     let userName = req.body.username;
     let Password = req.body.password;
     const isAdmin = req.body.admin === 'true';
@@ -238,6 +254,7 @@ app.get("/sign-up", function (req, res) {
 })
 
 app.post("/sign-up", function (req, res) {
+    //It makes a new entry in user collection
     let userName = req.body.username
     let email = req.body.email;
     let Password = req.body.password;
@@ -268,6 +285,9 @@ app.post("/sign-up", function (req, res) {
 })
 
 app.post("/logout", (req, res) => {
+
+    //This destroys existing session
+
     req.session.destroy((err) => {
         if (err) {
             throw err;
@@ -283,6 +303,8 @@ app.get("/failure", function (req, res) {
 let v = 1;
 app.get("/product", isAuth, function (req, res) {
 
+    //Page displays data about product dynamically
+
     var param = req.query.param;
     const arr = param.split("-");
 
@@ -297,17 +319,18 @@ app.get("/product", isAuth, function (req, res) {
 
     })
 
-}
-)
+})
 
 app.get("/userProfile/:parameter", isAuth, function (req, res) {
+//this method renders user profile
+
     var currentUser = req.session.user;
 
     const arrTitle = [];
     const arrImg = [];
 
     Product.find({ owner: currentUser }).then((foundProducts) => {
-        console.log(foundProducts);
+        // console.log(foundProducts);
         len = foundProducts.length
         if (len > 4) {
             for (let i = 0; i < 4; i++) {
@@ -455,10 +478,10 @@ app.get("/MyOffers/:parameters", isAuth, function (req, res) {
                 var imgs = foundUser.images;
                 imgarr = imgs.split(",");
                 finalimgarr[j]=imgarr[0];
-                console.log(imgarr[0]);
+                // console.log(imgarr[0]);
             })
         }
-        console.log(finalimgarr);
+        // console.log(finalimgarr);
         let statusArraymsg = ["Sorry your Offer is declined", "Waiting for response from Seller", "Congratulation! Offer Accepted waiting for buyer's Response"]
         res.render("MyOffers.ejs", { user: req.session.user, statusMsg: statusArraymsg, offerList: offers, imgarr : finalimgarr })
             
@@ -466,8 +489,6 @@ app.get("/MyOffers/:parameters", isAuth, function (req, res) {
 
     })
         
-        
-   
 
 app.get("/aboutUs", function (req, res) {
     res.render("aboutUs.ejs")
@@ -617,8 +638,8 @@ app.post("/uploadOffer", (req, res) => {
     let id = req.query.param
 
     Product.findOne({ _id: id }).then((foundProduct) => {
-        console.log(amount1);
-        console.log(foundProduct.title)
+        // console.log(amount1);
+        // console.log(foundProduct.title)
         let offer = new Offer({
             offerer: req.session.user,
             productName: foundProduct.title,
@@ -626,7 +647,7 @@ app.post("/uploadOffer", (req, res) => {
             amount: amount1
         })
         // console.log(foundProduct.offersreceived)
-        console.log(offer)
+        // console.log(offer)
         offer.save()
         foundProduct.offersreceived.push(offer);
 
