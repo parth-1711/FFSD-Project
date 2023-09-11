@@ -262,6 +262,7 @@ app.post("/sign-up", function (req, res) {
                 password: encryptedPassword
             })
             user.save()
+            console.log(user)
             res.redirect("/sign-in");
         })
     }
@@ -467,7 +468,9 @@ app.get("/MyOffers/:parameters", isAuth, function (req, res) {
     })
         
         
-   
+app.get("/FAQ/:parameter", function (req,res) {
+    res.render("FAQ.ejs", { user: req.session.user })
+})   
 
 app.get("/aboutUs", function (req, res) {
     res.render("aboutUs.ejs")
@@ -637,7 +640,21 @@ app.post("/uploadOffer", (req, res) => {
     })
 })
 
+app.get('/signupajax/:email',(req,res)=>{
+    let mail = req.params.email;
+    User.find({email : mail}).then(arr=>{
+        let output = JSON.stringify({
+            isNotpresent: arr.length == 0
+        });
+        res.send(output)
+    })
+    .catch(err=>{
+        console.log(err.message)
+        res.send('<h1>error</h1>')
+    })
+
+})
+
 app.listen(80, function () {
     console.log("server is up and running");
 })
-
