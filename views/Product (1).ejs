@@ -23,7 +23,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/CSS/HomeStyles.css">
   <link rel="stylesheet" href="/CSS/navbar.css">
-  <script src="script.js"></script>
+  <script src="Scripts/offerValidation.js"></script>
 </head>
 
 
@@ -105,6 +105,9 @@
                 <input type="number" id="formControlLg" class="form-control form-control-lg" name="amount" placeholder="₹ " />
                 <div id="warning" class="hidden" style="text-align:center; color: crimson;">
                   Offered amount shouldn't be 0 or negative !
+                </div>
+                <div id="warning2" class="hidden" style="text-align:center; color: crimson;">
+                  Offered amount should not be less than 75% of the expected price !
                 </div>
 
               </div>
