@@ -13,9 +13,7 @@
 
 }
 
-.offcanvas-body:hover{
-    color: #d857ff;
-}
+
 
 .nav-log {
     text-decoration: none;
@@ -29,7 +27,7 @@
 
 .upper-nav {
     /* background-image: linear-gradient(180deg, rgb(138, 12, 125), rgb(159, 24, 189)); */
-    background-color: #c300ff;
+    background-color: rgb(111, 20, 197);
 }
 
 .nav-search {
@@ -42,7 +40,7 @@
 }
 
 .nav-search:hover{
-    color:rgb(0, 0, 0);
+    color:rgb(255, 255, 255);
 }
 
 /* 
@@ -122,6 +120,8 @@
 }
 
 
+
+
 #logout-prompt {
     border: 1px solid rgb(69, 69, 69);
     
@@ -150,9 +150,8 @@
     width: 3rem;
 }
 
-
 .carousel {
-    height: 75vh;
+    height: 35rem;
 }
 
 .imgtitle {
@@ -163,47 +162,32 @@
     color: white;
 }
 
-.carousel-item{
-    height: 75vh;
-}
-
-.imgcontainer{
-    height: inherit;
-    width: inherit;
-    overflow: hidden;
-}
-
 .recom {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 5rem;
     margin-bottom: 2rem;
     margin-left: 0.5rem;
     padding-top: 1%;
     border: 1px solid black;
     border-radius: 50px;
-    background-color: #c300ff;
+    background-color: rgb(111, 20, 197);
     color: white;
     width: 98vw;
     padding-bottom: 1%;
 }
 
-.cardscon{
-    margin-left: 8rem;
-}
 
 
 .pdtprice{
     display: flex;
-    color: green;
-    justify-content: center;
+    color: #616161;
     align-items: center;
 }
 
 .pdtdesc{
     display: flex;
-    color: red;
-    justify-content: center;
-    align-items: center;
+    padding-left: 2px;
+    color:#747474;
 }
 
 .box {
@@ -220,14 +204,10 @@
     border: 1px solid black;
     flex-wrap: wrap;
     margin: 1rem;
-    transition-duration: 1s;
 }
 
 .box:hover {
-    transition: ease-out;
-    transform: translateY(-10px);
-    background-color: rgb(205, 151, 255);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: rgb(0, 0, 0);
 }
 
 .card-img-top {
@@ -242,8 +222,8 @@
 
 .card-title{
     display: flex;
-    justify-content: center;
-    color: maroon;
+
+    color:rgb(0, 0, 0)
 }
 
 .price{
@@ -258,6 +238,9 @@
     transform: scale(1.05);
 }
 
+.card:hover {
+    box-shadow:rgba(184, 184, 184, 0.25) 0px 20px 20px;
+}
 
 .price-overview {
     margin: 1px;
@@ -328,15 +311,13 @@
     border: 0px;
     margin-top: 20px;
     width: 60%;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    transition: 0.5s ease-out;
 }
 
 #contactsellerbtn:hover {
-    transform: scale(1.05);
+
     cursor: pointer;
-    background-color: rgb(190, 123, 253);
-    color: black;
+    background-color: rgb(190, 123, 253)
+
 }
 
 #desccard {
@@ -484,17 +465,6 @@
 
 .catcon {
     display: flex;
-    transition: ease-in;
-}
-
-.category_1
-{
-    color: black;
-}
-
-.category_1:hover{
-    transform: scale(1.1);
-    color: #c300ff;
 }
 
 .container1 {
@@ -520,27 +490,38 @@ a {
     padding-right: 5rem;
     text-align: center;
     position: inherit;
-    transition: ease-in-out;
+}
+
+h6 {
+    color: black;
+
+}
+
+h6:hover {
+    color: rgb(183, 58, 255);
 }
 
 
 body {
-    background-color: rgba(245, 245, 245, 0.701);
+    background-color: rgba(250, 250, 250);
     height: auto;
 }
 
 /* after search */
 
 .sort-product{
-    background-color: #eae9e9;
-    height: 10rem;
+    background-color: #ffffff;
+    height: 11rem;
     margin: 1rem 0rem;
     display: flex;
-    width: 95vw;
-    margin-left: 2rem;
-    border-radius: 5px;
-    border: 2px solid rgb(202, 202, 202);
+    width: 73vw;
+    margin-left: 3rem;
+    border-radius: 2px;
+
+    border: 0.25px solid rgb(232, 232, 232);
 }
+
+
 .sort-product img{
     width: 11rem;
     height: 8rem;
@@ -550,59 +531,22 @@ body {
 }
 
 .pdtdetails{
+    position: absolute;
     width: 60vw;
+    left:300px;
     margin-top: 1rem;
 }
 
 .detailsbtn{
     width: 20rem;
     margin-top: 4rem;
-    display: inline-block;
+    
 }
+
+
 
 .pdtelem{
     width: 100%;
     display: flex;
+    
 }
-
-.wavy_footer
-{
-    margin-top: 4rem;
-    position: sticky;
-}
-
-.pdt_info{
-    font-size: large;
-    color: aliceblue;
-    margin-left: 5rem ;
-    margin-right: 5rem ;
-    border-radius: 5px;
-    animation: 1s ease-out 0s 1 LeftInAnimation;
-    background: #000000;
-    padding: 40px;
-}
-
-#carouselExampleIndicators
-{
-    animation: 1s ease-in-out 0s 1 TopEntryAnimation;
-}
-
-@keyframes LeftInAnimation {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes TopEntryAnimation
-  {
-    0%{
-        transform: translateY(-100%);
-    }
-
-    100%{
-        transform: translateY(0%);
-    }
-  }

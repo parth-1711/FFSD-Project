@@ -1,0 +1,114 @@
+<html>
+    <head>
+      <link rel="icon" type="image/x-icon" href="/images/logo.png">
+        <title>PHOENIX E-mart - Help</title>
+        <link rel="icon" type="image/x-icon" href="logo.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="/CSS/navbar.css">
+        <link rel="stylesheet" href="/CSS/FAQ.css">
+
+    </head>
+    <!-- <img src="/images/background-help.png" width="100%" style="position:fixed; z-index: -1;"> -->
+    <%- include('partials/navbar'); -%>
+    <body style="background-color: rgba(213, 220, 220, 0.692);">
+      
+
+
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="topic" onclick="toggleQuestions('topic1')"><h3>Seller FAQ's </h3></div>
+    <div class="questions" id="topic1">
+        <div class="question" onclick="toggleAnswer('answer1')">Q1.How do I create a seller account?</div>
+        <div class="answer" id="answer1">To create a seller account, visit our website and click on the "Sell" or "Become a Seller" option. Follow the prompts to provide the required information and set up your account.</div>
+
+        <div class="question" onclick="toggleAnswer('answer2')">Q2. What are the fees for selling on this platform?</div>
+        <div class="answer" id="answer2">Our fees vary depending on the type of product and the plan you choose. You can find detailed fee information in your seller dashboard.</div>
+        
+        <div class="question" onclick="toggleAnswer('answer3')">Q3. How do I list my products for sale?</div>
+        <div class="answer" id="answer3">After creating an account, go to your seller dashboard and click on "List a Product." Follow the steps to provide product details, pricing, and images.</div>
+
+        <div class="question" onclick="toggleAnswer('answer4')">Q4. What payment methods are available for sellers?</div>
+        <div class="answer" id="answer4">We offer various payment methods, including direct deposit, check, or PayPal. You can choose the one that suits you best.</div>
+    
+        <div class="question" onclick="toggleAnswer('answer5')">Q5. How can I manage my orders and shipping?</div>
+        <div class="answer" id="answer3"> You can manage orders through your seller dashboard. We also provide shipping and fulfillment options, including integration with shipping carriers.</div>
+
+    </div>
+
+    <div class="topic" onclick="toggleQuestions('topic2')"><h3>Buyer FAQ's</h3></div>
+    <div class="questions" id="topic2">
+        <div class="question" onclick="toggleAnswer('answer6')">Q1. How do I create a buyer account?</div>
+        <div class="answer" id="answer6">Creating a buyer account is simple. Click on "Sign Up" or "Create Account" and provide your details to register.</div>
+
+        <div class="question" onclick="toggleAnswer('answer7')">Q2. Is my payment information secure when making a purchase?</div>
+        <div class="answer" id="answer7">Yes, we take security seriously. We use encryption and secure payment gateways to protect your financial information.</div>
+        
+        <div class="question" onclick="toggleAnswer('answer8')">Q3. hat is your return policy?</div>
+        <div class="answer" id="answer8">Our return policy varies by seller and product. Check the product listing and seller's return policy for specific details.</div>
+
+        <div class="question" onclick="toggleAnswer('answer9')">Q4. How can I track my order?</div>
+        <div class="answer" id="answer9">You can track your order through your buyer account or by using the tracking number provided by the seller.</div>
+    
+        <div class="question" onclick="toggleAnswer('answer10')">Q5. What if I have an issue with a purchase?</div>
+        <div class="answer" id="answer10">If you have any issues, contact the seller first. If the problem persists, our customer support team is here to assist you.</div>
+
+    </div>
+
+        <div class="topic" onclick="toggleQuestions('topic3')"><h3>General Queries</h3></div>
+    <div class="questions" id="topic3">
+        <div class="question" onclick="toggleAnswer('answer31')">Q1. How can I reset my password?</div>
+        <div class="answer" id="answer31">To reset your password, click on "Forgot Password" on the login page and follow the instructions sent to your email.</div>
+
+        <div class="question" onclick="toggleAnswer('answer32')">Q2. Can I change my shipping address after placing an order?</div>
+        <div class="answer" id="answer32">Contact the seller as soon as possible to request a change in the shipping address.</div>
+    
+        <div class="question" onclick="toggleAnswer('answer33')">Q3. What should I do if I forget my username or email?</div>
+        <div class="answer" id="answer33">Contact our customer support for assistance in recovering your username or email.</div>
+
+    </div>
+
+    <div class="topic" onclick="toggleQuestions('topic4')"><h3>Legal Information</h3></div>
+    <div class="questions" id="topic4">
+        <div class="question" onclick="toggleAnswer('answer41')">Q1. What are the terms and conditions for using this platform?</div>
+        <div class="answer" id="answer41">You can find our terms and conditions in the "Terms of Service" section on our website.</div>
+
+        <div class="question" onclick="toggleAnswer('answer42')">Q2. What is your privacy policy regarding user data?</div>
+        <div class="answer" id="answer42">Our privacy policy is available in the "Privacy Policy" section on our website. It outlines how we collect, use, and protect user data.</div>
+
+        <div class="question" onclick="toggleAnswer('answer43')">Q3. How do I report copyright or trademark infringement?</div>
+        <div class="answer" id="answer43">If you believe your intellectual property rights are being violated, please contact our legal team through the "Report Infringement" link provided on the website.</div>
+
+    </div>
+
+    <script>
+        function toggleQuestions(topicId) {
+            const questions = document.getElementById(topicId);
+            if (questions.style.display === 'none' || questions.style.display === '') {
+                questions.style.display = 'block';
+            } else {
+                questions.style.display = 'none';
+            }
+        }
+
+        function toggleAnswer(answerId) {
+            const answer = document.getElementById(answerId);
+            if (answer.style.display === 'none' || answer.style.display === '') {
+                answer.style.display = 'block';
+            } else {
+                answer.style.display = 'none';
+            }
+        }
+    </script> 
+
+
+
+    </body>
+    <br>
+    <br>
+    <br>
+        <%- include('partials/footer'); -%>
+</html>

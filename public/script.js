@@ -17,12 +17,65 @@ function validation() {
     // console.log(password);
 }
 
-function buttonAnimation() 
-{
-    const btn = document.getElementsByClassName("submitRequest");
+  function checkEmailAvailability() {
+    const emailInput = document.getElementById('email');
+    const email = emailInput.value;
+    const emailAvailabilitySpan = document.getElementById('email-availability');
 
-    btn.style.transform = "rotate(360deg)";
-    btn.style.transform="scale(1.05)";
-    btn.style.background = "lightgreen";
+    if (email.trim() === '') {
+      emailAvailabilitySpan.textContent = '';
+      return;
+    }
 
+    // Send an Ajax request to the server to check email availability
+    fetch('/check-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.available) {
+          emailAvailabilitySpan.textContent = 'Email is available.';
+        } else {
+          emailAvailabilitySpan.textContent = 'Email is already registered.';
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+  
+
+function checkEmail(email) {
+    let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}$');
+    let emailStatusDiv = document.getElementById("email-status");
+
+    if (regex.test(email)) {
+        emailStatusDiv.classList.add('hidden');
+
+        let xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState == 4) {
+                let res = JSON.parse(xhr.response);
+                if (!res["isNotpresent"]) {
+                    emailStatusDiv.style.color = 'red'
+                    emailStatusDiv.style.fontSize = "10px"
+                    emailStatusDiv.innerText = "Email is already taken. Please choose another.";
+                    emailStatusDiv.classList.remove('hidden');
+                }
+            }
+        };
+
+        xhr.open('GET', `http://localhost:80/signupajax/${email}`);
+        xhr.send();
+        return true;
+    } else {
+        emailStatusDiv.innerText = "Please enter a valid email address.";
+        emailStatusDiv.classList.remove('hidden');
+        return false;
+    }
 }

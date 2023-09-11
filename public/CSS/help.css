@@ -378,6 +378,11 @@ h2 {
     resize: none;
 }
 
+.query-box{
+    margin-bottom: 10px;
+    
+}
+
 .query:focus {
     border: none;
     outline-color: #e0dfdf
@@ -466,8 +471,6 @@ h2 {
   .location {
     padding-left: 10px;
   }
-  
-
 
 
   .nav-brand {
@@ -478,3 +481,11 @@ h2 {
     background-color: white;
   }
   
+  .text-back{
+    display: flex;
+  }
+
+  .help-img{
+    width: 50%;
+    height: 30%;
+  }
