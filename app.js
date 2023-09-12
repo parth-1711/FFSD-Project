@@ -503,15 +503,22 @@ app.get("/sell/:parameter", isAuth, function (req, res) {
     res.render("Sellproduct.ejs", { user: req.session.user })
 })
 
-app.get("/RemoveUser", isAuth, function (req, res) {
-    User.find({}).then((foundUsers) => {
-        res.render("RemoveUser.ejs", { Rows: foundUsers });
+// app.get("/RemoveUser", isAuth, function (req, res) {
+//     User.find({}).then((foundUsers) => {
+//         res.render("RemoveUser.ejs", { Rows: foundUsers });
+//     })
+// })
+
+app.post("/RemoveUser/:username",isAuth,function(req,res){
+    User.deleteOne({ uname: username }).then(() => {
+        res.json();
     })
 })
 
 app.post("/RemoveUser", isAuth, (req, res) => {
     let username = req.body.searcheduser;
     User.find({ uname: new RegExp(username, 'i') }).then((foundUsers) => {
+        
         res.render("RemoveUser.ejs", { Rows: foundUsers });
     })
 })
@@ -519,6 +526,7 @@ app.post("/RemoveUser", isAuth, (req, res) => {
 app.post("/ConfirmRemoval", isAuth, (req, res) => {
     let username = req.body.username;
     User.deleteOne({ uname: username }).then(() => {
+        res.json(foundUsers);
         res.redirect("/RemoveUser");
     })
 })

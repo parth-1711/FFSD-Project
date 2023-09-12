@@ -80,6 +80,21 @@ function checkEmail(email) {
     }
 }
 
+// async function deleteUser()
+// {
+//     let userName = document.getElementById("username");
+
+//       let resp = await fetch(`/ConfirmRemoval/${userName}`,{
+//           method:'POST',
+//           headers:
+//           {
+//             'Content-Type':'application/json',
+//           },
+//           body: JSON.stringify({userName}),
+//         })
+
+// }
+
 function buttonAnimation()
 {
   let btn = document.getElementById("contactsellerbtn");
