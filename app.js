@@ -678,6 +678,13 @@ app.get('/signupajax/:email',(req,res)=>{
 
 })
 
+app.post('/username-avail',async(req,res)=>{
+    let username=req.body.username;
+    let foundUser=await User.find({uname:username},"uname");
+    console.log(foundUser);
+    res.json(foundUser);
+})
+
 app.listen(80, function () {
     console.log("server is up and running");
 })
