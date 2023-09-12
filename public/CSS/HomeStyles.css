@@ -226,6 +226,12 @@
     color:rgb(0, 0, 0)
 }
 
+.cardscon
+{
+    margin-bottom: 3rem;
+    overflow: scroll;
+}
+
 .price{
     display: flex;
     justify-content: center;
@@ -505,6 +511,7 @@ h6:hover {
 body {
     background-color: rgba(250, 250, 250);
     height: auto;
+
 }
 
 /* after search */
@@ -543,10 +550,30 @@ body {
     
 }
 
-
-
 .pdtelem{
     width: 100%;
     display: flex;
     
+}
+
+.pdt_info
+{
+    margin: 0 5rem;
+    border-radius: 5px;
+    color: white;
+    height: 4rem;
+    background: black;
+    animation: leftIn 1s ease-in;
+}
+
+@keyframes leftIn
+{
+    0%
+    {
+        transform: translateX(-100%);
+    }
+    100%
+    {
+        transform: translateX(0%);
+    }
 }
