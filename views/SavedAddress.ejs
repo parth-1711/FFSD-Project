@@ -108,32 +108,35 @@
         }
 
         $(document).ready(function () {
-          // Target the form by its ID
+
           var form = $('#savdaddr-form');
       
-          // Attach a submit event handler to the form
+
           form.submit(function (e) {
-              e.preventDefault(); // Prevent the default form submission
+              e.preventDefault();
       
-              // Serialize the form data
+ 
               var formData = form.serialize();
       
-              // Perform the AJAX POST request
+            
               $.ajax({
                   type: 'POST',
                   url: form.attr('action'),
                   data: formData,
                   success: function (response) {
-                      // Handle the success response here
+                     
                       console.log('Form submitted successfully!');
-                      $('#query').val('');
+                      $('#addlineone').val('');
+                      $('#addlinetwo').val('');
+                      $('#landmark').val('');
+                      $('#city').val('');
                       alert("form submitted");
-                      // You can update the page or show a success message as needed
+                    
                   },
                   error: function (error) {
-                      // Handle any errors here
+                    
                       console.error('Error submitting form:', error);
-                      // You can display an error message or take other appropriate actions
+                  
                   }
               });
           });
